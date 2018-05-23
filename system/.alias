@@ -1,0 +1,13 @@
+alias glg='git log --graph --full-history --all --color --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
+alias subl=st
+# .zshrc's `l` is special, but I hate where it is on the keyboard
+alias k=l
+alias tmuxk="tmux kill-session -t"
+alias tmuxa="tmux a -t"
+alias tmuxn="tmux new -s"
+alias penvn="pyenv virtualenv"
+alias penva="pyenv activate"
+alias penvk="pyenv uninstall"
+alias voce='say -v Alice '
+alias cronn='env EDITOR=nano crontab -e'
+alias cronl='crontab -l'
