@@ -11,3 +11,4 @@ alias penvk="pyenv uninstall"
 alias voce='say -v Alice '
 alias cronn='env EDITOR=nano crontab -e'
 alias cronl='crontab -l'
+alias diff="colordiff"
