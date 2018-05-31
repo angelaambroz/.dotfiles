@@ -12,3 +12,12 @@ alias voce='say -v Alice '
 alias cronn='env EDITOR=nano crontab -e'
 alias cronl='crontab -l'
 alias diff="colordiff"
+
+# http://www.the-efficient-programmer.com/shell/some-grep-tips.html
+alias grr="grep --recursive --line-number \
+    --exclude-dir=.git --exclude-dir=.svn \
+    --exclude='*.o' --exclude='*.pyc'"
+
+alias -g G='| grep'
+
+# https://gist.github.com/dciccale/5560837
