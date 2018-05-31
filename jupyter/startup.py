@@ -10,7 +10,7 @@ import matplotlib as mpl
 from sqlalchemy import create_engine
 from matplotlib import pyplot as plt
 from datetime import datetime, timedelta
-from IPython.display import Javascript
+from IPython.display import Javascript, display
 
 plt.style.use('bmh')
 
