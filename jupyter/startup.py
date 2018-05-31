@@ -14,6 +14,7 @@ from IPython.display import Javascript, display
 
 plt.style.use('bmh')
 
+
 def alert(text: str = 'All done!'):  
     js = f'alert("{text}");'
     display(Javascript(js))
@@ -39,11 +40,11 @@ def cnx(db: str):
 
 def df_shape(dataframe: pd.DataFrame) -> str:
     """Print the df shape nicely"""
-    print(f"rows\t{dataframe.shape[0]:,.0f}\ncols\t{dataframe.shape[1]:,.0f}")
     return None
 
 
+
+
 # TODO:
-# Find some way to freeze the state and iterate through it, printing the funcs available
-alert("Loaded cnx(), alert(), figsize(), df_shape()")    
+# alert("Loaded cnx(), alert(), figsize(), df_shape()")    
 
