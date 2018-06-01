@@ -40,9 +40,8 @@ def cnx(db: str):
 
 def df_shape(dataframe: pd.DataFrame) -> str:
     """Print the df shape nicely"""
-    return None
-
-
+    print(f'rows\t{dataframe.shape[0]}')
+    print(f'cols\t{dataframe.shape[1]}')
 
 
 # TODO:
