@@ -21,6 +21,7 @@ alias grr="grep --recursive --line-number \
 alias -g G='| grep'
 
 # https://gist.github.com/dciccale/556083
+alias gc="git checkout" 
 alias gcm="git checkout master"
 alias gcd="git checkout develop"
 alias gb="git branch"
