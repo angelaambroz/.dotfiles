@@ -20,4 +20,12 @@ alias grr="grep --recursive --line-number \
 
 alias -g G='| grep'
 
-# https://gist.github.com/dciccale/5560837
+# https://gist.github.com/dciccale/556083
+alias gcm="git checkout master"
+alias gcd="git checkout develop"
+alias gb="git branch"
+alias gmm="git merge master"
+alias gmd="git merge develop"
+alias gpom="git push -u origin master"
+alias gaa="git add ."
+
