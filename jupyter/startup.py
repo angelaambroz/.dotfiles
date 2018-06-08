@@ -2,6 +2,7 @@ import os
 import random
 import psycopg2
 import requests
+import pickle
 import numpy as np
 import pandas as pd
 import seaborn as sns
