@@ -1,4 +1,5 @@
 import os
+import scipy
 import random
 import psycopg2
 import requests
