@@ -7,12 +7,13 @@ import pickle
 import numpy as np
 import pandas as pd
 import seaborn as sns
-import tunbridge as tb
 import matplotlib as mpl
 from sqlalchemy import create_engine
 from matplotlib import pyplot as plt
 from datetime import datetime, timedelta
 from IPython.display import Javascript, display
+
+import tunbridge as tb
 
 plt.style.use('bmh')
 
