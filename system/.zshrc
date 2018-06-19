@@ -45,9 +45,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" 
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" 
 
-echo "Deleting all .DS_Store..."
-rm ~/**/.DS_Store
-
 # Pretty and minimalist
 autoload -U promptinit; promptinit
 prompt pure
