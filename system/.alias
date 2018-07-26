@@ -12,6 +12,7 @@ alias voce='say -v Alice '
 alias cronn='env EDITOR=nano crontab -e'
 alias cronl='crontab -l'
 alias diff="colordiff"
+alias jlist="jupyter notebook list"
 
 # http://www.the-efficient-programmer.com/shell/some-grep-tips.html
 alias grr="grep --recursive --line-number \
