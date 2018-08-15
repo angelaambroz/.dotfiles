@@ -31,6 +31,10 @@ echo "Loaded secrets."
 source "$HOME/.dotfiles/system/.alias"
 echo "Loaded non-secrets."
 
+# Update tldr
+echo "Updating tldr."
+tldr --update
+
 # Exports
 export PATH="$PATH:$HOME/bin:/usr/local/bin:/Library/Frameworks/Python.framework/Versions/3.6/bin:~/.pyenv/shims:~/.pyenv/bin:$HOME/.rvm/bin:$(brew --prefix qt@5.5)/bin:$HOME/bin/"
 export HISTCONTROL=ignoredups
