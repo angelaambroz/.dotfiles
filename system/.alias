@@ -13,6 +13,7 @@ alias cronn='env EDITOR=nano crontab -e'
 alias cronl='crontab -l'
 alias diff="colordiff"
 alias jlist="jupyter notebook list"
+alias omscs="cd ~/Documents/omscs"
 
 # http://www.the-efficient-programmer.com/shell/some-grep-tips.html
 alias grr="grep --recursive --line-number \
@@ -31,3 +32,4 @@ alias gmd="git merge develop"
 alias gpom="git push -u origin master"
 alias gaa="git add ."
 
+export JOBLIB_START_METHOD="forkserver"
