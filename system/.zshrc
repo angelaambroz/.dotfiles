@@ -51,6 +51,7 @@ export NVM_DIR="$HOME/.nvm"
 
 # Todo.txt in the prompt
 # From https://github.com/pengwynn/dotfiles/
+# Blog: https://wynnnetherland.com/journal/contextual-todo-list-counts-in-your-zsh-prompt/
 todo_count(){
   if $(which todo.sh &> /dev/null);
   then
