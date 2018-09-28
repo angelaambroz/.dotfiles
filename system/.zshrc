@@ -68,6 +68,9 @@ todo_count(){
 
 function todo_prompt() {
   local COUNT=$(todo_count $1);
+  if [[ -z $COUNT ]]; then 
+    COUNT=0;
+  fi
   if [ $COUNT != 0 ]; then
     echo "$1: $COUNT";
   else
@@ -93,8 +96,12 @@ function notes_prompt() {
   fi
 }
 
-export RPROMPT="$(notes_prompt TODO) %{$fg_bold[yellow]%}$(notes_prompt HACK)%{$reset_color%} %{$fg_bold[red]%}$(notes_prompt FIXME)%{$reset_color%} %{$fg_bold[white]%}$(todo_prompt +project)%{$reset_color%}"
-
 # Pretty and minimalist
 autoload -U promptinit; promptinit
 prompt pure
+
+# On prompt load, change the right-hand side prompt (context!)
+precmd() {
+  export RPROMPT="$(notes_prompt TODO) %{$fg_bold[yellow]%}$(notes_prompt HACK)%{$reset_color%} %{$fg_bold[red]%}$(notes_prompt FIXME)%{$reset_color%} %{$fg_bold[white]%}$(todo_prompt +next)%{$reset_color%}"  
+}
+
