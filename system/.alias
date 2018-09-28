@@ -14,6 +14,8 @@ alias cronl='crontab -l'
 alias diff="colordiff"
 alias jlist="jupyter notebook list"
 alias omscs="cd ~/Documents/omscs"
+alias t="todo.sh"
+alias ta="todo.sh add" 
 
 # http://www.the-efficient-programmer.com/shell/some-grep-tips.html
 alias grr="grep --recursive --line-number \
