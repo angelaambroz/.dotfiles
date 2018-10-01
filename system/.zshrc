@@ -49,6 +49,17 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" 
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" 
 
+# Note-taking
+function notes() {
+  local TODAY_NOTES=$(date +%Y-%b-%d_%A).md;
+  echo $TODAY_NOTES;
+  # aliased to my notes folder
+  hawaii;
+  # aliased to my work name
+  cd $WORK;
+  vi $TODAY_NOTES;
+}
+
 # Todo.txt in the prompt
 # From https://github.com/pengwynn/dotfiles/
 # Blog: https://wynnnetherland.com/journal/contextual-todo-list-counts-in-your-zsh-prompt/
