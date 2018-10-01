@@ -56,8 +56,12 @@ function notes() {
   # aliased to my notes folder
   hawaii;
   # aliased to my work name
-  cd $WORK;
-  vi $TODAY_NOTES;
+  if [[ -z $1 ]]; then
+    SUBDIR=$WORK 
+  else
+    SUBDIR=$1
+  fi
+  vi $SUBDIR/$TODAY_NOTES;
 }
 
 # Todo.txt in the prompt
