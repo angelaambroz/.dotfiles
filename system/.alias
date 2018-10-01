@@ -18,6 +18,7 @@ alias t="todo.sh"
 alias ta="todo.sh add" 
 alias td="todo.sh do"
 alias tls="todo.sh ls"
+alias ports="lsof -Pan -i tcp -i udp"
 
 # http://www.the-efficient-programmer.com/shell/some-grep-tips.html
 alias grr="grep --recursive --line-number \
