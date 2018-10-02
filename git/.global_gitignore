@@ -229,3 +229,6 @@ GitHub.sublime-settings
 
 # Data
 *.pkl
+
+# Random vimmy thing?
+*.swp 
