@@ -14,10 +14,10 @@ alias cronl='crontab -l'
 alias diff="colordiff"
 alias jlist="jupyter notebook list"
 alias omscs="cd ~/Documents/omscs"
-alias t="todo.sh"
-alias ta="todo.sh add $(date +%Y-%m-%d)" 
-alias td="todo.sh do"
-alias tls="todo.sh ls"
+alias t="todo.sh -d ~/.dotfiles/system/.todo"
+alias ta="t add $(date +%Y-%m-%d)" 
+alias td="t do"
+alias tls="t ls"
 alias ports="lsof -Pan -i tcp -i udp"
 
 # http://www.the-efficient-programmer.com/shell/some-grep-tips.html

@@ -70,7 +70,7 @@ function notes() {
 todo_count(){
   if $(which todo.sh &> /dev/null);
   then
-    num=$(echo $(todo.sh ls $1 | wc -l));
+    num=$(echo $(tls $1 | wc -l));
     let todos=num-2;
     if [ $todos != 0 ]; then
       echo "$todos";
@@ -118,6 +118,6 @@ prompt pure
 
 # On prompt load, change the right-hand side prompt (context!)
 precmd() {
-  export RPROMPT="$(notes_prompt TODO) %{$fg_bold[yellow]%}$(notes_prompt HACK)%{$reset_color%} %{$fg_bold[red]%}$(notes_prompt FIXME)%{$reset_color%} %{$fg_bold[white]%}$(todo_prompt +next)%{$reset_color%}"  
+  export RPROMPT="$(notes_prompt TODO) %{$fg_bold[yellow]%}$(notes_prompt HACK)%{$reset_color%} %{$fg_bold[red]%}$(notes_prompt FIXME)%{$reset_color%} %{$fg_bold[white]%}$(todo_prompt +now)%{$reset_color%}"  
 }
 
