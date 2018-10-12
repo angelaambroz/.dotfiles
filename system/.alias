@@ -37,5 +37,6 @@ alias gmd="git merge develop"
 alias gpom="git push -u origin master"
 alias gaa="git add ."
 alias gs="git status"
+alias gd="git diff"
 
 export JOBLIB_START_METHOD="forkserver"
