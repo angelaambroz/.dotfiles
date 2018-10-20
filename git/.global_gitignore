@@ -231,4 +231,7 @@ GitHub.sublime-settings
 *.pkl
 
 # Random vimmy thing?
-*.swp 
+*.swp
+
+.bonnie
+*jwt 
