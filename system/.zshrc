@@ -64,7 +64,7 @@ function notes() {
 
   # if note is empty, create it with a line for the day's date
   if [ ! -f $SUBDIR/$TODAY_NOTES ]; then
-    echo $(date "# +%A, %b %d %Y") > $SUBDIR/$TODAY_NOTES
+    echo "#" $(date "+%A, %b %d %Y") > $SUBDIR/$TODAY_NOTES
     
   fi   
 

@@ -20,4 +20,5 @@ nnoremap <leader><space> :nohlsearch<CR>
 " jk is escape
 inoremap jk <esc>
 
-
+" CTRL+P (fuzzy file search)
+set runtimepath^=~/.vim/bundle/ctrlp.vim
