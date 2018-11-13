@@ -41,4 +41,7 @@ alias gaa="git add ."
 alias gs="git status"
 alias gd="git diff"
 
+# Ruby stuff?!
+alias rubocop_diff='bundle exec rake test:diff:rubocop'
+
 export JOBLIB_START_METHOD="forkserver"
