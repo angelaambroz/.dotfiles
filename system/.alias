@@ -23,7 +23,7 @@ alias ports="lsof -Pan -i tcp -i udp"
 alias spo="spotify"
 alias spoa="spotify album"
 alias spoart="spotify artist"
-alias dw="spotify list Discover Weekly" 
+alias dw="spotify play uri $DISCOVER_WEEKLY_URI"
 
 # http://www.the-efficient-programmer.com/shell/some-grep-tips.html
 alias grr="grep --recursive --line-number \
