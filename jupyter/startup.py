@@ -8,6 +8,8 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 import matplotlib as mpl
+import snowflake.connector as snow
+from time import time
 from sqlalchemy import create_engine
 from matplotlib import pyplot as plt
 from datetime import datetime, timedelta
@@ -41,6 +43,19 @@ def cnx(db: str):
     
     if db == 'pv':
         engine = f'postgres://{os.environ.get("PV_USERNAME")}:{os.environ.get("PV_PASSWORD")}@{os.environ.get("PV_DB_URL")}' 
+
+    if db == 'snow':
+        engine = snow.connect(
+            user=os.environ['SNOWFLAKE_UN'],
+            password=os.environ['SNOWFLAKE_PW'],
+            account=os.environ['SNOWFLAKE_ACCOUNT']
+            )
+
+        cs = engine.cursor()
+        cs.execute("USE DW;")
+
+        return engine
+
     
     return create_engine(engine, echo=False)
 
