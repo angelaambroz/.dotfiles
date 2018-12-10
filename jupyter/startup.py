@@ -24,6 +24,16 @@ def alert(text: str = 'All done!'):
     js = f'alert("{text}");'
     display(Javascript(js))
 
+def flatten_jsonb(row):
+    for key, value in row['request'].items():
+        row[f"request_{key}"] = value
+
+    if 'result' in row['response'].keys():
+        for key,value in row['response']['result'][0].items():
+            row[f"response_{key}"] = value
+
+    return row
+
 def pull_data(query: str, db_cnx, save=True):
     stime = time()
     data = pd.read_sql(query, db_cnx)
