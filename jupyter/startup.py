@@ -24,6 +24,22 @@ def alert(text: str = 'All done!'):
     js = f'alert("{text}");'
     display(Javascript(js))
 
+def pull_data(query: str, db_cnx, save=True):
+    stime = time()
+    data = pd.read_sql(query, db_cnx)
+    etime = time()
+    lapsed = etime-stime
+    alert(f'That took {lapsed:.2f} seconds.')
+    print(f"That took {lapsed:.2f} seconds")
+    print(data.shape)
+
+    # Only save if it takes more than a minute to pull
+    if save and lapsed > 60:
+        filetime = datetime.fromtimestamp(etime).strftime('%Y-%m-%d_%H:%M:%S')
+        data.to_csv(f'data/{filetime}_data.csv')
+
+    return data
+
 def figsize(x: int, y: int):
     mpl.rcParams['figure.figsize'] = (x, y)
 
