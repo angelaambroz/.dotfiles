@@ -82,7 +82,6 @@ def cnx(db: str):
 
         return engine
 
-    
     return create_engine(engine, echo=False)
 
 
