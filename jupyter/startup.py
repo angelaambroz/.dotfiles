@@ -35,6 +35,8 @@ def flatten_jsonb(row):
     return row
 
 def pull_data(query: str, db_cnx, save=True):
+    DATA_DIR = 'data'
+
     stime = time()
     data = pd.read_sql(query, db_cnx)
     etime = time()
@@ -46,7 +48,11 @@ def pull_data(query: str, db_cnx, save=True):
     # Only save if it takes more than a minute to pull
     if save and lapsed > 60:
         filetime = datetime.fromtimestamp(etime).strftime('%Y-%m-%d_%H:%M:%S')
-        data.to_csv(f'data/{filetime}_data.csv')
+
+        if DATA_DIR not in os.listdir():
+            os.mkdir(DATA_DIR)
+
+        data.to_csv(f'{DATA_DIR}/{filetime}_data.csv')
 
     return data
 
