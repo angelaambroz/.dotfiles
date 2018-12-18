@@ -128,3 +128,6 @@ precmd() {
   export RPROMPT="$(notes_prompt TODO) %{$fg_bold[yellow]%}$(notes_prompt HACK)%{$reset_color%} %{$fg_bold[red]%}$(notes_prompt FIXME)%{$reset_color%} %{$fg_bold[white]%}$(todo_prompt +now)%{$reset_color%}"  
 }
 
+# Be on local profile (not production)
+echo "Local profile..."
+be_local
