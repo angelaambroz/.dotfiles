@@ -1,6 +1,7 @@
 import os
 import scipy
 import random
+import pymongo
 import psycopg2
 import requests
 import pickle
@@ -13,7 +14,7 @@ from time import time
 from sqlalchemy import create_engine
 from matplotlib import pyplot as plt
 from datetime import datetime, timedelta
-from IPython.display import Javascript, display
+from IPython.display import Javascript, display, HTML
 
 import tunbridge as tb
 
@@ -34,7 +35,7 @@ def flatten_jsonb(row):
 
     return row
 
-def pull_data(query: str, db_cnx, save=True):
+def pull_data(query: str, db_cnx, save: bool = True) -> pd.DataFrame:
     DATA_DIR = 'data'
 
     stime = time()
@@ -95,6 +96,10 @@ def df_shape(dataframe: pd.DataFrame) -> str:
     """Print the df shape nicely"""
     print(f'rows\t{dataframe.shape[0]:,.0f}')
     print(f'cols\t{dataframe.shape[1]:,.0f}')
+
+
+def what_loaded():
+    print(f"Startup file has loaded - you can find this in {__file__}")
 
 
 # TODO:
