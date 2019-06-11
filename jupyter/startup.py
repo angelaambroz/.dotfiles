@@ -66,7 +66,7 @@ def cnx(db: str):
     db: ['dw', 'pg1', 'pg2', 'pv']
     """
     if db == 'dw':
-        engine = f'postgres+pymysql://{os.environ.get("MYSQL_USERNAME")}:{os.environ.get("MYSQL_PASSWORD")}@{os.environ.get("MYSQL_DB_URL")}/'
+        engine = f'mysql+pymysql://{os.environ.get("MYSQL_USERNAME")}:{os.environ.get("MYSQL_PASSWORD")}@{os.environ.get("MYSQL_DB_URL")}/'
 
     if db == 'pg1':
         engine = f'postgres://{os.environ.get("PSQL_USERNAME")}:{os.environ.get("PSQL_PASSWORD")}@{os.environ.get("PSQL1_DB_URL")}'
