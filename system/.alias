@@ -25,6 +25,7 @@ alias spoa="spotify album"
 alias spoart="spotify artist"
 alias dw="spotify play uri $DISCOVER_WEEKLY_URI"
 alias chr="google"
+alias docker_wipe="docker stop $(docker ps -aq) && docker rm $(docker ps -aq)"
 
 # http://www.the-efficient-programmer.com/shell/some-grep-tips.html
 alias grr="grep --recursive --line-number \
