@@ -25,7 +25,7 @@ alias spoa="spotify album"
 alias spoart="spotify artist"
 alias dw="spotify play uri $DISCOVER_WEEKLY_URI"
 alias chr="google"
-alias docker_wipe="docker stop $(docker ps -aq) && docker rm $(docker ps -aq)"
+alias docker_wipe='docker stop $(docker ps -aq) && docker rm $(docker ps -aq)'
 
 # http://www.the-efficient-programmer.com/shell/some-grep-tips.html
 alias grr="grep --recursive --line-number \
@@ -45,6 +45,7 @@ alias gpom="git push -u origin master"
 alias gaa="git add ."
 alias gs="git status"
 alias gd="git diff"
+alias gr="git rebase"
 
 # Ruby stuff?!
 alias rubocop_diff='bundle exec rake test:diff:rubocop'
