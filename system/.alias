@@ -1,7 +1,7 @@
 alias glg='git log --graph --full-history --all --color --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
 alias subl=st
 # .zshrc's `l` is special, but I hate where it is on the keyboard
-alias nicedate=$(date +%Y-%m-%d)
+alias nicedate="date +%Y-%m-%d"
 alias k=l
 alias tmuxk="tmux kill-session -t"
 alias tmuxa="tmux a -t"

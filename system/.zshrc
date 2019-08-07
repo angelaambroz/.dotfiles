@@ -120,7 +120,8 @@ function notes_prompt() {
 }
 
 # Pretty and minimalist
-autoload -U promptinit; promptinit
+autoload -U promptinit && promptinit
+autoload -U compinit && compinit
 prompt pure
 
 # On prompt load, change the right-hand side prompt (context!)
