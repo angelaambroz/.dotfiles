@@ -119,6 +119,10 @@ function notes_prompt() {
   fi
 }
 
+function code_count() {
+  find . -name '*.$1' | xargs wc -l
+}
+
 # Pretty and minimalist
 autoload -U promptinit && promptinit
 autoload -U compinit && compinit
