@@ -19,6 +19,18 @@ plugins=(
 )
 source $ZSH/oh-my-zsh.sh
 
+# C compiling stuff (for OpenMP)
+export CC=/usr/bin/clang
+export CXX=/usr/bin/clang++
+export CPPFLAGS="$CPPFLAGS -Xpreprocessor -fopenmp"
+export CFLAGS="$CFLAGS -I/usr/local/opt/libomp/include"
+export CXXFLAGS="$CXXFLAGS -I/usr/local/opt/libomp/include"
+export LDFLAGS="$LDFLAGS -L/usr/local/opt/libomp/lib -lomp"
+export DYLD_LIBRARY_PATH=/usr/local/opt/libomp/lib
+
+# For local Kafka development
+export KAFKA_BROKER='localhost:9092'
+
 # Load all my secrets
 SECRETS="$HOME/.dotfiles/secrets"
 for file in "$SECRETS"/.*
@@ -36,7 +48,7 @@ echo "Updating tldr."
 tldr --update
 
 # Exports
-export PATH="$PATH:$HOME/bin:/usr/local/bin:/Library/Frameworks/Python.framework/Versions/3.6/bin:~/.pyenv/shims:~/.pyenv/bin:$HOME/.rvm/bin:$(brew --prefix qt@5.5)/bin:$HOME/bin/"
+export PATH="$PATH:$HOME/bin:/usr/local/bin:/Library/Frameworks/Python.framework/Versions/3.6/bin:~/.pyenv/shims:~/.pyenv/bin:$HOME/.rvm/bin:$(brew --prefix qt@5.5)/bin:$HOME/bin/:/usr/local/go/bin"
 export HISTCONTROL=ignoredups
 export EDITOR='subl'
 
