@@ -47,6 +47,9 @@ echo "Loaded non-secrets."
 echo "Updating tldr."
 tldr --update
 
+# Man entries should be readable
+export MANPAGER="col -b | vim -c 'set ft=man ts=8 nomod nolist nonu' -c 'nnoremap i <nop>' -"
+
 # Exports
 export PATH="$PATH:$HOME/bin:/usr/local/bin:/Library/Frameworks/Python.framework/Versions/3.6/bin:~/.pyenv/shims:~/.pyenv/bin:$HOME/.rvm/bin:$(brew --prefix qt@5.5)/bin:$HOME/bin/:/usr/local/go/bin"
 export HISTCONTROL=ignoredups
@@ -58,8 +61,8 @@ eval "$(pyenv virtualenv-init -)"
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" 
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" 
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 # Note-taking
 function notes() {
@@ -69,7 +72,7 @@ function notes() {
   hawaii;
   # aliased to my work name
   if [[ -z $1 ]]; then
-    SUBDIR=$WORK 
+    SUBDIR=$WORK
   else
     SUBDIR=$1
   fi
@@ -77,8 +80,8 @@ function notes() {
   # if note is empty, create it with a line for the day's date
   if [ ! -f $SUBDIR/$TODAY_NOTES ]; then
     echo "#" $(date "+%A, %b %d %Y") > $SUBDIR/$TODAY_NOTES
-    
-  fi   
+
+  fi
 
   vi $SUBDIR/$TODAY_NOTES;
 }
@@ -103,7 +106,7 @@ todo_count(){
 
 function todo_prompt() {
   local COUNT=$(todo_count $1);
-  if [[ -z $COUNT ]]; then 
+  if [[ -z $COUNT ]]; then
     COUNT=0;
   fi
   if [ $COUNT != 0 ]; then
@@ -142,7 +145,7 @@ prompt pure
 
 # On prompt load, change the right-hand side prompt (context!)
 precmd() {
-  export RPROMPT="$(notes_prompt TODO) %{$fg_bold[yellow]%}$(notes_prompt HACK)%{$reset_color%} %{$fg_bold[red]%}$(notes_prompt FIXME)%{$reset_color%} %{$fg_bold[white]%}$(todo_prompt +now)%{$reset_color%}"  
+  export RPROMPT="$(notes_prompt TODO) %{$fg_bold[yellow]%}$(notes_prompt HACK)%{$reset_color%} %{$fg_bold[red]%}$(notes_prompt FIXME)%{$reset_color%} %{$fg_bold[white]%}$(todo_prompt +now)%{$reset_color%}"
 }
 
 # Be on local profile (not production)
