@@ -29,6 +29,7 @@ alias chr="google"
 alias docker_wipe='docker stop $(docker ps -aq) && docker rm $(docker ps -aq)'
 alias sc="shellcheck"
 alias lsize="du -hs * | sort -rh | head"
+alias dblist="psql postgres -h localhost -l"
 
 # http://www.the-efficient-programmer.com/shell/some-grep-tips.html
 alias grr="grep --recursive --line-number \
