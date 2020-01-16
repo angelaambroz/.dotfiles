@@ -25,7 +25,7 @@ export CXX=/usr/bin/clang++
 export CPPFLAGS="$CPPFLAGS -Xpreprocessor -fopenmp"
 export CFLAGS="$CFLAGS -I/usr/local/opt/libomp/include"
 export CXXFLAGS="$CXXFLAGS -I/usr/local/opt/libomp/include"
-export LDFLAGS="$LDFLAGS -L/usr/local/opt/libomp/lib -lomp"
+export LDFLAGS="$LDFLAGS -Wl,-rpath,/usr/local/opt/libomp/lib -L/usr/local/opt/libomp/lib -lomp"
 export DYLD_LIBRARY_PATH=/usr/local/opt/libomp/lib
 
 # For local Kafka development
