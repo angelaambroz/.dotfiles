@@ -35,19 +35,23 @@ def flatten_jsonb(row):
 
     return row
 
-def pull_data(query: str, db_cnx, save: bool = True) -> pd.DataFrame:
+def pull_data(query: str, db_cnx, 
+    save: bool = True, impatience: int = 120) -> pd.DataFrame:
     DATA_DIR = 'data'
 
     stime = time()
     data = pd.read_sql(query, db_cnx)
     etime = time()
     lapsed = etime-stime
-    alert(f'That took {lapsed:.2f} seconds.')
+
+    # Only alert if it takes more than 2 mins to pull
+    if lapsed > impatience:
+        alert(f'That took {lapsed:.2f} seconds.')
+    
     print(f"That took {lapsed:.2f} seconds")
     print(data.shape)
 
-    # Only save if it takes more than a minute to pull
-    if save and lapsed > 60:
+    if save and lapsed > impatience:
         filetime = datetime.fromtimestamp(etime).strftime('%Y-%m-%d_%H:%M:%S')
 
         if DATA_DIR not in os.listdir():

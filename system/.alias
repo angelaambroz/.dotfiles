@@ -46,9 +46,10 @@ alias gb="git branch"
 alias gmm="git merge master"
 alias gmd="git merge develop"
 alias gpom="git push -u origin master"
+alias gpo="git push -u origin"
 alias gaa="git add ."
 alias gs="git status"
-alias gd="git diff"
+alias gd="git diff -- . ':(exclude)*/**/*.ipynb'"
 
 # Ruby stuff
 alias rubocop_diff='bundle exec rake test:diff:rubocop'

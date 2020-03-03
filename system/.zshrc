@@ -20,13 +20,13 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # C compiling stuff (for OpenMP)
-export CC=/usr/bin/clang
-export CXX=/usr/bin/clang++
-export CPPFLAGS="$CPPFLAGS -Xpreprocessor -fopenmp"
-export CFLAGS="$CFLAGS -I/usr/local/opt/libomp/include"
-export CXXFLAGS="$CXXFLAGS -I/usr/local/opt/libomp/include"
-export LDFLAGS="$LDFLAGS -Wl,-rpath,/usr/local/opt/libomp/lib -L/usr/local/opt/libomp/lib -lomp"
-export DYLD_LIBRARY_PATH=/usr/local/opt/libomp/lib
+# export CC=/usr/bin/clang
+# export CXX=/usr/bin/clang++
+# export CPPFLAGS="$CPPFLAGS -Xpreprocessor -fopenmp"
+# export CFLAGS="$CFLAGS -I/usr/local/opt/libomp/include"
+# export CXXFLAGS="$CXXFLAGS -I/usr/local/opt/libomp/include"
+# export LDFLAGS="$LDFLAGS -Wl,-rpath,/usr/local/opt/libomp/lib -L/usr/local/opt/libomp/lib -lomp"
+# export DYLD_LIBRARY_PATH=/usr/local/opt/libomp/lib
 
 # For local Kafka development
 export KAFKA_BROKER='localhost:9092'
