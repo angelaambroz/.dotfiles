@@ -151,3 +151,6 @@ precmd() {
 # Be on local profile (not production)
 echo "Local profile..."
 be_local
+
+# added by Snowflake SnowSQL installer v1.2
+export PATH=/Applications/SnowSQL.app/Contents/MacOS:$PATH
