@@ -65,7 +65,7 @@ tldr --update
 export MANPAGER="col -b | vim -c 'set ft=man ts=8 nomod nolist nonu' -c 'nnoremap i <nop>' -"
 
 # Exports
-export PATH="$PATH:$HOME/bin:/usr/local/bin:/Library/Frameworks/Python.framework/Versions/3.6/bin:~/.pyenv/shims:~/.pyenv/bin:$HOME/.rvm/bin:$(brew --prefix qt@5.5)/bin:$HOME/bin/:/usr/local/go/bin"
+export PATH="$PATH:/Applications/Sublime Text.app/Contents/SharedSupport/bin:$HOME/bin:/usr/local/bin:/Library/Frameworks/Python.framework/Versions/3.6/bin:~/.pyenv/shims:~/.pyenv/bin:$HOME/.rvm/bin:$(brew --prefix qt@5.5)/bin:$HOME/bin/:/usr/local/go/bin"
 export HISTCONTROL=ignoredups
 export EDITOR='subl'
 
