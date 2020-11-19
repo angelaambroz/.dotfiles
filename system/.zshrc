@@ -157,14 +157,5 @@ autoload -U promptinit && promptinit
 autoload -U compinit && compinit
 prompt pure
 
-# On prompt load, change the right-hand side prompt (context!)
-precmd() {
-  export RPROMPT="$(notes_prompt TODO) %{$fg_bold[yellow]%}$(notes_prompt HACK)%{$reset_color%} %{$fg_bold[red]%}$(notes_prompt FIXME)%{$reset_color%} %{$fg_bold[white]%}$(todo_prompt +now)%{$reset_color%}"
-}
-
-# Be on local profile (not production)
-echo "Local profile..."
-be_local
-
 # added by Snowflake SnowSQL installer v1.2
 export PATH=/Applications/SnowSQL.app/Contents/MacOS:$PATH
