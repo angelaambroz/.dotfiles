@@ -55,6 +55,7 @@ echo "Loaded secrets."
 # Load non-secrets
 source "$HOME/.dotfiles/system/.alias"
 echo "Loaded non-secrets."
+export DEPLOY_ENV="local"
 
 # Update tldr
 echo "Updating tldr."
