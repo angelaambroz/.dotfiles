@@ -58,8 +58,8 @@ echo "Loaded non-secrets."
 export DEPLOY_ENV="local"
 
 # Update tldr
-echo "Updating tldr."
-tldr --update
+# echo "Updating tldr."
+# tldr --update
 
 # Man entries should be readable
 export MANPAGER="col -b | vim -c 'set ft=man ts=8 nomod nolist nonu' -c 'nnoremap i <nop>' -"
