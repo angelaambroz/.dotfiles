@@ -11,6 +11,7 @@ import seaborn as sns
 import matplotlib as mpl
 import snowflake.connector as snow
 from time import time
+from pprint import PrettyPrinter
 from sqlalchemy import create_engine
 from matplotlib import pyplot as plt
 from datetime import datetime, timedelta
@@ -35,19 +36,31 @@ def flatten_jsonb(row):
 
     return row
 
-def pull_data(query: str, db_cnx, save: bool = True) -> pd.DataFrame:
+
+def df_shape(dataframe: pd.DataFrame) -> str:
+    """Print the df shape nicely"""
+    print(f'rows\t{dataframe.shape[0]:,.0f}')
+    print(f'cols\t{dataframe.shape[1]:,.0f}')
+
+
+def pull_data(query: str, db_cnx, 
+    save: bool = True, impatience: int = 120) -> pd.DataFrame:
     DATA_DIR = 'data'
 
     stime = time()
     data = pd.read_sql(query, db_cnx)
+    data.rename(columns=lambda x: str.lower(x), inplace=True)
     etime = time()
     lapsed = etime-stime
-    alert(f'That took {lapsed:.2f} seconds.')
+
+    # Only alert if it takes more than 2 mins to pull
+    if lapsed > impatience:
+        alert(f'That took {lapsed:.2f} seconds.')
+    
     print(f"That took {lapsed:.2f} seconds")
     print(data.shape)
 
-    # Only save if it takes more than a minute to pull
-    if save and lapsed > 60:
+    if save and lapsed > impatience:
         filetime = datetime.fromtimestamp(etime).strftime('%Y-%m-%d_%H:%M:%S')
 
         if DATA_DIR not in os.listdir():
@@ -81,7 +94,9 @@ def cnx(db: str):
         engine = snow.connect(
             user=os.environ['SNOWFLAKE_UN'],
             password=os.environ['SNOWFLAKE_PW'],
-            account=os.environ['SNOWFLAKE_ACCOUNT']
+            account=os.environ['SNOWFLAKE_ACCOUNT'],
+            role='SYSADMIN',
+            warehouse='DS'
             )
 
         cs = engine.cursor()
@@ -90,12 +105,6 @@ def cnx(db: str):
         return engine
 
     return create_engine(engine, echo=False)
-
-
-def df_shape(dataframe: pd.DataFrame) -> str:
-    """Print the df shape nicely"""
-    print(f'rows\t{dataframe.shape[0]:,.0f}')
-    print(f'cols\t{dataframe.shape[1]:,.0f}')
 
 
 def what_loaded():

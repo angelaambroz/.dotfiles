@@ -29,6 +29,8 @@ alias chr="google"
 alias docker_wipe='docker stop $(docker ps -aq) && docker rm $(docker ps -aq)'
 alias sc="shellcheck"
 alias lsize="du -hs * | sort -rh | head"
+alias dblist="psql postgres -h localhost -l"
+alias pe="pyenv activate"
 
 # http://www.the-efficient-programmer.com/shell/some-grep-tips.html
 alias grr="grep --recursive --line-number \
@@ -45,11 +47,13 @@ alias gb="git branch"
 alias gmm="git merge master"
 alias gmd="git merge develop"
 alias gpom="git push -u origin master"
+alias gpo="git push -u origin"
 alias gaa="git add ."
 alias gs="git status"
-alias gd="git diff"
+alias gd="git diff -- . ':(exclude)*/**/*.ipynb'"
 
-# Ruby stuff?!
+# Ruby stuff
 alias rubocop_diff='bundle exec rake test:diff:rubocop'
+alias rbc="rubocop"
 
 export JOBLIB_START_METHOD="forkserver"
