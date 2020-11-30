@@ -29,6 +29,7 @@ plugins=(
   sublime
   tmux
   web-search
+  zsh-vim-mode
 )
 source $ZSH/oh-my-zsh.sh
 
