@@ -27,9 +27,9 @@ set showmatch
 set showcmd
 
 let mapleader = "," " map leader to comma
-let g:user_emmet_install_global = 0
+let g:user_emmet_install_global = 1
 let g:python_highlight_all = 1
-autocmd FileType html,css EmmetInstall
+let g:user_emmet_leader_key=','
 
 " Start NERDTree automatically
 autocmd vimenter * NERDTree
