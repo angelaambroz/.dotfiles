@@ -9,7 +9,6 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'davidhalter/jedi-vim'
-Plugin 'mattn/emmet-vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'preservim/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
@@ -17,6 +16,7 @@ Plugin 'zivyangll/git-blame.vim'
 Plugin 'vim-python/python-syntax'
 Plugin 'joshdick/onedark.vim'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'mattn/emmet-vim'
 
 call vundle#end()           
 filetype plugin indent on    
