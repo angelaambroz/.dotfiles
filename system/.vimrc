@@ -8,15 +8,17 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'davidhalter/jedi-vim'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'preservim/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'zivyangll/git-blame.vim'
-Plugin 'vim-python/python-syntax'
-Plugin 'joshdick/onedark.vim'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'davidhalter/jedi-vim'
+Plugin 'joshdick/onedark.vim'
 Plugin 'mattn/emmet-vim'
+Plugin 'preservim/nerdtree'
+Plugin 'vim-python/python-syntax'
+Plugin 'zivyangll/git-blame.vim'
+Plugin 'junegunn/vim-emoji'
+Plugin 'vim-airline/vim-airline'
 
 call vundle#end()           
 filetype plugin indent on    
@@ -30,6 +32,7 @@ set showcmd
 
 let g:user_emmet_install_global = 1
 let g:python_highlight_all = 1
+set completefunc=emoji#complete
 
 " Start NERDTree automatically
 " autocmd vimenter * NERDTree
