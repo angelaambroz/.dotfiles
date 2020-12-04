@@ -1,8 +1,6 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-let mapleader = "," " map leader to comma
-
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -17,6 +15,7 @@ Plugin 'vim-python/python-syntax'
 Plugin 'joshdick/onedark.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'mattn/emmet-vim'
+Plugin 'tpope/vim-sensible'
 
 call vundle#end()           
 filetype plugin indent on    
@@ -28,6 +27,7 @@ set cursorline
 set showmatch
 set showcmd
 
+let mapleader = "," " map leader to comma
 let g:user_emmet_install_global = 1
 let g:python_highlight_all = 1
 
