@@ -1,8 +1,6 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-let mapleader = "," " map leader to comma
-
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -19,6 +17,7 @@ Plugin 'vim-python/python-syntax'
 Plugin 'zivyangll/git-blame.vim'
 Plugin 'junegunn/vim-emoji'
 Plugin 'vim-airline/vim-airline'
+Plugin 'tpope/vim-sensible'
 
 call vundle#end()           
 filetype plugin indent on    
@@ -30,6 +29,7 @@ set cursorline
 set showmatch
 set showcmd
 
+let mapleader = "," " map leader to comma
 let g:user_emmet_install_global = 1
 let g:python_highlight_all = 1
 set completefunc=emoji#complete
