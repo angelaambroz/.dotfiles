@@ -1,8 +1,6 @@
 import os
 import scipy
 import random
-import pymongo
-import psycopg2
 import requests
 import pickle
 import numpy as np
@@ -16,11 +14,9 @@ from sqlalchemy import create_engine
 from matplotlib import pyplot as plt
 from datetime import datetime, timedelta
 from IPython.display import Javascript, display, HTML
-
-import tunbridge as tb
+# import tunbridge as tb
 
 plt.style.use('bmh')
-
 
 def alert(text: str = 'All done!'):  
     js = f'alert("{text}");'
@@ -113,4 +109,3 @@ def what_loaded():
 
 # TODO:
 # alert("Loaded cnx(), alert(), figsize(), df_shape()")    
-
