@@ -125,8 +125,8 @@ def change_desktop_background(file):
         )
 
 
-# get_reddit()
-get_apod()
+get_reddit()
+# get_apod()
 delete_olds()
 change_desktop_background("{}/{}.jpg".format(DIR, TODAY))
 
