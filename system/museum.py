@@ -90,7 +90,7 @@ def get_reddit():
         password=REDDIT_PW,
     )
     good_url = [
-        x.url for x in r.subreddit(SUB).top("month", limit=3) if "jpg" or "png" in x
+        x.url for x in r.subreddit(sub).top("month", limit=3) if "jpg" or "png" in x
     ][0]
     download_pic(good_url)
 
