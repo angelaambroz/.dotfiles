@@ -1,0 +1,28 @@
+# This is Git's per-user configuration file
+[core]
+	excludesfile = ~/.dotfiles/git/.global_gitignore
+	attributesfile = ~/.dotfiles/git/.gitattributes
+	pager = diff-so-fancy | less --tabs=4 -RFX
+[alias]
+	unstage = reset HEAD --
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+[pull]
+	rebase = false
+[color]
+	ui = true
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+[color "diff"]
+	meta = 11
+	frag = magenta bold
+	commit = yellow bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse

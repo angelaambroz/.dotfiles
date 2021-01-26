@@ -18,6 +18,7 @@ Plugin 'zivyangll/git-blame.vim'
 Plugin 'junegunn/vim-emoji'
 Plugin 'vim-airline/vim-airline'
 Plugin 'tpope/vim-sensible'
+Plugin 'tpope/vim-fugitive'
 
 call vundle#end()           
 filetype plugin indent on    
