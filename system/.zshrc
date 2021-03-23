@@ -45,7 +45,7 @@ export MANPAGER="col -b | vim -c 'set ft=man ts=8 nomod nolist nonu' -c 'nnorema
 
 # Exports
 export HISTCONTROL=ignoredups
-export EDITOR='subl'
+export EDITOR=vim
 
 # Pyenv
 eval "$(pyenv init -)"
