@@ -27,7 +27,7 @@ export KAFKA_BROKER='localhost:9092'
 SECRETS="$HOME/.dotfiles/secrets"
 for file in "$SECRETS"/.*
 do
-    source "$file"
+   source "$file"
 done
 echo "Loaded secrets."
 
@@ -58,6 +58,7 @@ export NVM_DIR="$HOME/.nvm"
 
 
 # Pretty and minimalist
+fpath+=$HOME/.zsh/pure
 autoload -U promptinit && promptinit
 autoload -U compinit && compinit
 prompt pure
