@@ -1,3 +1,6 @@
+" Avoid the escape key
+inoremap jk <esc>
+
 set nocompatible              " be iMproved, required
 filetype off                  " required
 

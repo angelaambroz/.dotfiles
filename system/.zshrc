@@ -56,6 +56,9 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
+# Something about OSX and multiprocessing that was killing my gunicorn
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+
 
 # Pretty and minimalist
 fpath+=$HOME/.zsh/pure
