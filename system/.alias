@@ -43,7 +43,7 @@ alias -g G='| grep'
 
 # https://gist.github.com/dciccale/556083
 alias gc="git checkout" 
-alias gcm="git checkout master"
+alias gcm="git checkout main"
 alias gcd="git checkout develop"
 alias gb="git branch -av"
 alias gmm="git merge master"
