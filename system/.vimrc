@@ -1,5 +1,13 @@
 " Avoid the escape key
-inoremap jk <esc>
+inoremap jk <esc>:w<cr>
+
+let mapleader = "," " map leader to comma
+
+nmap <leader>vr :sp $MYVIMRC<cr>
+nmap <leader>so :source $MYVIMRC<cr>
+
+" More helpful beginning of line
+nmap 0 ^
 
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -17,7 +25,6 @@ Plugin 'joshdick/onedark.vim'
 Plugin 'mattn/emmet-vim'
 Plugin 'preservim/nerdtree'
 Plugin 'vim-python/python-syntax'
-Plugin 'zivyangll/git-blame.vim'
 Plugin 'junegunn/vim-emoji'
 Plugin 'vim-airline/vim-airline'
 Plugin 'tpope/vim-sensible'
@@ -33,7 +40,6 @@ set cursorline
 set showmatch
 set showcmd
 
-let mapleader = "," " map leader to comma
 let g:user_emmet_install_global = 1
 let g:python_highlight_all = 1
 set completefunc=emoji#complete
