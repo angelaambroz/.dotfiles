@@ -48,8 +48,12 @@ export HISTCONTROL=ignoredups
 export EDITOR=vim
 
 # Pyenv
+export PATH="/home/angelaambroz/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+
+# This is just for exercism 
+export PATH="$PATH:/home/angelaambroz/bin"
 
 # NVM
 export NVM_DIR="$HOME/.nvm"

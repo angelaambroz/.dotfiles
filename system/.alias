@@ -32,7 +32,7 @@ alias lsize="du -hs * | sort -rh | head"
 alias dblist="psql postgres -h localhost -l"
 alias pe="pyenv activate"
 alias cat="bat"
-alias python="python3" # dammit
+alias piup="pip install --upgrade pip"
 
 # http://www.the-efficient-programmer.com/shell/some-grep-tips.html
 alias grr="grep --recursive --line-number \
