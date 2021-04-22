@@ -47,8 +47,8 @@ export MANPAGER="col -b | vim -c 'set ft=man ts=8 nomod nolist nonu' -c 'nnorema
 export HISTCONTROL=ignoredups
 export EDITOR=vim
 
-# Pyenv
-export PATH="/home/angelaambroz/.pyenv/bin:$PATH"
+# Pyenv, Vim
+export PATH="/usr/local/bin:/home/angelaambroz/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 

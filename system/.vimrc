@@ -29,6 +29,7 @@ Plugin 'junegunn/vim-emoji'
 Plugin 'vim-airline/vim-airline'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-fugitive'
+Plugin 'psf/black'
 
 call vundle#end()           
 filetype plugin indent on    
