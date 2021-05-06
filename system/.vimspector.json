@@ -1,0 +1,23 @@
+{
+	"configurations": {
+		"run": {
+			"adapter": "debugpy",
+			"breakpoints": {
+				"exception": {
+					"caught": "",
+					"uncaught": "Y"
+				}
+			},
+			"configuration": {
+				"request": "launch",
+				"python": "path/to/venv/bin/python",
+				"stopOnEntry": true,
+				"console": "integratedTerminal",
+				"program": "${file}",
+				"cwd": "${workspaceRoot}"
+			}
+		}
+	}
+}
+
+
