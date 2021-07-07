@@ -69,4 +69,5 @@ fpath+=$HOME/.zsh/pure
 autoload -U promptinit && promptinit
 autoload -U compinit && compinit
 prompt pure
-
+zstyle :prompt:pure:path color "#af87d7"
+zstyle :prompt:pure:prompt:success color "#af87d7"
