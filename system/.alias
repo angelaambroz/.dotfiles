@@ -33,6 +33,8 @@ alias dblist="psql postgres -h localhost -l"
 alias pe="pyenv activate"
 alias cat="bat"
 alias piup="pip install --upgrade pip"
+alias pprint="| python -m json.tool"
+alias mk="minikube" 
 
 # http://www.the-efficient-programmer.com/shell/some-grep-tips.html
 alias grr="grep --recursive --line-number \
@@ -52,7 +54,7 @@ alias gpom="git push -u origin main"
 alias gpo="git push -u origin"
 alias gaa="git add ."
 alias gs="git status"
-alias gd="git diff -- . ':(exclude)*/**/*.ipynb'"
+alias gd="git diff -- --ignore-white-space . ':(exclude)*/**/*.ipynb'"
 
 # Ruby stuff
 alias rubocop_diff='bundle exec rake test:diff:rubocop'
