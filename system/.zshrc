@@ -52,6 +52,13 @@ export PATH="/usr/local/bin:/home/angelaambroz/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
+# Better cd
+eval "$(zoxide init zsh)"
+
+# Better history search
+eval "$(mcfly init zsh)"
+export MCFLY_KEY_SCHEME=vim
+
 # This is just for exercism 
 export PATH="$PATH:/home/angelaambroz/bin"
 
@@ -71,3 +78,9 @@ autoload -U compinit && compinit
 prompt pure
 zstyle :prompt:pure:path color "#af87d7"
 zstyle :prompt:pure:prompt:success color "#af87d7"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/aambroz/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/aambroz/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/aambroz/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/aambroz/google-cloud-sdk/completion.zsh.inc'; fi
