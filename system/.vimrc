@@ -32,6 +32,8 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'psf/black'
 Plugin 'puremourning/vimspector'
 Plugin 'szw/vim-maximizer'
+Plugin 'preservim/tagbar'
+Plugin 'tpope/vim-commentary'
 
 call vundle#end()           
 filetype plugin indent on    
@@ -73,6 +75,9 @@ if (empty($TMUX))
 endif
 
 colorscheme onedark
+
+" Toggle tagbar remap
+nmap <leader>tt :TagbarToggle<CR>
 
 " Debugger remaps
 " mostly from ThePrimagean
