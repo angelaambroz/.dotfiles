@@ -84,3 +84,7 @@ if [ -f '/Users/aambroz/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/aambroz
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/aambroz/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/aambroz/google-cloud-sdk/completion.zsh.inc'; fi
+
+# Generated for envman. Do not edit.
+[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
+
