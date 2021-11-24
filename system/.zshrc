@@ -51,6 +51,7 @@ export EDITOR=vim
 export PATH="/usr/local/bin:/home/angelaambroz/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+eval "$(pyenv init --path)"
 
 # Better cd
 eval "$(zoxide init zsh)"
