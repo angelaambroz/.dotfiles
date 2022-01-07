@@ -34,6 +34,7 @@ Plugin 'puremourning/vimspector'
 Plugin 'szw/vim-maximizer'
 Plugin 'preservim/tagbar'
 Plugin 'tpope/vim-commentary'
+Plugin 'vim-test/vim-test'
 
 call vundle#end()           
 filetype plugin indent on    
@@ -87,7 +88,6 @@ fun! GotoWindow(id)
     MaximizerToggle
 endfun
 
-" Debugger remaps
 nnoremap <leader>m :MaximizerToggle!<CR>
 nnoremap <leader>dd :call vimspector#Launch()<CR>
 nnoremap <leader>dc :call GotoWindow(g:vimspector_session_windows.code)<CR>
@@ -107,4 +107,6 @@ nnoremap <leader>d<space> :call vimspector#Continue()<CR>
 nmap <leader>drc <Plug>VimspectorRunToCursor
 nmap <leader>dbp <Plug>VimspectorToggleBreakpoint
 nmap <leader>dcbp <Plug>VimspectorToggleConditionalBreakpoint
+
+" Vim test remaps
 
