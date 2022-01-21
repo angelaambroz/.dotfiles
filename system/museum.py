@@ -1,4 +1,9 @@
+"""
+Changing a MacOS background, for fun.
+"""
+
 import os
+import argparse
 import random
 import datetime
 import urllib.request
@@ -70,7 +75,7 @@ REDDIT_UN = os.environ["REDDIT_UN"]
 REDDIT_CLIENT_ID = os.environ["REDDIT_CLIENT_ID"]
 REDDIT_CLIENT_SECRET = os.environ["REDDIT_CLIENT_SECRET"]
 NASA_APOD_KEY = os.environ["NASA_APOD"]
-NASA_APOD_URL = "https://api.nasa.gov/planetary/apod?api_key={}".format(NASA_APOD_KEY)
+NASA_APOD_URL = f"https://api.nasa.gov/planetary/apod?api_key={NASA_APOD_KEY}"
 TODAY = datetime.date.today().strftime("%Y%B%d")
 YESTERDAY = (datetime.date.today() - datetime.timedelta(1)).strftime("%Y%B%d")
 
@@ -81,11 +86,11 @@ def download_pic(URL):
 
 def get_reddit():
     sub = random.choice(SUBREDDITS)
-    print("Today's chosen subreddit is /r/{}!".format(sub))
+    print(f"Today's chosen subreddit is /r/{sub}!")
     r = praw.Reddit(
         client_id=REDDIT_CLIENT_ID,
         client_secret=REDDIT_CLIENT_SECRET,
-        user_agent="osx:museum-desktop.personal-app:v0.1 (by /u/{})".format(REDDIT_UN),
+        user_agent=f"osx:museum-desktop.personal-app:v0.1 (by /u/{REDDIT_UN})",
         username=REDDIT_UN,
         password=REDDIT_PW,
     )
@@ -103,10 +108,10 @@ def get_apod():
 # Deleting the old stuff
 def delete_olds():
     if os.path.isfile("{}/{}.jpg".format(DIR, YESTERDAY)):
-        print("Deleting desktop background from {}.".format(YESTERDAY))
-        os.remove("{}/{}.jpg".format(DIR, YESTERDAY))
+        print(f"Deleting desktop background from {YESTERDAY}."
+        os.remove(f"{DIR}/{YESTERDAY}.jpg")
     else:
-        print("There is no desktop image from {}.".format(YESTERDAY))
+        print(f"There is no desktop image from {YESTERDAY}.")
 
 
 # Setting the desktop background
@@ -125,11 +130,25 @@ def change_desktop_background(file):
         )
 
 
-get_reddit()
-# get_apod()
-delete_olds()
-change_desktop_background("{}/{}.jpg".format(DIR, TODAY))
-
 # TO DOs:
 # 1. delete all previous day backgrounds, not just yesterday's (use timedate?)
 # 4. resize to fit screen
+
+if __name__=="__main__":
+    PARSER = argparse.ArgumentParser(description="Choosing which image source to use.")    
+    PARSER.add_argument("-r", dest="reddit", action="store_true")
+    PARSER.add_argument("-n", dest="nasa", action="store_true")
+
+    if ARGS.reddit and ARGS.nasa:
+        print("You can only pick one")
+
+    if ARGS.reddit:
+        get_reddit()
+    elif ARGS.nasa:
+        get_apod()
+    else:
+        random.choice([get_reddit(), get_apod()])
+
+    delete_olds()
+    change_desktop_background(f"{DIR}/{TODAY}")
+
