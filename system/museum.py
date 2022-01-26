@@ -108,7 +108,7 @@ def get_apod():
 # Deleting the old stuff
 def delete_olds():
     if os.path.isfile("{}/{}.jpg".format(DIR, YESTERDAY)):
-        print(f"Deleting desktop background from {YESTERDAY}."
+        print(f"Deleting desktop background from {YESTERDAY}.")
         os.remove(f"{DIR}/{YESTERDAY}.jpg")
     else:
         print(f"There is no desktop image from {YESTERDAY}.")
@@ -134,10 +134,11 @@ def change_desktop_background(file):
 # 1. delete all previous day backgrounds, not just yesterday's (use timedate?)
 # 4. resize to fit screen
 
-if __name__=="__main__":
-    PARSER = argparse.ArgumentParser(description="Choosing which image source to use.")    
+if __name__ == "__main__":
+    PARSER = argparse.ArgumentParser(description="Choosing which image source to use.")
     PARSER.add_argument("-r", dest="reddit", action="store_true")
     PARSER.add_argument("-n", dest="nasa", action="store_true")
+    ARGS = PARSER.parse_args()
 
     if ARGS.reddit and ARGS.nasa:
         print("You can only pick one")
@@ -151,4 +152,3 @@ if __name__=="__main__":
 
     delete_olds()
     change_desktop_background(f"{DIR}/{TODAY}")
-
