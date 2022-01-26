@@ -1,8 +1,9 @@
 """
-Changing a MacOS background, for fun.
+Changing the desktop wallpaper programmatically, for fun.
 """
 
 import os
+import sys
 import argparse
 import random
 import datetime
@@ -117,17 +118,23 @@ def delete_olds():
 # Setting the desktop background
 def change_desktop_background(file):
     print("Now changing desktop background...")
-    # make image options dictionary
-    options = {
-        NSWorkspaceDesktopImageScalingKey: NSImageScaleProportionallyUpOrDown,
-        NSWorkspaceDesktopImageAllowClippingKey: True,
-    }
-    ws = NSWorkspace.sharedWorkspace()
-    file_url = NSURL.fileURLWithPath_(file)
-    for screen in NSScreen.screens():
-        (result, error) = ws.setDesktopImageURL_forScreen_options_error_(
-            file_url, screen, options, None
-        )
+
+    if sys.platform == "darwin":
+        # make image options dictionary
+        options = {
+            NSWorkspaceDesktopImageScalingKey: NSImageScaleProportionallyUpOrDown,
+            NSWorkspaceDesktopImageAllowClippingKey: True,
+        }
+        ws = NSWorkspace.sharedWorkspace()
+        file_url = NSURL.fileURLWithPath_(file)
+        for screen in NSScreen.screens():
+            (result, error) = ws.setDesktopImageURL_forScreen_options_error_(
+                file_url, screen, options, None
+            )
+
+    if sys.platform == "linux":
+        # https://linuxconfig.org/set-wallpaper-on-ubuntu-20-04-using-command-line
+        os.system(f"gsettings gsettings set org.gnome.desktop.background picture-uri file:////{file}")
 
 
 # TO DOs:

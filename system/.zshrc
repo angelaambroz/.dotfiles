@@ -5,7 +5,7 @@ HIST_STAMPS="yyyy-mm-dd"
 plugins=(
   zsh-syntax-highlighting
   zsh-autosuggestions
-  osx
+  macos
   pip
   brew
   git
