@@ -12,14 +12,17 @@ import urllib.request
 import praw
 import requests
 
-from Foundation import NSURL
-from AppKit import (
-    NSWorkspace,
-    NSScreen,
-    NSWorkspaceDesktopImageScalingKey,
-    NSImageScaleProportionallyUpOrDown,
-    NSWorkspaceDesktopImageAllowClippingKey,
-)
+if sys.platform == "darwin":
+    from Foundation import NSURL
+    from AppKit import (
+        NSWorkspace,
+        NSScreen,
+        NSWorkspaceDesktopImageScalingKey,
+        NSImageScaleProportionallyUpOrDown,
+        NSWorkspaceDesktopImageAllowClippingKey,
+    )
+if sys.platform == "linux":
+    print("On Linux")
 
 
 # helpful:
@@ -134,7 +137,9 @@ def change_desktop_background(file):
 
     if sys.platform == "linux":
         # https://linuxconfig.org/set-wallpaper-on-ubuntu-20-04-using-command-line
-        os.system(f"gsettings gsettings set org.gnome.desktop.background picture-uri file:////{file}")
+        os.system(
+            f"gsettings set org.gnome.desktop.background picture-uri file:////{DIR}/{file}"
+        )
 
 
 # TO DOs:
