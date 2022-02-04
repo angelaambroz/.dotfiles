@@ -13,6 +13,7 @@ import praw
 import requests
 
 if sys.platform == "darwin":
+    print("On MacOSX")
     from Foundation import NSURL
     from AppKit import (
         NSWorkspace,
@@ -118,8 +119,8 @@ def delete_olds():
         print(f"There is no desktop image from {YESTERDAY}.")
 
 
-# Setting the desktop background
 def change_desktop_background(file):
+    # Setting the desktop background
     print("Now changing desktop background...")
 
     if sys.platform == "darwin":
@@ -136,6 +137,7 @@ def change_desktop_background(file):
             )
 
     if sys.platform == "linux":
+        print("...on Linux")
         # https://linuxconfig.org/set-wallpaper-on-ubuntu-20-04-using-command-line
         os.system(
             f"gsettings set org.gnome.desktop.background picture-uri file:////{DIR}/{file}"
