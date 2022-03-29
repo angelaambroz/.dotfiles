@@ -35,6 +35,7 @@ Plugin 'szw/vim-maximizer'
 Plugin 'preservim/tagbar'
 Plugin 'tpope/vim-commentary'
 Plugin 'vim-test/vim-test'
+Plugin 'raimon49/requirements.txt.vim'
 
 call vundle#end()           
 filetype plugin indent on    
