@@ -31,7 +31,7 @@ if sys.platform == "linux":
 # http://tadhg.com/wp/2009/06/29/python-script-to-change-os-x-desktop-backgrounds/
 
 # Some globals
-DIR = os.getcwd()
+DIR = os.path.split(os.path.abspath(__file__))[0]
 SUBREDDITS = [
     "museum",
     "ColorizedHistory",
@@ -86,7 +86,7 @@ YESTERDAY = (datetime.date.today() - datetime.timedelta(1)).strftime("%Y%B%d")
 
 
 def download_pic(URL):
-    urllib.request.urlretrieve(URL, "{}/{}.jpg".format(DIR, TODAY))
+    urllib.request.urlretrieve(URL, f"{DIR}/{TODAY}.jpg")
 
 
 def get_reddit():
@@ -112,7 +112,7 @@ def get_apod():
 
 # Deleting the old stuff
 def delete_olds():
-    if os.path.isfile("{}/{}.jpg".format(DIR, YESTERDAY)):
+    if os.path.isfile(f"{DIR}/{YESTERDAY}.jpg"):
         print(f"Deleting desktop background from {YESTERDAY}.")
         os.remove(f"{DIR}/{YESTERDAY}.jpg")
     else:
@@ -139,8 +139,9 @@ def change_desktop_background(file):
     if sys.platform == "linux":
         print("...on Linux")
         # https://linuxconfig.org/set-wallpaper-on-ubuntu-20-04-using-command-line
+        print(f"File path is file:////{file}")
         os.system(
-            f"gsettings set org.gnome.desktop.background picture-uri file:////{DIR}/{file}"
+            f"gsettings set org.gnome.desktop.background picture-uri file:///{file}"
         )
 
 
@@ -165,4 +166,4 @@ if __name__ == "__main__":
         random.choice([get_reddit(), get_apod()])
 
     delete_olds()
-    change_desktop_background(f"{DIR}/{TODAY}")
+    change_desktop_background(f"{DIR}/{TODAY}.jpg")
