@@ -143,6 +143,8 @@ def change_desktop_background(file):
         os.system(
             f"gsettings set org.gnome.desktop.background picture-uri file:///{file}"
         )
+        # TODO: Delete a today wal color scheme, if exists, so it refreshes every time I run this
+        os.system(f"wal -i {file}")
 
 
 # TO DOs:
@@ -151,8 +153,8 @@ def change_desktop_background(file):
 
 if __name__ == "__main__":
     PARSER = argparse.ArgumentParser(description="Choosing which image source to use.")
-    PARSER.add_argument("-r", dest="reddit", action="store_true")
-    PARSER.add_argument("-n", dest="nasa", action="store_true")
+    PARSER.add_argument("-r", dest="reddit", action="store_false")
+    PARSER.add_argument("-n", dest="nasa", action="store_false")
     ARGS = PARSER.parse_args()
 
     if ARGS.reddit and ARGS.nasa:

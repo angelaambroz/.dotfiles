@@ -105,3 +105,5 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+# pywal persists on new terminal windows
+(\cat ~/.cache/wal/sequences &)

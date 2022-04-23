@@ -111,5 +111,3 @@ nmap <leader>dcbp <Plug>VimspectorToggleConditionalBreakpoint
 
 " Vim test remaps
 
-# pywal persists on new terminal windows
-(cat ~/.cache/wal/sequences &)
