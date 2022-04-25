@@ -118,4 +118,4 @@ au BufNewFile,BufRead *.sql set ft=dbt
 
 " Undofile
 set undofile
-set undordir=~/.vim/undo
+set undodir=~/.vim/undo
