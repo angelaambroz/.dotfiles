@@ -36,6 +36,8 @@ Plugin 'preservim/tagbar'
 Plugin 'tpope/vim-commentary'
 Plugin 'vim-test/vim-test'
 Plugin 'raimon49/requirements.txt.vim'
+Plugin 'lepture/vim-jinja'
+Plugin 'simnalamburt/vim-mundo'
 
 call vundle#end()           
 filetype plugin indent on    
@@ -111,3 +113,9 @@ nmap <leader>dcbp <Plug>VimspectorToggleConditionalBreakpoint
 
 " Vim test remaps
 
+" DBT syntax highlighting
+au BufNewFile,BufRead *.sql set ft=dbt
+
+" Undofile
+set undofile
+set undordir=~/.vim/undo
