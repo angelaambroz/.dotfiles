@@ -40,7 +40,10 @@ Plugin 'lepture/vim-jinja'
 Plugin 'simnalamburt/vim-mundo'
 
 call vundle#end()           
-filetype plugin indent on    
+filetype plugin indent on   
+
+" Venv nonsense
+let g:black_virtualenv="~/.vim_black"
 
 " A few more things from https://dougblack.io/words/a-good-vimrc.html
 set number

@@ -26,10 +26,6 @@ if sys.platform == "linux":
     print("On Linux")
 
 
-# helpful:
-# http://inventwithpython.com/blog/2013/09/30/downloading-imgur-posts-linked-from-reddit-with-python/
-# http://tadhg.com/wp/2009/06/29/python-script-to-change-os-x-desktop-backgrounds/
-
 # Some globals
 DIR = os.path.split(os.path.abspath(__file__))[0]
 SUBREDDITS = [
@@ -40,14 +36,11 @@ SUBREDDITS = [
     "spaceporn",
     "historyporn",
     "ImaginaryLandscapes",
-    "OrganizationPorn",
     "MapPorn",
     "FossilPorn",
     "WeatherPorn",
-    "HellscapePorn",
     "minimalist_art",
     "romanticism",
-    "ancient_art",
     "Medievalart",
     "painting",
     "MuseumPorn",
@@ -62,11 +55,18 @@ TODAY = datetime.date.today().strftime("%Y%b%d")
 YESTERDAY = (datetime.date.today() - datetime.timedelta(1)).strftime("%Y%b%d")
 
 
-def download_pic(URL):
+def download_pic(URL: str) -> None:
+    """Downloading the picture from the URL"""
+    print(f"Downloading to {DIR}/{TODAY}.jpg")
     urllib.request.urlretrieve(URL, f"{DIR}/{TODAY}.jpg")
 
 
-def get_reddit():
+def get_reddit() -> None:
+    """
+    Downloading a picture from Reddit
+
+    TODO: Get the most popular of the responses
+    """
     sub = random.choice(SUBREDDITS)
     print(f"Today's chosen subreddit is /r/{sub}!")
     r = praw.Reddit(
@@ -82,13 +82,19 @@ def get_reddit():
     download_pic(good_url)
 
 
-def get_apod():
+def get_apod() -> None:
+    """
+    Downloading NASA's space pic of the day
+    """
     r = requests.get(NASA_APOD_URL)
     download_pic(r.json()["url"])
 
 
 # Deleting the old stuff
-def delete_olds():
+def delete_olds() -> None:
+    """
+    Look in the museum directory, delete yesterday's picture
+    """
     if os.path.isfile(f"{DIR}/{YESTERDAY}.jpg"):
         print(f"Deleting desktop background from {YESTERDAY}.")
         os.remove(f"{DIR}/{YESTERDAY}.jpg")
@@ -96,7 +102,10 @@ def delete_olds():
         print(f"There is no desktop image from {YESTERDAY}.")
 
 
-def change_desktop_background(file):
+def change_desktop_background(file: str) -> None:
+    """
+    Updating the background, based on the inferred OS
+    """
     # Setting the desktop background
     print("Now changing desktop background...")
 
@@ -117,7 +126,7 @@ def change_desktop_background(file):
         print("...on Linux")
         # https://linuxconfig.org/set-wallpaper-on-ubuntu-20-04-using-command-line
         command = (
-            f"gsettings set org.gnome.desktop.background picture-uri file:///{file}"
+                f'echo "gnome.wallpaper: {file}" > ~/.config/regolith2/Xresources'
         )
 
         wal_config_dir = "/home/angelaambroz/.cache/wal/schemes/"
@@ -125,7 +134,9 @@ def change_desktop_background(file):
         print(wal_config)
         if wal_config in os.listdir(wal_config_dir):
             command += f"; rm -r {wal_config_dir}/{wal_config}"
+        command += "; regolith-look refresh"
         command += f"; wal -i {file}"
+
 
         print(f"Running command: {command}")
         os.system(command)
