@@ -126,7 +126,7 @@ def change_desktop_background(file: str) -> None:
         print("...on Linux")
         # https://linuxconfig.org/set-wallpaper-on-ubuntu-20-04-using-command-line
         command = (
-                f'echo "gnome.wallpaper: {file}" > ~/.config/regolith2/Xresources'
+                f'echo "regolith.wallpaper.file: {file}" > ~/.config/regolith2/Xresources'
         )
 
         wal_config_dir = "/home/angelaambroz/.cache/wal/schemes/"
