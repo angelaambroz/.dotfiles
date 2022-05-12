@@ -7,7 +7,7 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 import matplotlib as mpl
-import snowflake.connector as snow
+# import snowflake.connector as snow
 from time import time
 from pprint import PrettyPrinter
 from sqlalchemy import create_engine

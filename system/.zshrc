@@ -77,8 +77,8 @@ fpath+=$HOME/.zsh/pure
 autoload -U promptinit && promptinit
 autoload -U compinit && compinit
 prompt pure
-zstyle :prompt:pure:path color "#af87d7"
-zstyle :prompt:pure:prompt:success color "#af87d7"
+# zstyle :prompt:pure:path color "#af87d7"
+# zstyle :prompt:pure:prompt:success color "#af87d7"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/aambroz/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/aambroz/google-cloud-sdk/path.zsh.inc'; fi
