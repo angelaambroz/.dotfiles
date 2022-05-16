@@ -29,7 +29,7 @@ Plugin 'junegunn/vim-emoji'
 Plugin 'vim-airline/vim-airline'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-fugitive'
-Plugin 'psf/black'
+Plugin 'ambv/black'
 Plugin 'puremourning/vimspector'
 Plugin 'szw/vim-maximizer'
 Plugin 'preservim/tagbar'
@@ -43,8 +43,7 @@ call vundle#end()
 filetype plugin indent on   
 
 " Venv nonsense
-let g:black_virtualenv="~/.vim_black"
-
+" let g:black_virtualenv="~/.vim_black"
 " A few more things from https://dougblack.io/words/a-good-vimrc.html
 set number
 set background=dark

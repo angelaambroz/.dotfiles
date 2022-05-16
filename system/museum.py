@@ -124,7 +124,6 @@ def change_desktop_background(file: str) -> None:
 
     if sys.platform == "linux":
         print("...on Linux")
-        # https://linuxconfig.org/set-wallpaper-on-ubuntu-20-04-using-command-line
         command = (
                 f'echo "regolith.wallpaper.file: {file}" > ~/.config/regolith2/Xresources'
         )
