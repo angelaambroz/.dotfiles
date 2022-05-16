@@ -48,7 +48,7 @@ def make_rainbow(unicorn: UnicornHATMini, seconds: int = 5):
             r, g, b = [int(c * 255) for c in colorsys.hsv_to_rgb(h, 1.0, 1.0)]
             for y in range(7):
                 unicorn.set_pixel(x, y, r, g, b)
-        
+
         # keep the waking face in the center of the rainbow
         for xy_pair in AWAKE_FACE:
             unicorn.set_pixel(*xy_pair, *WHITE)
@@ -72,7 +72,7 @@ def make_state_face(unicorn: UnicornHATMini, face_type: List[Tuple]):
     return unicorn
 
 
-def make_waking_face(unicorn: UnicornHATMini, waking_duration_minutes: int = 60):
+def make_waking_face(unicorn: UnicornHATMini):
     """How long to show the green-backgrounded awake face"""
 
     # green background
@@ -87,7 +87,11 @@ def make_waking_face(unicorn: UnicornHATMini, waking_duration_minutes: int = 60)
     return unicorn
 
 
-def unicorn(wake_time: List[int] = WAKE_TIME, sleep_time: List[int] = SLEEP_TIME):
+def unicorn(
+    wake_time: List[int] = WAKE_TIME,
+    sleep_time: List[int] = SLEEP_TIME,
+    testing: bool = True,
+):
     """ """
 
     uh = UnicornHATMini()
@@ -95,5 +99,20 @@ def unicorn(wake_time: List[int] = WAKE_TIME, sleep_time: List[int] = SLEEP_TIME
     # 100% is VERY BRIGHT
     uh.set_brightness(0.3)
 
-    while True:
+    # For testing, just cycle through all the faces
+    if testing:
+        while True:
+            make_rainbow(uh)
 
+            uh = make_state_face(uh, AWAKE_FACE)
+            uh.show()
+            time.sleep(5)
+            uh = make_state_face(uh, SLEEPING_FACE)
+            uh.show()
+            time.sleep(5)
+            uh = make_waking_face(uh)
+            uh.show()
+
+
+if __name__ == "__main__":
+    unicorn()
