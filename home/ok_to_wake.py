@@ -11,7 +11,7 @@ TODO:
 """
 
 import time
-from typing import List
+from typing import List, Tuple
 from datetime import datetime
 import colorsys
 from unicornhatmini import UnicornHATMini
@@ -19,8 +19,8 @@ from unicornhatmini import UnicornHATMini
 
 WAKE_TIME = [7, 0]
 SLEEP_TIME = [18, 30]
-GREEN = (89, 100, 89)
-WHITE = (255, 255, 1)
+GREEN = (0, 50, 0)
+WHITE = (100, 100, 100)
 
 SLEEPING_FACE = [(5, 3), (6, 3), (12, 3), (13, 3), (9, 5)]
 AWAKE_FACE = [(6, 2), (6, 3), (8, 4), (9, 5), (10, 4), (12, 2), (12, 3)]
@@ -36,11 +36,11 @@ def make_rainbow(unicorn: UnicornHATMini, seconds: int = 5):
     spacing = 360.0 / 34.0
     hue = 0
 
-    stime = time.now()
+    stime = time.time()
     etime = stime + 5
 
     while stime < etime:
-        stime = time.now()
+        stime = time.time()
         hue = int(time.time() * 100) % 360
         for x in range(17):
             offset = x * spacing
@@ -96,22 +96,23 @@ def unicorn(
 
     uh = UnicornHATMini()
 
-    # 100% is VERY BRIGHT
-    uh.set_brightness(0.3)
-
     # For testing, just cycle through all the faces
     if testing:
         while True:
-            make_rainbow(uh)
-
-            uh = make_state_face(uh, AWAKE_FACE)
-            uh.show()
-            time.sleep(5)
+            uh.set_brightness(0.1)
             uh = make_state_face(uh, SLEEPING_FACE)
             uh.show()
             time.sleep(5)
+            uh.set_brightness(0.1)
+            make_rainbow(uh)
+            uh.set_brightness(0.2)
             uh = make_waking_face(uh)
             uh.show()
+            time.sleep(5)
+            uh.set_brightness(0.3)
+            uh = make_state_face(uh, AWAKE_FACE)
+            uh.show()
+            time.sleep(5)
 
 
 if __name__ == "__main__":
