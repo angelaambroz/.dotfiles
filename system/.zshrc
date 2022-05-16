@@ -67,7 +67,7 @@ export HISTCONTROL=ignoredups
 export EDITOR=vim
 
 # Pyenv, Vim
-export PATH="/usr/local/bin:/home/angelaambroz/.pyenv/bin:$PATH"
+export PATH="/usr/local/bin:$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 eval "$(pyenv init --path)"
