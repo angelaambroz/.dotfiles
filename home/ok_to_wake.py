@@ -1,5 +1,5 @@
 """
-Making a programmatic, (wifi-connected?) OK to wake clock
+Making a programmatic OK to wake clock
 
 May 2022
 
@@ -14,11 +14,14 @@ import time
 from typing import List, Tuple
 from datetime import datetime
 import colorsys
+from gpiozero import Button
+from signal import pause
 from unicornhatmini import UnicornHATMini
 
 
 WAKE_TIME = [7, 0]
 SLEEP_TIME = [18, 30]
+NAP_DURATION_MINS = 90
 GREEN = (0, 50, 0)
 WHITE = (100, 100, 100)
 
@@ -92,7 +95,7 @@ def unicorn(
     sleep_time: List[int] = SLEEP_TIME,
     testing: bool = True,
 ):
-    """ """
+    """The actual schedule"""
 
     uh = UnicornHATMini()
 
@@ -103,17 +106,41 @@ def unicorn(
             uh = make_state_face(uh, SLEEPING_FACE)
             uh.show()
             time.sleep(5)
-            uh.set_brightness(0.1)
             make_rainbow(uh)
-            uh.set_brightness(0.2)
             uh = make_waking_face(uh)
             uh.show()
             time.sleep(5)
-            uh.set_brightness(0.3)
             uh = make_state_face(uh, AWAKE_FACE)
             uh.show()
             time.sleep(5)
 
 
+BUTTON_MAP = {5: "A", 6: "B", 16: "X", 24: "Y"}
+
+button_a = Button(5)
+button_b = Button(6)
+button_x = Button(16)
+button_y = Button(24)
+
+
+def pressed(button):
+    button_name = BUTTON_MAP[button.pin.number]
+    print(f"Button {button_name} pressed!")
+
+
 if __name__ == "__main__":
-    unicorn()
+    # unicorn()
+
+    try:
+        button_a.when_pressed = pressed
+        button_b.when_pressed = pressed
+        button_x.when_pressed = pressed
+        button_y.when_pressed = pressed
+
+        pause()
+
+    except KeyboardInterrupt:
+        button_a.close()
+        button_b.close()
+        button_x.close()
+        button_y.close()
