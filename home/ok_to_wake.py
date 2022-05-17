@@ -25,8 +25,27 @@ NAP_DURATION_MINS = 90
 GREEN = (0, 50, 0)
 WHITE = (100, 100, 100)
 
-SLEEPING_FACE = [(5, 3), (6, 3), (12, 3), (13, 3), (9, 5)]
-AWAKE_FACE = [(6, 2), (6, 3), (8, 4), (9, 5), (10, 4), (12, 2), (12, 3)]
+BUTTON_MAP = {5: "A", 6: "B", 16: "X", 24: "Y"}
+
+button_a = Button(5)
+button_b = Button(6)
+button_x = Button(16)
+button_y = Button(24)
+
+SLEEPING_FACE = [(4, 2), (5, 2), (11, 2), (12, 2), (8, 4)]
+AWAKE_FACE = [
+    (4, 1),
+    (4, 2),
+    (5, 1),
+    (5, 2),
+    (7, 3),
+    (8, 4),
+    (9, 3),
+    (11, 1),
+    (11, 2),
+    (12, 1),
+    (12, 2),
+]
 
 
 def make_rainbow(unicorn: UnicornHATMini, seconds: int = 5):
@@ -106,21 +125,13 @@ def unicorn(
             uh = make_state_face(uh, SLEEPING_FACE)
             uh.show()
             time.sleep(5)
-            make_rainbow(uh)
+            # make_rainbow(uh)
             uh = make_waking_face(uh)
             uh.show()
             time.sleep(5)
             uh = make_state_face(uh, AWAKE_FACE)
             uh.show()
             time.sleep(5)
-
-
-BUTTON_MAP = {5: "A", 6: "B", 16: "X", 24: "Y"}
-
-button_a = Button(5)
-button_b = Button(6)
-button_x = Button(16)
-button_y = Button(24)
 
 
 def pressed(button):
