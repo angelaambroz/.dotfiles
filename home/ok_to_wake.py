@@ -38,9 +38,9 @@ AWAKE_FACE = [
     (4, 2),
     (5, 1),
     (5, 2),
-    (7, 3),
-    (8, 4),
-    (9, 3),
+    (7, 4),
+    (8, 5),
+    (9, 4),
     (11, 1),
     (11, 2),
     (12, 1),
@@ -117,21 +117,43 @@ def unicorn(
     """The actual schedule"""
 
     uh = UnicornHATMini()
+    uh.set_brightness(0.1)
+    nap_time = False
 
     # For testing, just cycle through all the faces
     if testing:
         while True:
-            uh.set_brightness(0.1)
-            uh = make_state_face(uh, SLEEPING_FACE)
+            if button_a.is_pressed:
+                print("Nap starting!")
+                nap_time = True
+                uh = make_state_face(uh, SLEEPING_FACE)
+            else:
+                uh = make_state_face(uh, AWAKE_FACE)
             uh.show()
-            time.sleep(5)
-            # make_rainbow(uh)
-            uh = make_waking_face(uh)
-            uh.show()
-            time.sleep(5)
-            uh = make_state_face(uh, AWAKE_FACE)
-            uh.show()
-            time.sleep(5)
+            time.sleep(0.1)
+
+        # while True:
+        #     uh = make_state_face(uh, SLEEPING_FACE)
+        #     uh.show()
+        #     time.sleep(5)
+        #     # make_rainbow(uh)
+        #     uh = make_waking_face(uh)
+        #     uh.show()
+        #     time.sleep(5)
+        #     uh = make_state_face(uh, AWAKE_FACE)
+        #     uh.show()
+
+        #     if button_a.is_pressed:
+        #         print("Button is pressed!")
+        #         nap_time = True
+
+        #         # Time nap started
+        #         nap_time_started = time.time()
+
+        #         uh = make_state_face(uh, SLEEPING_FACE)
+        #         uh.show()
+
+        #     time.sleep(5)
 
 
 def pressed(button):
@@ -140,18 +162,18 @@ def pressed(button):
 
 
 if __name__ == "__main__":
-    # unicorn()
+    unicorn()
 
-    try:
-        button_a.when_pressed = pressed
-        button_b.when_pressed = pressed
-        button_x.when_pressed = pressed
-        button_y.when_pressed = pressed
+#     try:
+#         button_a.when_pressed = pressed
+#         button_b.when_pressed = pressed
+#         button_x.when_pressed = pressed
+#         button_y.when_pressed = pressed
 
-        pause()
+#         pause()
 
-    except KeyboardInterrupt:
-        button_a.close()
-        button_b.close()
-        button_x.close()
-        button_y.close()
+#     except KeyboardInterrupt:
+#         button_a.close()
+#         button_b.close()
+#         button_x.close()
+#         button_y.close()
