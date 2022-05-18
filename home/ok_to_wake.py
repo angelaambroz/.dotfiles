@@ -120,9 +120,9 @@ def unicorn(
     uh.set_brightness(0.1)
     nap_time = False
 
-    # For testing, just cycle through all the faces
     if testing:
         while True:
+
             if button_a.is_pressed:
                 print("Nap starting!")
                 nap_time = True
@@ -131,29 +131,6 @@ def unicorn(
                 uh = make_state_face(uh, AWAKE_FACE)
             uh.show()
             time.sleep(0.1)
-
-        # while True:
-        #     uh = make_state_face(uh, SLEEPING_FACE)
-        #     uh.show()
-        #     time.sleep(5)
-        #     # make_rainbow(uh)
-        #     uh = make_waking_face(uh)
-        #     uh.show()
-        #     time.sleep(5)
-        #     uh = make_state_face(uh, AWAKE_FACE)
-        #     uh.show()
-
-        #     if button_a.is_pressed:
-        #         print("Button is pressed!")
-        #         nap_time = True
-
-        #         # Time nap started
-        #         nap_time_started = time.time()
-
-        #         uh = make_state_face(uh, SLEEPING_FACE)
-        #         uh.show()
-
-        #     time.sleep(5)
 
 
 def pressed(button):
