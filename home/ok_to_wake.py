@@ -6,7 +6,6 @@ May 2022
 
 TODO:
     - Add start and end times
-    - Button to start nap
     - Seasonal art (ASCII art?)
 """
 
@@ -21,8 +20,8 @@ from unicornhatmini import UnicornHATMini
 
 WAKE_TIME = [7, 0]
 SLEEP_TIME = [18, 30]
-NAP_DURATION_MINS = 90
-GREEN = (0, 50, 0)
+NAP_DURATION_MINS = 0.1
+GREEN = (0, 5, 0)
 WHITE = (100, 100, 100)
 
 BUTTON_MAP = {5: "A", 6: "B", 16: "X", 24: "Y"}
@@ -109,6 +108,12 @@ def make_waking_face(unicorn: UnicornHATMini):
     return unicorn
 
 
+def pressed(button):
+    """Just testing that the buttons work"""
+    button_name = BUTTON_MAP[button.pin.number]
+    print(f"Button {button_name} pressed!")
+
+
 def unicorn(
     wake_time: List[int] = WAKE_TIME,
     sleep_time: List[int] = SLEEP_TIME,
@@ -117,25 +122,42 @@ def unicorn(
     """The actual schedule"""
 
     uh = UnicornHATMini()
-    uh.set_brightness(0.1)
+    uh.set_brightness(0.3)
     nap_time = False
 
-    if testing:
-        while True:
+    while True:
+        now = time.time()
 
-            if button_a.is_pressed:
-                print("Nap starting!")
-                nap_time = True
-                uh = make_state_face(uh, SLEEPING_FACE)
-            else:
+        # Check if it's currently naptime
+        if nap_time:
+            if now >= (nap_start_time + NAP_DURATION_MINS * 60):
+                nap_time = False
+                uh = make_waking_face(uh)
+                uh.show()
+
+                # "Wake up" for 15 mins
+                # During this time, the clock is unresponsive
+                # time.sleep(60 * 15)
+                time.sleep(10)
+
+                # You are now awake
                 uh = make_state_face(uh, AWAKE_FACE)
+            else:
+                uh = make_state_face(uh, SLEEPING_FACE)
+        else:
+            uh = make_state_face(uh, AWAKE_FACE)
+
+        uh.show()
+
+        if button_a.is_pressed:
+            print("Nap starting!")
+            nap_time = True
+            nap_start_time = time.time()
+            print(f"Time is {nap_start_time}")
+            uh = make_state_face(uh, SLEEPING_FACE)
             uh.show()
-            time.sleep(0.1)
 
-
-def pressed(button):
-    button_name = BUTTON_MAP[button.pin.number]
-    print(f"Button {button_name} pressed!")
+        time.sleep(0.1)
 
 
 if __name__ == "__main__":
