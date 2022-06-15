@@ -53,7 +53,7 @@ alias gmd="git merge develop"
 alias gpom="git push -u origin main"
 alias gpo="git push -u origin"
 alias gaa="git add ."
-alias gs="git status"
+alias gst="git status"
 alias gd="git diff -- --ignore-white-space . ':(exclude)*/**/*.ipynb'"
 
 # Ruby stuff

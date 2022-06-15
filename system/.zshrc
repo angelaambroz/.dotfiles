@@ -99,30 +99,9 @@ prompt pure
 # zstyle :prompt:pure:path color "#af87d7"
 # zstyle :prompt:pure:prompt:success color "#af87d7"
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/aambroz/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/aambroz/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/aambroz/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/aambroz/google-cloud-sdk/completion.zsh.inc'; fi
-
 # Generated for envman. Do not edit.
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/aambroz/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/aambroz/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/aambroz/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/aambroz/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
 
 # pywal persists on new terminal windows
 (\cat ~/.cache/wal/sequences &)
