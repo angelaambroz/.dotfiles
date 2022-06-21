@@ -66,11 +66,6 @@ export MANPAGER="col -b | vim -c 'set ft=man ts=8 nomod nolist nonu' -c 'nnorema
 export HISTCONTROL=ignoredups
 export EDITOR=vim
 
-# Pyenv, Vim
-export PATH="/usr/local/bin:$HOME/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-eval "$(pyenv init --path)"
 
 # Better cd
 eval "$(zoxide init zsh)"
@@ -78,9 +73,6 @@ eval "$(zoxide init zsh)"
 # Better history search
 eval "$(mcfly init zsh)"
 export MCFLY_KEY_SCHEME=vim
-
-# This is just for exercism 
-export PATH="$PATH:/home/angelaambroz/bin"
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
@@ -90,19 +82,28 @@ export NVM_DIR="$HOME/.nvm"
 # Something about OSX and multiprocessing that was killing my gunicorn
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
-
 # Pretty and minimalist
 fpath+=$HOME/.zsh/pure
 autoload -U promptinit && promptinit
 autoload -U compinit && compinit
 prompt pure
+echo "HELLO"
 # zstyle :prompt:pure:path color "#af87d7"
 # zstyle :prompt:pure:prompt:success color "#af87d7"
 
 # Generated for envman. Do not edit.
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 
-
 # pywal persists on new terminal windows
 (\cat ~/.cache/wal/sequences &)
 
+if [ -e /home/angelaambroz/.nix-profile/etc/profile.d/nix.sh ]; then . /home/angelaambroz/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
+# Pyenv, Vim
+export PATH="$PATH:/usr/local/bin:$HOME/bin:/home/linuxbrew/.linuxbrew/bin:$HOME/.local/bin"
+
+# Pyenv at home, workon at work
+export PATH="$PATH:/.pyenv/bin"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+eval "$(pyenv init --path)"
