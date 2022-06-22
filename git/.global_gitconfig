@@ -30,4 +30,6 @@
 	defaultBranch = main
 [user]
 	name = Angela Ambroz
-	email = angelaambroz@discordapp.com
+	email = angelaambroz@discord
+[url "\"git@github.com:\""]
+	insteadOf = \"https://github.com/\"
