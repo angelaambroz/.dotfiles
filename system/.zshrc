@@ -23,6 +23,10 @@ source $ZSH/oh-my-zsh.sh
 # For local Kafka development
 export KAFKA_BROKER='localhost:9092'
 
+# Load non-secrets
+source "$HOME/.dotfiles/system/.alias"
+echo "Loaded non-secrets."
+
 # Load all my secrets
 SECRETS="$HOME/.dotfiles/secrets"
 for file in "$SECRETS"/.*
@@ -31,12 +35,6 @@ do
 done
 echo "Loaded secrets."
 
-# Load non-secrets
-source "$HOME/.dotfiles/system/.alias"
-echo "Loaded non-secrets."
-export DEPLOY_ENV="local"
-
-echo "HELLO"
 cal_mins () {
 	echo $1
 	echo $2
@@ -66,6 +64,9 @@ export MANPAGER="col -b | vim -c 'set ft=man ts=8 nomod nolist nonu' -c 'nnorema
 export HISTCONTROL=ignoredups
 export EDITOR=vim
 
+# Vim
+export PATH="$PATH:/usr/local/bin:$HOME/bin:/home/linuxbrew/.linuxbrew/bin:$HOME/.local/bin"
+
 
 # Better cd
 eval "$(zoxide init zsh)"
@@ -87,7 +88,6 @@ fpath+=$HOME/.zsh/pure
 autoload -U promptinit && promptinit
 autoload -U compinit && compinit
 prompt pure
-echo "HELLO"
 # zstyle :prompt:pure:path color "#af87d7"
 # zstyle :prompt:pure:prompt:success color "#af87d7"
 
@@ -95,12 +95,9 @@ echo "HELLO"
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 
 # pywal persists on new terminal windows
-(\cat ~/.cache/wal/sequences &)
+# (\cat ~/.cache/wal/sequences &)
 
 if [ -e /home/angelaambroz/.nix-profile/etc/profile.d/nix.sh ]; then . /home/angelaambroz/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
-
-# Pyenv, Vim
-export PATH="$PATH:/usr/local/bin:$HOME/bin:/home/linuxbrew/.linuxbrew/bin:$HOME/.local/bin"
 
 # Pyenv at home, workon at work
 export PATH="$PATH:/.pyenv/bin"
