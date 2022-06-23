@@ -20,9 +20,6 @@ plugins=(
 )
 source $ZSH/oh-my-zsh.sh
 
-# For local Kafka development
-export KAFKA_BROKER='localhost:9092'
-
 # Load non-secrets
 source "$HOME/.dotfiles/system/.alias"
 echo "Loaded non-secrets."
@@ -34,24 +31,6 @@ do
    source "$file"
 done
 echo "Loaded secrets."
-
-cal_mins () {
-	echo $1
-	echo $2
-	# age
-	now=`date +%s`
-	age=$((($now - $BDATE_SEC)/$SECS_PER_YEAR))
-	echo $age
-
-	numerator=`-20.4022 + 0.4472 * $1 + 0.1263 * $WEIGHT + 0.074 * $age`
-	cals_per_min=`$numerator/4.184`
-	echo $numerator
-	echo $cals_per_min
-
-	total_cals=$cals_per_min * $2
-
-	echo $total_cals
-}
 
 # Update tldr
 # echo "Updating tldr."

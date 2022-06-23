@@ -55,6 +55,11 @@ let g:user_emmet_install_global = 1
 let g:python_highlight_all = 1
 set completefunc=emoji#complete
 
+
+" Show hidden files
+let g:ctrlp_show_hidden = 1
+let NERDTreeShowHidden = 1
+
 " Start NERDTree automatically
 " autocmd vimenter * NERDTree
 " autocmd StdinReadPre * let s:std_in=1
