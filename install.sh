@@ -2,9 +2,11 @@
 
 # Ubuntu/Debian startup
 echo "Debian installs"
+sudo add-apt-repository ppa:aos1/diff-so-fancy
 sudo apt update
 sudo apt upgrade
 sudo apt install python3.7 python3.7-dev python3.7-venv
+sudo apt install diff-so-fancy
 
 echo "Installing dotfiles in $HOME"
 
