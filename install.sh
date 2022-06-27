@@ -22,7 +22,7 @@ git clone https://github.com/softmoth/zsh-vim-mode.git ~/.oh-my-zsh/plugins/zsh-
 git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/pure"
 
 curl -sS https://webinstall.dev/zoxide | bash
-curl -LSfs https://raw.githubusercontent.com/cantino/mcfly/master/ci/install.sh | sudo h -s -- --git cantino/mcfly
+curl -LSfs https://raw.githubusercontent.com/cantino/mcfly/master/ci/install.sh | sudo sh -s -- --git cantino/mcfly
 
 # Git
 ln -s ~/.dotfiles/git/.global_gitconfig ~/.gitconfig
