@@ -7,6 +7,8 @@ sudo apt update
 sudo apt upgrade
 sudo apt install python3.7 python3.7-dev python3.7-venv
 sudo apt install diff-so-fancy
+sudo npm install -g tldr
+
 
 echo "Installing dotfiles in $HOME"
 
