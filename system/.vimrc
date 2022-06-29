@@ -43,7 +43,7 @@ call vundle#end()
 filetype plugin indent on   
 
 " Venv nonsense
-let g:black_virtualenv="~/.vim_black"
+" let g:black_virtualenv="~/.vim_black"
 " A few more things from https://dougblack.io/words/a-good-vimrc.html
 set number
 set background=dark
@@ -66,7 +66,7 @@ let NERDTreeShowHidden = 1
 " autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " Autoformat Python code upon saving
-autocmd BufWritePre *.py execute ':Black'
+" autocmd BufWritePre *.py execute ':Black'
 
 
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.

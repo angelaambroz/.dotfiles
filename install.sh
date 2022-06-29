@@ -8,7 +8,13 @@ sudo apt upgrade
 sudo apt install python3.7 python3.7-dev python3.7-venv
 sudo apt install diff-so-fancy
 sudo npm install -g tldr
-
+git clone https://github.com/universal-ctags/ctags.git
+cd ctags
+./autogen.sh
+./configure
+make
+sudo make install # may require extra privileges depending on where to install
+cd ~
 
 echo "Installing dotfiles in $HOME"
 
