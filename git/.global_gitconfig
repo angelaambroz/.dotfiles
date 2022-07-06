@@ -1,6 +1,5 @@
 # This is Git's per-user configuration file
 [core]
-	excludesfile = ~/.dotfiles/git/.global_gitignore
 	attributesfile = ~/.dotfiles/git/.gitattributes
 	pager = diff-so-fancy | less --tabs=4 -RFX
 [alias]
