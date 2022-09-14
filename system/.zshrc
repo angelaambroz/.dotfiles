@@ -44,7 +44,7 @@ export HISTCONTROL=ignoredups
 export EDITOR=vim
 
 # Vim
-export PATH="$PATH:/usr/local/bin:$HOME/bin:/home/linuxbrew/.linuxbrew/bin:$HOME/.local/bin"
+export PATH="$PATH:/usr/local/bin:$HOME/bin:/home/linuxbrew/.linuxbrew/bin:$HOME/.local/bin:$HOME/.pyenv/bin"
 
 
 # Better cd
@@ -79,10 +79,17 @@ prompt pure
 if [ -e /home/angelaambroz/.nix-profile/etc/profile.d/nix.sh ]; then . /home/angelaambroz/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 
 # Pyenv at home, workon at work
-export PATH="$PATH:/.pyenv/bin"
+# Why not both?
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 eval "$(pyenv init --path)"
+
+# source $HOME/.local/bin/virtualenvwrapper.sh
+# export DISCORD_ROOT=$HOME/work/discord/discord
+# export PATH=$PATH:$DISCORD_ROOT/.local/bin
+# DIR_COMMON_PY=$DISCORD_ROOT/discord_common/py
+# export PYTHONPATH=$DIR_COMMON_PY:$DISCORD_ROOT:$PYTHON_PATH
+
 #compdef clyde
 _clyde() {
   eval $(env COMMANDLINE="${words[1,$CURRENT]}" _CLYDE_COMPLETE=complete-zsh  clyde)
