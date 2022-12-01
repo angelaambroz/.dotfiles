@@ -30,6 +30,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-fugitive'
 " Plugin 'ambv/black'
+Plugin 'dense-analysis/ale'
 Plugin 'puremourning/vimspector'
 Plugin 'szw/vim-maximizer'
 Plugin 'preservim/tagbar'
@@ -38,6 +39,7 @@ Plugin 'vim-test/vim-test'
 Plugin 'raimon49/requirements.txt.vim'
 Plugin 'lepture/vim-jinja'
 Plugin 'simnalamburt/vim-mundo'
+Plugin 'shmup/vim-sql-syntax'
 
 call vundle#end()           
 filetype plugin indent on   
