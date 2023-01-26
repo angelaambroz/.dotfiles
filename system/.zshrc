@@ -24,6 +24,9 @@ source $ZSH/oh-my-zsh.sh
 source "$HOME/.dotfiles/system/.alias"
 echo "Loaded non-secrets."
 
+# OMG
+alias python="python3.7"
+
 # Load all my secrets
 SECRETS="$HOME/.dotfiles/secrets"
 for file in "$SECRETS"/.*
@@ -90,20 +93,6 @@ eval "$(pyenv virtualenv-init -)"
 # DIR_COMMON_PY=$DISCORD_ROOT/discord_common/py
 # export PYTHONPATH=$DIR_COMMON_PY:$DISCORD_ROOT:$PYTHON_PATH
 
-#compdef clyde
-_clyde() {
-  eval $(env COMMANDLINE="${words[1,$CURRENT]}" _CLYDE_COMPLETE=complete-zsh  clyde)
-}
-if [[ "$(basename -- ${(%):-%x})" != "_clyde" ]]; then
-  compdef _clyde clyde
-fi
-#compdef clyde
-_clyde() {
-  eval $(env COMMANDLINE="${words[1,$CURRENT]}" _CLYDE_COMPLETE=complete-zsh  clyde)
-}
-if [[ "$(basename -- ${(%):-%x})" != "_clyde" ]]; then
-  compdef _clyde clyde
-fi
 #compdef clyde
 _clyde() {
   eval $(env COMMANDLINE="${words[1,$CURRENT]}" _CLYDE_COMPLETE=complete-zsh  clyde)
