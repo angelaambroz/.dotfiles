@@ -81,8 +81,8 @@ if [ -e /home/angelaambroz/.nix-profile/etc/profile.d/nix.sh ]; then . /home/ang
 # Pyenv at home, workon at work
 # Why not both?
 eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
 eval "$(pyenv init --path)"
+eval "$(pyenv virtualenv-init -)"
 
 # source $HOME/.local/bin/virtualenvwrapper.sh
 # export DISCORD_ROOT=$HOME/work/discord/discord
