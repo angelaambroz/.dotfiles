@@ -7,6 +7,7 @@ sudo apt update
 sudo apt upgrade
 sudo apt install python3.7 python3.7-dev python3.7-venv
 sudo apt install diff-so-fancy
+sudo apt install colordiff
 sudo npm install -g tldr
 git clone https://github.com/universal-ctags/ctags.git
 cd ctags
@@ -14,6 +15,7 @@ cd ctags
 ./configure
 make
 sudo make install # may require extra privileges depending on where to install
+export PATH=$PATH:/home/discord/.dotfiles/ctags
 cd ~
 
 echo "Installing dotfiles in $HOME"

@@ -56,7 +56,7 @@ set showcmd
 let g:user_emmet_install_global = 1
 let g:python_highlight_all = 1
 set completefunc=emoji#complete
-
+" let g:vimspector_base_dir='/home/discord/.vim/bundle/vimspector'
 
 " Show hidden files
 let g:ctrlp_show_hidden = 1
