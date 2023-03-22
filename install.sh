@@ -49,6 +49,6 @@ echo yes | sudo apt-get update
 echo yes | sudo apt-get install neovim
 
 # Shell
-cat ~/.dotfiles/system/.zshrc >> ~/.zshrc
+cat ~/.dotfiles/system/.zshrc > ~/.zshrc
 source ~/.zshrc
 
