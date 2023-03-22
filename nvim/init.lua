@@ -1,1 +1,1 @@
-require("briz")
+require("briz.remap")
