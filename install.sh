@@ -39,6 +39,7 @@ ln -s ~/.dotfiles/git/.global_gitconfig ~/.gitconfig
 ln -s ~/.dotfiles/git/.global_gitignore ~/.gitignore
 
 # Vim
+cp -r ~/.dotfiles/nvim/ ~/.config/nvim/
 ln -s ~/.dotfiles/system/.vimrc ~/.vimrc
 ln -s ~/.dotfiles/system/.vimspector.json ~/.vimspector.json
 

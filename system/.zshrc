@@ -49,7 +49,6 @@ export EDITOR=vim
 # Vim
 export PATH="$PATH:/usr/local/bin:$HOME/bin:/home/linuxbrew/.linuxbrew/bin:$HOME/.local/bin:$HOME/.pyenv/bin"
 
-
 # Better cd
 eval "$(zoxide init zsh)"
 
