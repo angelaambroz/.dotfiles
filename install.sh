@@ -2,18 +2,18 @@
 
 # Ubuntu/Debian startup
 echo "Debian installs"
-sudo add-apt-repository ppa:aos1/diff-so-fancy
-sudo apt update
-sudo apt upgrade
-sudo apt install python3.7 python3.7-dev python3.7-venv
-sudo apt install diff-so-fancy
-sudo apt install colordiff
-sudo npm install -g tldr
+echo yes | sudo add-apt-repository ppa:aos1/diff-so-fancy
+echo yes | sudo apt update
+echo yes | sudo apt upgrade
+echo yes | sudo apt install python3.7 python3.7-dev python3.7-venv
+echo yes | sudo apt install diff-so-fancy
+echo yes | sudo apt install colordiff
+echo yes | sudo npm install -g tldr
 git clone https://github.com/universal-ctags/ctags.git
 cd ctags
-./autogen.sh
-./configure
-make
+echo yes | ./autogen.sh
+echo yes | ./configure
+echo yes | make
 sudo make install # may require extra privileges depending on where to install
 export PATH=$PATH:/home/discord/.dotfiles/ctags
 cd ~
@@ -41,6 +41,11 @@ ln -s ~/.dotfiles/git/.global_gitignore ~/.gitignore
 # Vim
 ln -s ~/.dotfiles/system/.vimrc ~/.vimrc
 ln -s ~/.dotfiles/system/.vimspector.json ~/.vimspector.json
+
+# Neovim
+sudo add-apt-repository ppa:neovim-ppa/unstable
+echo yes | sudo apt-get update
+echo yes | sudo apt-get install neovim
 
 # Shell
 ln -s ~/.dotfiles/system/.zshrc ~/.zshrc
