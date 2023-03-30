@@ -2,10 +2,12 @@
 
 # Ubuntu/Debian startup
 echo "Debian installs"
-echo yes | sudo add-apt-repository ppa:aos1/diff-so-fancy
+sudo add-apt-repository ppa:aos1/diff-so-fancy
+sudo add-apt-repository ppa:neovim-ppa/unstable
 echo yes | sudo apt update
-echo yes | sudo apt upgrade
 echo yes | sudo apt install python3.7 python3.7-dev python3.7-venv
+echo yes | sudo apt-get install neovim
+echo yes | sudo apt-get install python3-neovim
 echo yes | sudo apt install diff-so-fancy
 echo yes | sudo apt install colordiff
 echo yes | sudo npm install -g tldr
@@ -42,11 +44,6 @@ ln -s ~/.dotfiles/git/.global_gitignore ~/.gitignore
 cp -r ~/.dotfiles/nvim/ ~/.config/nvim/
 ln -s ~/.dotfiles/system/.vimrc ~/.vimrc
 ln -s ~/.dotfiles/system/.vimspector.json ~/.vimspector.json
-
-# Neovim
-sudo add-apt-repository ppa:neovim-ppa/unstable
-echo yes | sudo apt-get update
-echo yes | sudo apt-get install neovim
 
 # Shell
 ln -sf ~/.dotfiles/system/.zshrc ~/.zshrc
