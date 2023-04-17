@@ -1,4 +1,5 @@
 vim.g.mapleader = ","
+vim.g.python3_host_prog = "/usr/bin/python3"
 vim.g.python_highlight_all = 1
 vim.g.ctrlp_show_hidden = 1
 vim.g.ctrlp_max_files = 0
