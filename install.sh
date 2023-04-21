@@ -5,25 +5,24 @@ echo "Debian installs"
 sudo add-apt-repository ppa:aos1/diff-so-fancy
 sudo add-apt-repository ppa:neovim-ppa/unstable
 echo yes | sudo apt update
-echo yes | sudo apt install python3.7 python3.7-dev python3.7-venv
+# echo yes | sudo apt install python3.7 python3.7-dev python3.7-venv
 echo yes | sudo apt-get install neovim
 echo yes | sudo apt-get install python3-neovim
 echo yes | sudo apt install diff-so-fancy
 echo yes | sudo apt install colordiff
-echo yes | sudo npm install -g tldr
-git clone https://github.com/universal-ctags/ctags.git
-cd ctags
-echo yes | ./autogen.sh
-echo yes | ./configure
-echo yes | make
-sudo make install # may require extra privileges depending on where to install
-export PATH=$PATH:/home/discord/.dotfiles/ctags
-cd ~
+# echo yes | sudo npm install -g tldr
 
-echo "Installing dotfiles in $HOME"
+# echo yes | ./autogen.sh
+# echo yes | ./configure
+# echo yes | make
+# sudo make install # may require extra privileges depending on where to install
+# export PATH=$PATH:/home/discord/.dotfiles/ctags
+# cd ~
+
+# echo "Installing dotfiles in $HOME"
 
 # If we're not in .dotfiles, move there
-mv $(pwd) .dotfiles
+# mv $(pwd) .dotfiles
 
 # Shell
 echo "Shell is $SHELL"
@@ -34,18 +33,19 @@ echo "Shell is $SHELL"
 # git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/pure"
 
 # curl -sS https://webinstall.dev/zoxide | bash
+# TODO: This is installing outside of $HOME, let's redirect it
 curl -LSfs https://raw.githubusercontent.com/cantino/mcfly/master/ci/install.sh | sudo sh -s -- --git cantino/mcfly
 
-# Git
-ln -s ~/.dotfiles/git/.global_gitconfig ~/.gitconfig
-ln -s ~/.dotfiles/git/.global_gitignore ~/.gitignore
+# # Git
+# ln -s ~/.dotfiles/git/.global_gitconfig ~/.gitconfig
+# ln -s ~/.dotfiles/git/.global_gitignore ~/.gitignore
 
-# Vim
-cp -r ~/.dotfiles/nvim/ ~/.config/
-ln -s ~/.dotfiles/system/.vimrc ~/.vimrc
-ln -s ~/.dotfiles/system/.vimspector.json ~/.vimspector.json
+# # Vim
+# cp -r ~/.dotfiles/nvim/ ~/.config/
+# ln -s ~/.dotfiles/system/.vimrc ~/.vimrc
+# ln -s ~/.dotfiles/system/.vimspector.json ~/.vimspector.json
 
-# Shell
-ln -sf ~/.dotfiles/system/.zshrc ~/.zshrc
+# # Shell
+# ln -sf ~/.dotfiles/system/.zshrc ~/.zshrc
 source ~/.zshrc
 
