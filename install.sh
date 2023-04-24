@@ -2,14 +2,14 @@
 
 # Ubuntu/Debian startup
 echo "Debian installs"
-sudo add-apt-repository ppa:aos1/diff-so-fancy
-sudo add-apt-repository ppa:neovim-ppa/unstable
-echo yes | sudo apt update
-# echo yes | sudo apt install python3.7 python3.7-dev python3.7-venv
-echo yes | sudo apt-get install neovim
-echo yes | sudo apt-get install python3-neovim
-echo yes | sudo apt install diff-so-fancy
-echo yes | sudo apt install colordiff
+echo yes | sudo add-apt-repository ppa:aos1/diff-so-fancy \
+&& sudo add-apt-repository ppa:neovim-ppa/unstable \
+&& sudo apt update
+# && sudo apt install python3.7 python3.7-dev python3.7-venv
+echo yes | sudo apt-get install neovim \
+&& sudo apt-get install python3-neovim \
+&& sudo apt install diff-so-fancy \
+&& sudo apt install colordiff
 # echo yes | sudo npm install -g tldr
 
 # echo yes | ./autogen.sh
@@ -47,5 +47,5 @@ curl -LSfs https://raw.githubusercontent.com/cantino/mcfly/master/ci/install.sh 
 
 # # Shell
 # ln -sf ~/.dotfiles/system/.zshrc ~/.zshrc
-source ~/.zshrc
+# source ~/.zshrc
 
