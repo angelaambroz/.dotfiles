@@ -9,7 +9,8 @@ echo yes | sudo add-apt-repository ppa:aos1/diff-so-fancy \
 echo yes | sudo apt-get install neovim \
 && sudo apt-get install python3-neovim \
 && sudo apt install diff-so-fancy \
-&& sudo apt install colordiff
+&& sudo apt install colordiff \
+&& sudo apt install xclip
 # echo yes | sudo npm install -g tldr
 
 # echo yes | ./autogen.sh
