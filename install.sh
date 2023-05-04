@@ -41,7 +41,7 @@ curl -LSfs https://raw.githubusercontent.com/cantino/mcfly/master/ci/install.sh 
 # ln -s ~/.dotfiles/git/.global_gitignore ~/.gitignore
 
 # # Vim
-# cp -r ~/.dotfiles/nvim/ ~/.config/
+cp -r ~/.dotfiles/nvim/ ~/.config/
 # ln -s ~/.dotfiles/system/.vimrc ~/.vimrc
 # ln -s ~/.dotfiles/system/.vimspector.json ~/.vimspector.json
 

@@ -19,7 +19,7 @@ alias pe="pyenv activate"
 alias piup="pip install --upgrade pip"
 alias pprint="| python -m json.tool"
 alias mk="minikube" 
-alias vim="nvim"
+# alias vim="nvim"
 
 # http://www.the-efficient-programmer.com/shell/some-grep-tips.html
 alias grr="grep --recursive --line-number \
