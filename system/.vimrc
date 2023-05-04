@@ -125,7 +125,7 @@ nmap <leader>dcbp <Plug>VimspectorToggleConditionalBreakpoint
 " Vim test remaps
 
 " DBT syntax highlighting
-au BufNewFile,BufRead *.sql set ft=dbt
+au BufNewFile,BufRead *.sql set ft=sql
 
 " Undofile
 set undofile
