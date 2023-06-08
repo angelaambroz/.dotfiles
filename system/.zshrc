@@ -14,7 +14,6 @@ plugins=(
   pylint
   rand-quote
   sublime
-  tmux
   web-search
   zsh-vim-mode
 )
@@ -25,15 +24,15 @@ source "$HOME/.dotfiles/system/.alias"
 echo "Loaded non-secrets."
 
 # OMG
-alias python="python3.7"
+# alias python="python3.7"
 
 # Load all my secrets
-SECRETS="$HOME/.dotfiles/secrets"
-for file in "$SECRETS"/.*
-do
-   source "$file"
-done
-echo "Loaded secrets."
+# SECRETS="$HOME/.dotfiles/secrets"
+# for file in "$SECRETS"/.*
+# do
+  # source "$file"
+# done
+# echo "Loaded secrets."
 
 # Update tldr
 # echo "Updating tldr."
@@ -65,10 +64,11 @@ export NVM_DIR="$HOME/.nvm"
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
 # Pretty and minimalist
-fpath+=$HOME/.zsh/pure
+fpath+=($HOME/.zsh/pure)
 autoload -U promptinit && promptinit
 autoload -U compinit && compinit
 prompt pure
+
 # zstyle :prompt:pure:path color "#af87d7"
 # zstyle :prompt:pure:prompt:success color "#af87d7"
 
