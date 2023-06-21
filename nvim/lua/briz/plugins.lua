@@ -29,5 +29,9 @@ return require('packer').startup(function(use)
 	use 'lepture/vim-jinja'
 	use 'simnalamburt/vim-mundo'
 	use 'shmup/vim-sql-syntax'
-
+	use "nvim-lua/plenary.nvim"
+	use { "nvim-telescope/telescope.nvim",
+		tag="0.1.1",
+		requires={{"nvim-lua/plenary.nvim"}}
+}
 end)
