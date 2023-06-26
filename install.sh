@@ -11,7 +11,7 @@ echo yes | sudo apt-get install neovim \
 && sudo apt install diff-so-fancy \
 && sudo apt install colordiff \
 && sudo apt install xclip
-# echo yes | sudo npm install -g tldr
+echo yes | sudo npm install -g tldr
 
 # echo yes | ./autogen.sh
 # echo yes | ./configure
@@ -45,6 +45,9 @@ curl -LSfs https://raw.githubusercontent.com/cantino/mcfly/master/ci/install.sh 
 cp -r ~/.dotfiles/nvim/ ~/.config/
 # ln -s ~/.dotfiles/system/.vimrc ~/.vimrc
 # ln -s ~/.dotfiles/system/.vimspector.json ~/.vimspector.json
+
+curl -LO https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_13.0.0_amd64.deb
+sudo dpkg -i ripgrep_13.0.0_amd64.deb
 
 # # Shell
 ln -sf ~/.dotfiles/system/.zshrc ~/.zshrc

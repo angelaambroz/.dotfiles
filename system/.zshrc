@@ -27,12 +27,12 @@ echo "Loaded non-secrets."
 # alias python="python3.7"
 
 # Load all my secrets
-# SECRETS="$HOME/.dotfiles/secrets"
-# for file in "$SECRETS"/.*
-# do
-  # source "$file"
-# done
-# echo "Loaded secrets."
+SECRETS="$HOME/.dotfiles/secrets"
+for file in "$SECRETS"/.*
+do
+  source "$file"
+done
+echo "Loaded secrets."
 
 # Update tldr
 # echo "Updating tldr."
