@@ -9,3 +9,8 @@ vim.opt.nu = true
 
 vim.keymap.set("i", "jk", "<esc>:w<cr>")
 vim.cmd("colorscheme onedark")
+
+local tscope = require('telescope.builtin')
+vim.keymap.set('n', '<leader>ff', tscope.find_files, {})
+vim.keymap.set('n', '<leader>fg', tscope.live_grep, {})
+
