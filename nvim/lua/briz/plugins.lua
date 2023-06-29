@@ -9,7 +9,6 @@ return require('packer').startup(function(use)
 	use 'VundleVim/Vundle.vim'
 	use 'Xuyuanp/nerdtree-git-plugin'
 	use 'airblade/vim-gitgutter'
-	use 'ctrlpvim/ctrlp.vim'
 	use 'davidhalter/jedi-vim'
 	use 'joshdick/onedark.vim'
 	use 'mattn/emmet-vim'
