@@ -14,3 +14,5 @@ local tscope = require('telescope.builtin')
 vim.keymap.set('n', '<c-p>', tscope.find_files, {})
 vim.keymap.set('n', '<c-t>', tscope.live_grep, {})
 
+vim.wo.foldmethod = 'indent'
+
