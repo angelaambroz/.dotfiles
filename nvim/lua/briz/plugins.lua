@@ -21,6 +21,7 @@ return require('packer').startup(function(use)
 	use 'dense-analysis/ale'
 	use 'mfussenegger/nvim-dap'
 	use 'rcarriga/nvim-dap-ui'
+	use 'mfussenegger/nvim-dap-python'
 	use 'szw/vim-maximizer'
 	use 'preservim/tagbar'
 	use 'tpope/vim-commentary'
