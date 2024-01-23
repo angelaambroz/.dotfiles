@@ -14,7 +14,6 @@ plugins=(
   pylint
   rand-quote
   sublime
-  tmux
   web-search
   zsh-vim-mode
 )
@@ -31,7 +30,7 @@ echo "Loaded non-secrets."
 SECRETS="$HOME/.dotfiles/secrets"
 for file in "$SECRETS"/.*
 do
-   source "$file"
+  source "$file"
 done
 echo "Loaded secrets."
 
@@ -49,7 +48,6 @@ export EDITOR=vim
 # Vim
 export PATH="$PATH:/usr/local/bin:$HOME/bin:/home/linuxbrew/.linuxbrew/bin:$HOME/.local/bin:$HOME/.pyenv/bin"
 
-
 # Better cd
 eval "$(zoxide init zsh)"
 
@@ -66,10 +64,11 @@ export NVM_DIR="$HOME/.nvm"
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
 # Pretty and minimalist
-fpath+=$HOME/.zsh/pure
+fpath+=($HOME/.zsh/pure)
 autoload -U promptinit && promptinit
 autoload -U compinit && compinit
 prompt pure
+
 # zstyle :prompt:pure:path color "#af87d7"
 # zstyle :prompt:pure:prompt:success color "#af87d7"
 
@@ -100,3 +99,6 @@ _clyde() {
 if [[ "$(basename -- ${(%):-%x})" != "_clyde" ]]; then
   compdef _clyde clyde
 fi
+
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm

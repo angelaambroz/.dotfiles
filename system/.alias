@@ -2,9 +2,6 @@ alias glg='git log --graph --full-history --all --color --pretty=format:"%x1b[31
 alias subl=st
 # .zshrc's `l` is special, but I hate where it is on the keyboard
 alias nicedate="date +%Y-%m-%d"
-alias tmuxk="tmux kill-session -t"
-alias tmuxa="tmux a -t"
-alias tmuxn="tmux new -s"
 alias penvn="pyenv virtualenv"
 alias penva="pyenv activate"
 alias penvk="pyenv uninstall"
@@ -13,19 +10,7 @@ alias cronn='env EDITOR=nano crontab -e'
 alias cronl='crontab -l'
 alias diff="colordiff"
 alias jlist="jupyter notebook list"
-alias omscs="cd ~/Documents/omscs"
-alias t="todo.sh -d ~/.dotfiles/system/.todo"
-alias ta="t add $(date +%Y-%m-%d)" 
-alias td="t do"
-alias tls="t ls"
-alias tdone="cat ~/todo/done.txt"
 alias ports="lsof -Pan -i tcp -i udp"
-alias spo="spotify"
-alias spoa="spotify album"
-alias spoart="spotify artist"
-alias dw="spotify play uri $DISCOVER_WEEKLY_URI"
-alias chr="google"
-alias docker_wipe='docker stop $(docker ps -aq) && docker rm $(docker ps -aq)'
 alias sc="shellcheck"
 alias lsize="du -hs * | sort -rh | head"
 alias dblist="psql postgres -h localhost -l"
@@ -34,7 +19,8 @@ alias pe="pyenv activate"
 alias piup="pip install --upgrade pip"
 alias pprint="| python -m json.tool"
 alias mk="minikube" 
-alias m="python ~/.dotfiles/system/museum.py"
+alias vim="nvim"
+alias notes="git add .  && git commit -m 'work' && git push origin main"
 
 # http://www.the-efficient-programmer.com/shell/some-grep-tips.html
 alias grr="grep --recursive --line-number \
