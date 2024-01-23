@@ -25,7 +25,7 @@ source "$HOME/.dotfiles/system/.alias"
 echo "Loaded non-secrets."
 
 # OMG
-alias python="python3.7"
+# alias python="python3.7"
 
 # Load all my secrets
 SECRETS="$HOME/.dotfiles/secrets"
