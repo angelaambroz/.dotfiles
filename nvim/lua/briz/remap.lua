@@ -17,4 +17,4 @@ vim.keymap.set('n', '<c-t>', tscope.live_grep, {})
 vim.wo.foldmethod = 'indent'
 vim.cmd("set foldlevel=99")
 
-require('dap-python').setup('~/.virtualenvs/debugpy/bin/python')
+require('dap-python').setup('/home/discord/.virtualenvs/discord_ai/bin/python')
