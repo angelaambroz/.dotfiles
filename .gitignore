@@ -2,3 +2,4 @@ secrets/
 *.jpg
 ctags/
 *.deb
+dotfiles_env/
