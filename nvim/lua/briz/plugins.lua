@@ -10,7 +10,7 @@ return require('packer').startup(function(use)
 	use 'Xuyuanp/nerdtree-git-plugin'
 	use 'airblade/vim-gitgutter'
 	use 'davidhalter/jedi-vim'
-	use 'joshdick/onedark.vim'
+	-- use 'joshdick/onedark.vim'
 	use 'mattn/emmet-vim'
 	use 'preservim/nerdtree'
 	use 'vim-python/python-syntax'

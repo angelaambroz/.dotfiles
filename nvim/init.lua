@@ -1,2 +1,52 @@
+-- Fallback color scheme
+vim.cmd('colorscheme default')
+
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+
+--- Plugins
+require("lazy").setup({
+	"VundleVim/Vundle.vim",
+	"Xuyuanp/nerdtree-git-plugin",
+	"airblade/vim-gitgutter",
+	"davidhalter/jedi-vim",
+	"joshdick/onedark.vim",
+	"mattn/emmet-vim",
+	"preservim/nerdtree",
+	"vim-python/python-syntax",
+	"junegunn/vim-emoji",
+	"vim-airline/vim-airline",
+	"tpope/vim-sensible",
+	"tpope/vim-fugitive",
+	"dense-analysis/ale",
+	"mfussenegger/nvim-dap",
+	"rcarriga/nvim-dap-ui",
+	"mfussenegger/nvim-dap-python",
+	"szw/vim-maximizer",
+	"preservim/tagbar",
+	"tpope/vim-commentary",
+	"vim-test/vim-test",
+	"raimon49/requirements.txt.vim",
+	"lepture/vim-jinja",
+	"simnalamburt/vim-mundo",
+	"shmup/vim-sql-syntax",
+	"nvim-lua/plenary.nvim",
+	{ "nvim-telescope/telescope.nvim",
+		version="0.1.4",
+		dependencies={"nvim-lua/plenary.nvim"}
+	},
+	"Exafunction/codeium.vim",
+})
+
 require("briz.remap")
-require("briz.plugins")
+-- require("briz.plugins")
