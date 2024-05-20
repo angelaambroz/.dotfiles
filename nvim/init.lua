@@ -46,6 +46,8 @@ require("lazy").setup({
 		dependencies={"nvim-lua/plenary.nvim"}
 	},
 	"Exafunction/codeium.vim",
+	"mfussenegger/nvim-dap",
+	"mfussenegger/nvim-dap-python",
 })
 
 require("briz.remap")
