@@ -50,5 +50,9 @@ require("lazy").setup({
 	"mfussenegger/nvim-dap-python",
 })
 
-require("briz.remap")
+require('dap-python').setup('~/.local/lib/python3.10/site-packages/debugpy/bin/python')
+
+
 -- require("briz.plugins")
+
+require("briz.remap")
