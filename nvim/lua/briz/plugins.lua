@@ -35,5 +35,7 @@ return require('packer').startup(function(use)
 		tag="0.1.4",
 		requires={{"nvim-lua/plenary.nvim"}}
 	}
-	use 'Exafunction/codeium.vim'
+	use 'Exafunction/codeium.vim',
+	use 'mfussenegger/nvim-dap',
+	use 'mfussenegger/nvim-dap-python',
 end)
