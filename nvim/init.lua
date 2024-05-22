@@ -48,10 +48,22 @@ require("lazy").setup({
 	"Exafunction/codeium.vim",
 	"mfussenegger/nvim-dap",
 	"mfussenegger/nvim-dap-python",
+	{
+		  'stevearc/conform.nvim',
+		  opts = {},
+}
 })
 
 require('dap-python').setup('~/.pyenv/shims/python')
-
+require("conform").setup({
+  formatters_by_ft = {
+    lua = { "stylua" },
+    -- Conform will run multiple formatters sequentially
+    python = { "isort", "black" },
+    -- Use a sub-list to run only the first available formatter
+    javascript = { { "prettierd", "prettier" } },
+  },
+})
 
 -- require("briz.plugins")
 

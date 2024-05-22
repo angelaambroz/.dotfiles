@@ -17,3 +17,10 @@ vim.keymap.set('n', '<c-t>', tscope.live_grep, {})
 vim.wo.foldmethod = 'indent'
 vim.cmd("set foldlevel=99")
 
+-- Format on save
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*",
+  callback = function(args)
+    require("conform").format({ bufnr = args.buf })
+  end,
+})
