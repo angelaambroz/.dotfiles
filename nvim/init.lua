@@ -50,7 +50,7 @@ require("lazy").setup({
 	"mfussenegger/nvim-dap-python",
 })
 
-require('dap-python').setup('~/.local/lib/python3.10/site-packages/debugpy/bin/python')
+require('dap-python').setup('~/.pyenv/shims/python')
 
 
 -- require("briz.plugins")
