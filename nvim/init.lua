@@ -51,7 +51,9 @@ require("lazy").setup({
 	{
 		  'stevearc/conform.nvim',
 		  opts = {},
-}
+	},
+	{ "rcarriga/nvim-dap-ui", dependencies = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"} },
+	{ "folke/neodev.nvim", opts = {} }
 })
 
 require('dap-python').setup('~/.pyenv/shims/python')
@@ -64,7 +66,9 @@ require("conform").setup({
     javascript = { { "prettierd", "prettier" } },
   },
 })
+require("neodev").setup({
+  library = { plugins = { "nvim-dap-ui" }, types = true },
+})
 
 -- require("briz.plugins")
-
 require("briz.remap")
