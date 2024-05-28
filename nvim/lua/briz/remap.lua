@@ -17,4 +17,10 @@ vim.keymap.set('n', '<c-t>', tscope.live_grep, {})
 vim.wo.foldmethod = 'indent'
 vim.cmd("set foldlevel=99")
 
-require('dap-python').setup('/home/discord/.virtualenvs/discord_ai/bin/python')
+-- Format on save
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*",
+  callback = function(args)
+    require("conform").format({ bufnr = args.buf })
+  end,
+})

@@ -29,9 +29,6 @@ require("lazy").setup({
 	"tpope/vim-sensible",
 	"tpope/vim-fugitive",
 	"dense-analysis/ale",
-	"mfussenegger/nvim-dap",
-	"rcarriga/nvim-dap-ui",
-	"mfussenegger/nvim-dap-python",
 	"szw/vim-maximizer",
 	"preservim/tagbar",
 	"tpope/vim-commentary",
@@ -48,11 +45,27 @@ require("lazy").setup({
 	"Exafunction/codeium.vim",
 	"mfussenegger/nvim-dap",
 	"mfussenegger/nvim-dap-python",
+	{
+		  'stevearc/conform.nvim',
+		  opts = {},
+	},
+	{ "rcarriga/nvim-dap-ui", dependencies = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"} },
+	{ "folke/neodev.nvim", opts = {} }
 })
 
-require('dap-python').setup('~/.local/lib/python3.10/site-packages/debugpy/bin/python')
-
+require('dap-python').setup('~/.pyenv/shims/python')
+require("conform").setup({
+  formatters_by_ft = {
+    lua = { "stylua" },
+    -- Conform will run multiple formatters sequentially
+    python = { "isort", "black" },
+    -- Use a sub-list to run only the first available formatter
+    javascript = { { "prettierd", "prettier" } },
+  },
+})
+require("neodev").setup({
+  library = { plugins = { "nvim-dap-ui" }, types = true },
+})
 
 -- require("briz.plugins")
-
 require("briz.remap")
