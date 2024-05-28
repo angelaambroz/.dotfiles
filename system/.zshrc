@@ -1,5 +1,6 @@
 # ZSH stuff
 export ZSH=$HOME/.oh-my-zsh
+export PATH="$PATH:/opt/nvim/"
 ZSH_THEME=""
 HIST_STAMPS="yyyy-mm-dd"
 plugins=(
@@ -31,6 +32,7 @@ SECRETS="$HOME/.dotfiles/secrets"
 for file in "$SECRETS"/.*
 do
   source "$file"
+  echo "Loaded $file"
 done
 echo "Loaded secrets."
 
