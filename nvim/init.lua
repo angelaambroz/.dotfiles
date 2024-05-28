@@ -16,6 +16,7 @@ vim.opt.rtp:prepend(lazypath)
 
 --- Plugins
 require("lazy").setup({
+	"neovim/nvim-lspconfig",
 	"VundleVim/Vundle.vim",
 	"Xuyuanp/nerdtree-git-plugin",
 	"airblade/vim-gitgutter",
