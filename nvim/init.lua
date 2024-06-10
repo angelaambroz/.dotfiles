@@ -20,7 +20,7 @@ require("lazy").setup({
 	"VundleVim/Vundle.vim",
 	"Xuyuanp/nerdtree-git-plugin",
 	"airblade/vim-gitgutter",
-	"davidhalter/jedi-vim",
+	-- "davidhalter/jedi-vim",
 	"joshdick/onedark.vim",
 	"mattn/emmet-vim",
 	"preservim/nerdtree",
@@ -67,6 +67,7 @@ require("conform").setup({
 require("neodev").setup({
   library = { plugins = { "nvim-dap-ui" }, types = true },
 })
+require'lspconfig'.pyright.setup{}
 
 -- require("briz.plugins")
 require("briz.remap")
