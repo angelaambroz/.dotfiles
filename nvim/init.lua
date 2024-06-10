@@ -50,7 +50,11 @@ require("lazy").setup({
 		  'stevearc/conform.nvim',
 		  opts = {},
 	},
-	{ "rcarriga/nvim-dap-ui", dependencies = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"} },
+	{ 
+		"rcarriga/nvim-dap-ui", 
+		dependencies = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"},
+		lazy = false,
+	},
 	{ "folke/neodev.nvim", opts = {} }
 })
 

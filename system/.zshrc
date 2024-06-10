@@ -104,3 +104,11 @@ fi
 
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+fpath+=${ZDOTDIR:-~}/.zsh_functions
+
+# Move Alacritty config to ~/.config
+mkdir -p ~/.config/alacritty
+# ignore if file already exists
+if [ ! -f ~/.config/alacritty/alacritty.toml ]; then
+	ln -s $HOME/.dotfiles/system/alacritty.toml ~/.config/alacritty/alacritty.toml
+fi
