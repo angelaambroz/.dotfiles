@@ -12,18 +12,8 @@ import urllib.request
 import praw
 import requests
 
-if sys.platform == "darwin":
-    print("On MacOSX")
-    from Foundation import NSURL
-    from AppKit import (
-        NSWorkspace,
-        NSScreen,
-        NSWorkspaceDesktopImageScalingKey,
-        NSImageScaleProportionallyUpOrDown,
-        NSWorkspaceDesktopImageAllowClippingKey,
-    )
 if sys.platform == "linux":
-    print("On Linux")
+    print("Hi! You're on a Linux machine, good for u")
 
 
 # Some globals
@@ -109,19 +99,6 @@ def change_desktop_background(file: str) -> None:
     # Setting the desktop background
     print("Now changing desktop background...")
 
-    if sys.platform == "darwin":
-        # make image options dictionary
-        options = {
-            NSWorkspaceDesktopImageScalingKey: NSImageScaleProportionallyUpOrDown,
-            NSWorkspaceDesktopImageAllowClippingKey: True,
-        }
-        ws = NSWorkspace.sharedWorkspace()
-        file_url = NSURL.fileURLWithPath_(file)
-        for screen in NSScreen.screens():
-            (result, error) = ws.setDesktopImageURL_forScreen_options_error_(
-                file_url, screen, options, None
-            )
-
     if sys.platform == "linux":
         print("...on Linux")
         command = (
@@ -139,6 +116,8 @@ def change_desktop_background(file: str) -> None:
 
         print(f"Running command: {command}")
         os.system(command)
+    else:
+        print("Where are you?")
 
 
 # TO DOs:
