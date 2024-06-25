@@ -39,7 +39,7 @@ REDDIT_PW = os.environ["REDDIT_PW"]
 REDDIT_UN = os.environ["REDDIT_UN"]
 REDDIT_CLIENT_ID = os.environ["REDDIT_CLIENT_ID"]
 REDDIT_CLIENT_SECRET = os.environ["REDDIT_CLIENT_SECRET"]
-NASA_APOD_KEY = os.environ["NASA_APOD"]
+NASA_APOD_KEY = os.environ["NASA_APOD_KEY"]
 NASA_APOD_URL = f"https://api.nasa.gov/planetary/apod?api_key={NASA_APOD_KEY}"
 TODAY = datetime.date.today().strftime("%Y%b%d")
 YESTERDAY = (datetime.date.today() - datetime.timedelta(1)).strftime("%Y%b%d")
@@ -102,17 +102,16 @@ def change_desktop_background(file: str) -> None:
     if sys.platform == "linux":
         print("...on Linux")
         command = (
-                f'echo "regolith.wallpaper.file: {file}" > ~/.config/regolith2/Xresources'
+            f'echo "regolith.wallpaper.file: {file}" > ~/.config/regolith3/Xresources'
         )
 
-        wal_config_dir = "/home/angelaambroz/.cache/wal/schemes/"
-        wal_config = f"_home_angelaambroz__dotfiles_system_{file[-13:-4]}_jpg_dark_None_None_1.1.0.json"
-        print(wal_config)
-        if wal_config in os.listdir(wal_config_dir):
-            command += f"; rm -r {wal_config_dir}/{wal_config}"
+        # wal_config_dir = "/home/angelaambroz/.cache/wal/schemes/"
+        # wal_config = f"_home_angelaambroz__dotfiles_system_{file[-13:-4]}_jpg_dark_None_None_1.1.0.json"
+        # print(wal_config)
+        # if wal_config in os.listdir(wal_config_dir):
+        #     command += f"; rm -r {wal_config_dir}/{wal_config}"
         command += "; regolith-look refresh"
-        command += f"; wal -i {file}"
-
+        # command += f"; wal -i {file}"
 
         print(f"Running command: {command}")
         os.system(command)
@@ -126,8 +125,8 @@ def change_desktop_background(file: str) -> None:
 
 if __name__ == "__main__":
     PARSER = argparse.ArgumentParser(description="Choosing which image source to use.")
-    PARSER.add_argument("-r", dest="reddit", action="store_false")
-    PARSER.add_argument("-n", dest="nasa", action="store_false")
+    PARSER.add_argument("-r", dest="reddit", action="store_true")
+    PARSER.add_argument("-n", dest="nasa", action="store_true")
     ARGS = PARSER.parse_args()
 
     if ARGS.reddit and ARGS.nasa:
