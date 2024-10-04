@@ -72,6 +72,8 @@ require("neodev").setup({
   library = { plugins = { "nvim-dap-ui" }, types = true },
 })
 require'lspconfig'.pyright.setup{}
+local dap, dapui = require("dap"), require("dapui")
+dapui.setup()
 
 -- require("briz.plugins")
 require("briz.remap")
