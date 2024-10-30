@@ -2,142 +2,171 @@
 Changing the desktop wallpaper programmatically, for fun.
 """
 
-import os
-import sys
+from dataclasses import dataclass
+from datetime import date, timedelta
+from pathlib import Path
 import argparse
+import logging
+import platform
 import random
-import datetime
+import sys
 import urllib.request
+from typing import Optional
 
 import praw
 import requests
 
-if sys.platform == "linux":
-    print("Hi! You're on a Linux machine, good for u")
+logging.basicConfig(level=logging.INFO, 
+                   format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
 
+@dataclass
+class Config:
+    """Configuration for the wallpaper changer"""
+    script_dir: Path
+    today: str
+    yesterday: str
+    reddit_pw: str 
+    reddit_un: str
+    reddit_client_id: str
+    reddit_client_secret: str
+    nasa_key: str
 
-# Some globals
-DIR = os.path.split(os.path.abspath(__file__))[0]
-SUBREDDITS = [
-    "museum",
-    "ColorizedHistory",
-    "MacroPorn",
-    "FuturePorn",
-    "spaceporn",
-    "historyporn",
-    "ImaginaryLandscapes",
-    "MapPorn",
-    "FossilPorn",
-    "WeatherPorn",
-    "minimalist_art",
-    "romanticism",
-    "Medievalart",
-    "painting",
-    "MuseumPorn",
-]
-REDDIT_PW = os.environ["REDDIT_PW"]
-REDDIT_UN = os.environ["REDDIT_UN"]
-REDDIT_CLIENT_ID = os.environ["REDDIT_CLIENT_ID"]
-REDDIT_CLIENT_SECRET = os.environ["REDDIT_CLIENT_SECRET"]
-NASA_APOD_KEY = os.environ["NASA_APOD_KEY"]
-NASA_APOD_URL = f"https://api.nasa.gov/planetary/apod?api_key={NASA_APOD_KEY}"
-TODAY = datetime.date.today().strftime("%Y%b%d")
-YESTERDAY = (datetime.date.today() - datetime.timedelta(1)).strftime("%Y%b%d")
-
-
-def download_pic(URL: str) -> None:
-    """Downloading the picture from the URL"""
-    print(f"Downloading to {DIR}/{TODAY}.jpg")
-    urllib.request.urlretrieve(URL, f"{DIR}/{TODAY}.jpg")
-
-
-def get_reddit() -> None:
-    """
-    Downloading a picture from Reddit
-
-    TODO: Get the most popular of the responses
-    """
-    sub = random.choice(SUBREDDITS)
-    print(f"Today's chosen subreddit is /r/{sub}!")
-    r = praw.Reddit(
-        client_id=REDDIT_CLIENT_ID,
-        client_secret=REDDIT_CLIENT_SECRET,
-        user_agent=f"osx:museum-desktop.personal-app:v0.1 (by /u/{REDDIT_UN})",
-        username=REDDIT_UN,
-        password=REDDIT_PW,
-    )
-    good_url = [
-        x.url for x in r.subreddit(sub).top("month", limit=3) if "jpg" or "png" in x
-    ][0]
-    download_pic(good_url)
-
-
-def get_apod() -> None:
-    """
-    Downloading NASA's space pic of the day
-    """
-    r = requests.get(NASA_APOD_URL)
-    download_pic(r.json()["url"])
-
-
-# Deleting the old stuff
-def delete_olds() -> None:
-    """
-    Look in the museum directory, delete yesterday's picture
-    """
-    if os.path.isfile(f"{DIR}/{YESTERDAY}.jpg"):
-        print(f"Deleting desktop background from {YESTERDAY}.")
-        os.remove(f"{DIR}/{YESTERDAY}.jpg")
-    else:
-        print(f"There is no desktop image from {YESTERDAY}.")
-
-
-def change_desktop_background(file: str) -> None:
-    """
-    Updating the background, based on the inferred OS
-    """
-    # Setting the desktop background
-    print("Now changing desktop background...")
-
-    if sys.platform == "linux":
-        print("...on Linux")
-        command = (
-            f'echo "regolith.wallpaper.file: {file}" > ~/.config/regolith3/Xresources'
+    @classmethod
+    def from_env(cls) -> 'Config':
+        """Create config from environment variables"""
+        import os
+        today = date.today()
+        return cls(
+            script_dir=Path(__file__).parent,
+            today=today.strftime("%Y%b%d"),
+            yesterday=(today - timedelta(1)).strftime("%Y%b%d"),
+            reddit_pw=os.environ["REDDIT_PW"],
+            reddit_un=os.environ["REDDIT_UN"], 
+            reddit_client_id=os.environ["REDDIT_CLIENT_ID"],
+            reddit_client_secret=os.environ["REDDIT_CLIENT_SECRET"],
+            nasa_key=os.environ["NASA_APOD_KEY"]
         )
 
-        # wal_config_dir = "/home/angelaambroz/.cache/wal/schemes/"
-        # wal_config = f"_home_angelaambroz__dotfiles_system_{file[-13:-4]}_jpg_dark_None_None_1.1.0.json"
-        # print(wal_config)
-        # if wal_config in os.listdir(wal_config_dir):
-        #     command += f"; rm -r {wal_config_dir}/{wal_config}"
-        command += "; regolith-look refresh"
-        # command += f"; wal -i {file}"
+config = Config.from_env()
 
-        print(f"Running command: {command}")
-        os.system(command)
+match platform.system().lower():
+    case "linux":
+        logger.info("Running on Linux")
+    case other:
+        logger.warning(f"Unsupported platform: {other}")
+SUBREDDITS = frozenset({
+    "museum", "ColorizedHistory", "MacroPorn", "FuturePorn",
+    "spaceporn", "historyporn", "ImaginaryLandscapes", "MapPorn",
+    "FossilPorn", "WeatherPorn", "minimalist_art", "romanticism",
+    "Medievalart", "painting", "MuseumPorn",
+})
+
+def download_pic(url: str, output_path: Path) -> None:
+    """Download an image from a URL to the specified path"""
+    logger.info(f"Downloading to {output_path}")
+    try:
+        urllib.request.urlretrieve(url, output_path)
+    except (urllib.error.URLError, urllib.error.HTTPError) as e:
+        logger.error(f"Failed to download image: {e}")
+        raise
+
+def get_reddit() -> Path:
+    """Download a picture from Reddit and return its path"""
+    sub = random.choice(list(SUBREDDITS))
+    logger.info(f"Selected subreddit: /r/{sub}")
+    
+    reddit = praw.Reddit(
+        client_id=config.reddit_client_id,
+        client_secret=config.reddit_client_secret,
+        user_agent=f"linux:museum-desktop:v0.2 (by /u/{config.reddit_un})",
+        username=config.reddit_un,
+        password=config.reddit_pw,
+    )
+    
+    try:
+        submissions = reddit.subreddit(sub).top("month", limit=10)
+        image_urls = [
+            post.url for post in submissions 
+            if any(post.url.lower().endswith(ext) for ext in ('.jpg', '.png'))
+        ]
+        if not image_urls:
+            raise ValueError(f"No suitable images found in /r/{sub}")
+            
+        output_path = config.script_dir / f"{config.today}.jpg"
+        download_pic(image_urls[0], output_path)
+        return output_path
+    except Exception as e:
+        logger.error(f"Reddit download failed: {e}")
+        raise
+
+def get_apod() -> Path:
+    """Download NASA's Astronomy Picture of the Day and return its path"""
+    url = f"https://api.nasa.gov/planetary/apod?api_key={config.nasa_key}"
+    try:
+        response = requests.get(url)
+        response.raise_for_status()
+        data = response.json()
+        
+        output_path = config.script_dir / f"{config.today}.jpg"
+        download_pic(data["url"], output_path)
+        return output_path
+    except requests.RequestException as e:
+        logger.error(f"APOD download failed: {e}")
+        raise
+
+def delete_old_wallpaper() -> None:
+    """Delete yesterday's wallpaper if it exists"""
+    old_path = config.script_dir / f"{config.yesterday}.jpg"
+    if old_path.exists():
+        logger.info(f"Deleting old wallpaper: {old_path}")
+        old_path.unlink()
     else:
-        print("Where are you?")
+        logger.info("No old wallpaper found")
+
+def change_desktop_background(file_path: Path) -> None:
+    """Update the desktop background based on the platform"""
+    logger.info("Changing desktop background...")
+
+    match platform.system().lower():
+        case "linux":
+            command = (
+                f'echo "regolith.wallpaper.file: {file_path}" > ~/.config/regolith3/Xresources'
+                "; regolith-look refresh"
+            )
+            logger.info(f"Running command: {command}")
+            if sys.system(command) != 0:
+                raise RuntimeError("Failed to change wallpaper")
+        case other:
+            raise NotImplementedError(f"Platform not supported: {other}")
 
 
-# TO DOs:
-# 1. delete all previous day backgrounds, not just yesterday's (use timedate?)
-# 4. resize to fit screen
+def main() -> None:
+    """Main entry point"""
+    parser = argparse.ArgumentParser(
+        description="Set desktop wallpaper from Reddit or NASA APOD"
+    )
+    source_group = parser.add_mutually_exclusive_group()
+    source_group.add_argument("-r", "--reddit", action="store_true", 
+                            help="Use Reddit as source")
+    source_group.add_argument("-n", "--nasa", action="store_true", 
+                            help="Use NASA APOD as source")
+    args = parser.parse_args()
+
+    try:
+        if args.reddit:
+            wallpaper_path = get_reddit()
+        elif args.nasa:
+            wallpaper_path = get_apod()
+        else:
+            wallpaper_path = random.choice([get_reddit, get_apod])()
+
+        delete_old_wallpaper()
+        change_desktop_background(wallpaper_path)
+        logger.info("Wallpaper updated successfully")
+    except Exception as e:
+        logger.error(f"Failed to update wallpaper: {e}")
+        sys.exit(1)
 
 if __name__ == "__main__":
-    PARSER = argparse.ArgumentParser(description="Choosing which image source to use.")
-    PARSER.add_argument("-r", dest="reddit", action="store_true")
-    PARSER.add_argument("-n", dest="nasa", action="store_true")
-    ARGS = PARSER.parse_args()
-
-    if ARGS.reddit and ARGS.nasa:
-        print("You can only pick one")
-
-    if ARGS.reddit:
-        get_reddit()
-    elif ARGS.nasa:
-        get_apod()
-    else:
-        random.choice([get_reddit(), get_apod()])
-
-    delete_olds()
-    change_desktop_background(f"{DIR}/{TODAY}.jpg")
+    main()
