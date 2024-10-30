@@ -31,6 +31,7 @@ class Config:
     reddit_client_id: str
     reddit_client_secret: str
     nasa_key: str
+    rijks_key: str
 
     @classmethod
     def from_env(cls) -> 'Config':
@@ -45,7 +46,8 @@ class Config:
             reddit_un=os.environ["REDDIT_UN"], 
             reddit_client_id=os.environ["REDDIT_CLIENT_ID"],
             reddit_client_secret=os.environ["REDDIT_CLIENT_SECRET"],
-            nasa_key=os.environ["NASA_APOD_KEY"]
+            nasa_key=os.environ["NASA_APOD_KEY"],
+            rijks_key=os.environ["RIJKSMUSEUM_API_KEY"]
         )
 
 config = Config.from_env()
@@ -124,6 +126,87 @@ def delete_old_wallpaper() -> None:
     else:
         logger.info("No old wallpaper found")
 
+def get_rijksmuseum() -> Path:
+    """Download random artwork from the Rijksmuseum in Amsterdam"""
+    try:
+        # Get a random artwork with an image
+        params = {
+            "key": config.rijks_key,
+            "format": "json",
+            "type": "painting",
+            "imgonly": True,
+            "ps": 1,  # page size
+            "p": random.randint(1, 100),  # random page
+        }
+        response = requests.get("https://www.rijksmuseum.nl/api/en/collection", params=params)
+        response.raise_for_status()
+        data = response.json()
+        
+        if data["artObjects"]:
+            artwork = data["artObjects"][0]
+            image_url = artwork["webImage"]["url"]
+            output_path = config.script_dir / f"{config.today}.jpg"
+            download_pic(image_url, output_path)
+            logger.info(f"Downloaded: {artwork['title']} by {artwork.get('principalOrFirstMaker', 'Unknown')}")
+            return output_path
+        raise ValueError("No artwork found")
+    except requests.RequestException as e:
+        logger.error(f"Rijksmuseum download failed: {e}")
+        raise
+
+def get_art_institute_chicago() -> Path:
+    """Download random artwork from Art Institute of Chicago"""
+    try:
+        # First get a random artwork ID with an image
+        params = {
+            "limit": 1,
+            "page": random.randint(1, 100),
+            "fields": "id,title,image_id,artist_title",
+            "has_images": True
+        }
+        response = requests.get("https://api.artic.edu/api/v1/artworks", params=params)
+        response.raise_for_status()
+        data = response.json()
+        
+        if data["data"]:
+            artwork = data["data"][0]
+            image_id = artwork["image_id"]
+            image_url = f"https://www.artic.edu/iiif/2/{image_id}/full/843,/0/default.jpg"
+            
+            output_path = config.script_dir / f"{config.today}.jpg"
+            download_pic(image_url, output_path)
+            logger.info(f"Downloaded: {artwork['title']} by {artwork.get('artist_title', 'Unknown')}")
+            return output_path
+        raise ValueError("No artwork found")
+    except requests.RequestException as e:
+        logger.error(f"Art Institute of Chicago download failed: {e}")
+        raise
+
+def get_cleveland_museum() -> Path:
+    """Download random artwork from Cleveland Museum of Art"""
+    try:
+        # Get a random artwork with an image
+        params = {
+            "has_image": 1,
+            "limit": 1,
+            "skip": random.randint(1, 1000)
+        }
+        response = requests.get("https://openaccess-api.clevelandart.org/api/artworks/", params=params)
+        response.raise_for_status()
+        data = response.json()
+        
+        if data["data"]:
+            artwork = data["data"][0]
+            image_url = artwork["images"]["web"]["url"]
+            output_path = config.script_dir / f"{config.today}.jpg"
+            download_pic(image_url, output_path)
+            logger.info(f"Downloaded: {artwork['title']} by {artwork.get('creators', [{'description': 'Unknown'}])[0]['description']}")
+            return output_path
+        raise ValueError("No artwork found")
+    except requests.RequestException as e:
+        logger.error(f"Cleveland Museum download failed: {e}")
+        raise
+
 def change_desktop_background(file_path: Path) -> None:
     """Update the desktop background based on the platform"""
     logger.info("Changing desktop background...")
@@ -144,22 +227,33 @@ def change_desktop_background(file_path: Path) -> None:
 def main() -> None:
     """Main entry point"""
     parser = argparse.ArgumentParser(
-        description="Set desktop wallpaper from Reddit or NASA APOD"
+        description="Set desktop wallpaper from various museum collections"
     )
     source_group = parser.add_mutually_exclusive_group()
-    source_group.add_argument("-r", "--reddit", action="store_true", 
-                            help="Use Reddit as source")
+    source_group.add_argument("-r", "--rijks", action="store_true", 
+                            help="Use Rijksmuseum as source")
+    source_group.add_argument("-a", "--artic", action="store_true", 
+                            help="Use Art Institute of Chicago as source")
+    source_group.add_argument("-c", "--cleveland", action="store_true", 
+                            help="Use Cleveland Museum of Art as source")
     source_group.add_argument("-n", "--nasa", action="store_true", 
                             help="Use NASA APOD as source")
     args = parser.parse_args()
 
     try:
-        if args.reddit:
-            wallpaper_path = get_reddit()
+        if args.rijks:
+            wallpaper_path = get_rijksmuseum()
+        elif args.artic:
+            wallpaper_path = get_art_institute_chicago()
+        elif args.cleveland:
+            wallpaper_path = get_cleveland_museum()
         elif args.nasa:
             wallpaper_path = get_apod()
         else:
-            wallpaper_path = random.choice([get_reddit, get_apod])()
+            wallpaper_path = random.choice([
+                get_rijksmuseum, get_art_institute_chicago,
+                get_cleveland_museum, get_apod
+            ])()
 
         delete_old_wallpaper()
         change_desktop_background(wallpaper_path)
