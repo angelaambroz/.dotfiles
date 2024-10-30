@@ -3,3 +3,5 @@ secrets/
 ctags/
 *.deb
 dotfiles_env/
+.aider*
+.env
