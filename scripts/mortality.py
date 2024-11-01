@@ -8,8 +8,7 @@ from datetime import datetime, timedelta
 
 
 def num_weeks(start_date, end_date):
-    start_date_dt = os.environ.get("BIRTHDATE")
-    start_date = datetime.strptime(start_date_dt, "%Y-%m-%d")
+    start_date = datetime.strptime(start_date, "%Y-%m-%d")
     end_date = datetime.strptime(end_date, "%Y-%m-%d")
     return int((end_date - start_date).days / 7)
 
