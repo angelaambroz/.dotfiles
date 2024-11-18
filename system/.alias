@@ -23,7 +23,7 @@ alias vim="nvim"
 alias notes="git add .  && git commit -m 'work' && git push origin main"
 alias btm="bottom"
 alias ls="eza"
-alias l="eza -la"
+alias l="eza -alF"
 alias lt="eza --tree"
 alias ll="eza -l"
 

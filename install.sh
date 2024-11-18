@@ -22,7 +22,6 @@ sudo apt install -y \
     libfuse2 \
     ripgrep \
     tig \
-    eza \
     bottom
 
 # NPM packages
