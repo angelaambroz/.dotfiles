@@ -21,6 +21,11 @@ alias pprint="| python -m json.tool"
 alias mk="minikube" 
 alias vim="nvim"
 alias notes="git add .  && git commit -m 'work' && git push origin main"
+alias btm="bottom"
+alias ls="eza"
+alias l="eza -la"
+alias lt="eza --tree"
+alias ll="eza -l"
 
 # http://www.the-efficient-programmer.com/shell/some-grep-tips.html
 alias grr="grep --recursive --line-number \

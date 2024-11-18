@@ -21,7 +21,9 @@ sudo apt install -y \
     xclip \
     libfuse2 \
     ripgrep \
-    tig
+    tig \
+    eza \
+    bottom
 
 # NPM packages
 echo "Installing NPM packages..."
