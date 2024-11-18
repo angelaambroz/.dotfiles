@@ -1,40 +1,5 @@
+# Git related aliases
 alias glg='git log --graph --full-history --all --color --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
-alias subl=st
-# .zshrc's `l` is special, but I hate where it is on the keyboard
-alias nicedate="date +%Y-%m-%d"
-alias penvn="pyenv virtualenv"
-alias penva="pyenv activate"
-alias penvk="pyenv uninstall"
-alias voce='say -v Alice '
-alias cronn='env EDITOR=nano crontab -e'
-alias cronl='crontab -l'
-alias diff="colordiff"
-alias jlist="jupyter notebook list"
-alias ports="lsof -Pan -i tcp -i udp"
-alias sc="shellcheck"
-alias lsize="du -hs * | sort -rh | head"
-alias dblist="psql postgres -h localhost -l"
-alias pe="pyenv activate"
-# alias cat="bat"
-alias piup="pip install --upgrade pip"
-alias pprint="| python -m json.tool"
-alias mk="minikube" 
-alias vim="nvim"
-alias notes="git add .  && git commit -m 'work' && git push origin main"
-alias btm="bottom"
-alias ls="eza"
-alias l="eza -alF"
-alias lt="eza --tree"
-alias ll="eza -l"
-
-# http://www.the-efficient-programmer.com/shell/some-grep-tips.html
-alias grr="grep --recursive --line-number \
-    --exclude-dir=.git --exclude-dir=.svn \
-    --exclude='*.o' --exclude='*.pyc'"
-
-alias -g G='| grep'
-
-# https://gist.github.com/dciccale/556083
 alias gc="git checkout" 
 alias gcm="git checkout main"
 alias gcd="git checkout develop"
@@ -46,9 +11,60 @@ alias gpo="git push -u origin"
 alias gaa="git add ."
 alias gst="git status"
 alias gd="git diff -- --ignore-white-space . ':(exclude)*/**/*.ipynb'"
+alias notes="git add .  && git commit -m 'work' && git push origin main"
 
-# Ruby stuff
+# File and directory operations
+alias ls="eza"
+alias l="eza -alF"
+alias lt="eza --tree"
+alias ll="eza -l"
+alias lsize="du -hs * | sort -rh | head"
+alias diff="colordiff"
+
+# Python and development environment
+alias penvn="pyenv virtualenv"
+alias penva="pyenv activate"
+alias penvk="pyenv uninstall"
+alias pe="pyenv activate"
+alias piup="pip install --upgrade pip"
+alias pprint="| python -m json.tool"
+
+# Jupyter
+alias jlist="jupyter notebook list"
+
+# Database
+alias dblist="psql postgres -h localhost -l"
+
+# System monitoring and utilities
+alias ports="lsof -Pan -i tcp -i udp"
+alias btm="bottom"
+alias mk="minikube"
+
+# Text editors and tools
+alias vim="nvim"
+alias subl=st
+alias sc="shellcheck"
+
+# Cron management
+alias cronn='env EDITOR=nano crontab -e'
+alias cronl='crontab -l'
+
+# Ruby related
 alias rubocop_diff='bundle exec rake test:diff:rubocop'
 alias rbc="rubocop"
 
+# Search and grep
+alias grr="grep --recursive --line-number \
+    --exclude-dir=.git --exclude-dir=.svn \
+    --exclude='*.o' --exclude='*.pyc'"
+alias -g G='| grep'
+
+# Misc utilities
+alias nicedate="date +%Y-%m-%d"
+alias voce='say -v Alice '
+
+# Environment variables
 export JOBLIB_START_METHOD="forkserver"
+
+# Commented out aliases
+# alias cat="bat"
