@@ -1,8 +1,11 @@
-# ZSH stuff
+#====================
+# Oh My Zsh Configuration
+#====================
 export ZSH=$HOME/.oh-my-zsh
-export PATH="$PATH:/opt/nvim/"
 ZSH_THEME=""
 HIST_STAMPS="yyyy-mm-dd"
+
+# Core plugins
 plugins=(
   zsh-syntax-highlighting
   zsh-autosuggestions
@@ -20,14 +23,25 @@ plugins=(
 )
 source $ZSH/oh-my-zsh.sh
 
-# Load non-secrets
+#====================
+# Path & Environment Variables
+#====================
+export PATH="$PATH:/opt/nvim/:/usr/local/bin:$HOME/bin:/home/linuxbrew/.linuxbrew/bin:$HOME/.local/bin:$HOME/.pyenv/bin"
+export HISTCONTROL=ignoredups
+export EDITOR=vim
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES  # Fix for OSX multiprocessing/gunicorn issues
+
+# Make man pages readable in vim
+export MANPAGER="col -b | vim -c 'set ft=man ts=8 nomod nolist nonu' -c 'nnoremap i <nop>' -"
+
+#====================
+# Source Files & Secrets
+#====================
+# Load aliases
 source "$HOME/.dotfiles/system/.alias"
 echo "Loaded non-secrets."
 
-# OMG
-# alias python="python3.7"
-
-# Load all my secrets
+# Load secret files
 SECRETS="$HOME/.dotfiles/secrets"
 for file in "$SECRETS"/.*
 do
@@ -36,65 +50,52 @@ do
 done
 echo "Loaded secrets."
 
-# Update tldr
-# echo "Updating tldr."
-# tldr --update
-
-# Man entries should be readable
-export MANPAGER="col -b | vim -c 'set ft=man ts=8 nomod nolist nonu' -c 'nnoremap i <nop>' -"
-
-# Exports
-export HISTCONTROL=ignoredups
-export EDITOR=vim
-
-# Vim
-export PATH="$PATH:/usr/local/bin:$HOME/bin:/home/linuxbrew/.linuxbrew/bin:$HOME/.local/bin:$HOME/.pyenv/bin"
-
-# Better cd
+#====================
+# Tool Configurations
+#====================
+# Zoxide - smarter cd command
 eval "$(zoxide init zsh)"
 
-# Better history search
+# McFly - better history search with vim keybindings
 eval "$(mcfly init zsh)"
 export MCFLY_KEY_SCHEME=vim
 
-# NVM
-export NVM_DIR="$HOME/.nvm"
+# NVM (Node Version Manager)
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
-# Something about OSX and multiprocessing that was killing my gunicorn
-export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+# Pyenv configuration
+eval "$(pyenv init -)"
+eval "$(pyenv init --path)"
+eval "$(pyenv virtualenv-init -)"
 
-# Pretty and minimalist
+#====================
+# Prompt Configuration
+#====================
+# Pure prompt setup
 fpath+=($HOME/.zsh/pure)
 autoload -U promptinit && promptinit
 autoload -U compinit && compinit
 prompt pure
 
-# zstyle :prompt:pure:path color "#af87d7"
-# zstyle :prompt:pure:prompt:success color "#af87d7"
+# Pure prompt colors (currently commented out)
+# These use purple/violet shades:
+# zstyle :prompt:pure:path color "#af87d7"        # Light purple for directory path
+# zstyle :prompt:pure:prompt:success color "#af87d7"  # Light purple for success indicator
 
-# Generated for envman. Do not edit.
+#====================
+# Additional Tools & Completions
+#====================
+# Envman configuration
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 
-# pywal persists on new terminal windows
-# (\cat ~/.cache/wal/sequences &)
+# Nix package manager
+if [ -e /home/angelaambroz/.nix-profile/etc/profile.d/nix.sh ]; then 
+    . /home/angelaambroz/.nix-profile/etc/profile.d/nix.sh
+fi
 
-if [ -e /home/angelaambroz/.nix-profile/etc/profile.d/nix.sh ]; then . /home/angelaambroz/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
-
-# Pyenv at home, workon at work
-# Why not both?
-eval "$(pyenv init -)"
-eval "$(pyenv init --path)"
-eval "$(pyenv virtualenv-init -)"
-
-# source $HOME/.local/bin/virtualenvwrapper.sh
-# export DISCORD_ROOT=$HOME/work/discord/discord
-# export PATH=$PATH:$DISCORD_ROOT/.local/bin
-# DIR_COMMON_PY=$DISCORD_ROOT/discord_common/py
-# export PYTHONPATH=$DIR_COMMON_PY:$DISCORD_ROOT:$PYTHON_PATH
-
-#compdef clyde
+# Clyde completion
 _clyde() {
   eval $(env COMMANDLINE="${words[1,$CURRENT]}" _CLYDE_COMPLETE=complete-zsh  clyde)
 }
@@ -102,13 +103,13 @@ if [[ "$(basename -- ${(%):-%x})" != "_clyde" ]]; then
   compdef _clyde clyde
 fi
 
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 
-# Move Alacritty config to ~/.config
+#====================
+# Application Configs
+#====================
+# Alacritty configuration setup
 mkdir -p ~/.config/alacritty
-# ignore if file already exists
 if [ ! -f ~/.config/alacritty/alacritty.toml ]; then
-	ln -s $HOME/.dotfiles/system/alacritty.toml ~/.config/alacritty/alacritty.toml
+    ln -s $HOME/.dotfiles/system/alacritty.toml ~/.config/alacritty/alacritty.toml
 fi
