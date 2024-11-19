@@ -21,10 +21,13 @@ sudo apt install -y \
     xclip \
     libfuse2 \
     ripgrep \
-    tig \
-    bottom
+    tig
+curl -LO https://github.com/ClementTsang/bottom/releases/download/0.10.2/bottom_0.10.2-1_amd64.deb
+sudo dpkg -i bottom_0.10.2-1_amd64.deb
 
+###################
 # NPM packages
+# ################
 echo "Installing NPM packages..."
 sudo npm install -g tldr
 
