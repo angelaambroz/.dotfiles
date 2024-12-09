@@ -21,7 +21,8 @@ sudo apt install -y \
     xclip \
     libfuse2 \
     ripgrep \
-    tig
+    tig \ 
+    gpg
 curl -LO https://github.com/ClementTsang/bottom/releases/download/0.10.2/bottom_0.10.2-1_amd64.deb
 sudo dpkg -i bottom_0.10.2-1_amd64.deb
 
@@ -58,6 +59,14 @@ git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/pure"
 # Additional shell tools
 curl -sS https://webinstall.dev/zoxide | bash
 curl -LSfs https://raw.githubusercontent.com/cantino/mcfly/master/ci/install.sh | sudo sh -s -- --git cantino/mcfly
+
+# Eza
+sudo mkdir -p /etc/apt/keyrings
+wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | sudo gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
+echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | sudo tee /etc/apt/sources.list.d/gierens.list
+sudo chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
+sudo apt update
+sudo apt install -y eza
 
 ###################
 # Config Files    #
