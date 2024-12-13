@@ -10,7 +10,7 @@ sudo add-apt-repository -y ppa:aos1/diff-so-fancy
 sudo add-apt-repository -y ppa:neovim-ppa/stable
 sudo add-apt-repository -y universe
 sudo apt update
-sudo apt install nala # Pretty
+sudo apt install -y nala # Pretty
 
 ######################
 # Package Installing #
