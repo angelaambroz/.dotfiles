@@ -37,3 +37,7 @@ vim.keymap.set('n', '<F4>', require('dap').continue, {})
 vim.keymap.set('n', '<F5>', require('dap').step_over, {})
 vim.keymap.set('n', '<F6>', require('dap').step_into, {})
 vim.keymap.set('n', '<F7>', require('dap').step_out, {})
+
+
+-- Toggle funcs, etc
+vim.keymap.set('n', '<leader>tt', ':TagbarToggle<CR>', { silent = true })
