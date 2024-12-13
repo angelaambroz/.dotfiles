@@ -10,19 +10,21 @@ sudo add-apt-repository -y ppa:aos1/diff-so-fancy
 sudo add-apt-repository -y ppa:neovim-ppa/stable
 sudo add-apt-repository -y universe
 sudo apt update
+sudo apt install nala # Pretty
 
 ######################
 # Package Installing #
 ######################
 echo "Installing basic utilities..."
-sudo apt install -y \
+sudo nala install -y \
     diff-so-fancy \
     colordiff \
     xclip \
     libfuse2 \
     ripgrep \
-    tig \ 
-    gpg
+    tig \
+    gpg \
+    exuberant-ctags
 curl -LO https://github.com/ClementTsang/bottom/releases/download/0.10.2/bottom_0.10.2-1_amd64.deb
 sudo dpkg -i bottom_0.10.2-1_amd64.deb
 
