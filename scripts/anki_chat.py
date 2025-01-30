@@ -1,8 +1,7 @@
-import json
-import sys
 import httpx
 import asyncio
-from typing import Dict, List, Optional
+from typing import Dict, List
+
 
 MODEL = "mistral"
 
