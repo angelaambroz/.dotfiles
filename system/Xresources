@@ -1,0 +1,15 @@
+regolith.wallpaper.file: ~/wallpapers/rome1.jpg
+regolith.wallpaper.file: ~/wallpapers/space-being.png
+i3-wm.include: ~/.config/regolith3/i3/config.d/40_workspaces
+
+! workspace names with icon drip
+wm.workspace.01.name: 1:www
+wm.workspace.02.name: 2:brain
+wm.workspace.03.name: 3:discord
+wm.workspace.04.name: 4:term
+
+! workspace colors that actually work this time
+wm.workspace.focused.color.child_border: #ff6b6b
+wm.workspace.focused.color.background: #51cf66
+wm.workspace.focused.color.text: #ffffff
+

@@ -50,6 +50,9 @@ do
 done
 echo "Loaded secrets."
 
+cp "$HOME/.dotfiles/system/Xresources" "$HOME/.config/regolith3/Xresources"
+echo "Moved Xresources to config."
+
 #====================
 # Tool Configurations
 #====================
