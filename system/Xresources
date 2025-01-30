@@ -6,7 +6,7 @@ i3-wm.include: ~/.config/regolith3/i3/config.d/40_workspaces
 wm.workspace.01.name: 1:www
 wm.workspace.02.name: 2:brain
 wm.workspace.03.name: 3:discord
-wm.workspace.04.name: 4:term
+wm.workspace.04.name: 4:etc
 
 ! workspace colors that actually work this time
 wm.workspace.focused.color.child_border: #ff6b6b
