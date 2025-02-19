@@ -37,7 +37,6 @@ alias dblist="psql postgres -h localhost -l"
 
 # System monitoring and utilities
 alias ports="lsof -Pan -i tcp -i udp"
-alias btm="bottom"
 alias mk="minikube"
 
 # Text editors and tools
