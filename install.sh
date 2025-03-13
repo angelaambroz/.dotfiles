@@ -38,10 +38,10 @@ sudo npm install -g tldr
 # Neovim Install  #
 ###################
 echo "Installing Neovim..."
-curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+curl -LO https://github.com/neovim/neovim/releases/download/v0.10.4/nvim-linux-x86_64.appimage
 sudo rm -rf /opt/nvim
 sudo mkdir -p /opt/nvim
-sudo mv nvim.appimage /opt/nvim/nvim
+sudo mv nvim-linux-x86_64.appimage /opt/nvim/nvim
 sudo chmod u+x /opt/nvim/nvim
 export PATH="$PATH:/opt/nvim"
 
