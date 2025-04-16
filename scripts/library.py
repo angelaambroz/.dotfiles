@@ -2,6 +2,7 @@
 Goodreads API is dying, so I guess I'll have to scrape. :| 
 
 Finding the most popular books in my social circle.
+AKA: What are books where many of my friends have read/enjoyed?
 
 Maybe:
     1. ETL data from Goodreads into a local db somewhere

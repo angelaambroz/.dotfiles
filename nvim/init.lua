@@ -1,79 +1,132 @@
--- Fallback color scheme
-vim.cmd('colorscheme default')
+ -- Fallback color scheme
+ vim.cmd('colorscheme default')
 
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
-end
-vim.opt.rtp:prepend(lazypath)
+ -- Bootstrap lazy.nvim package manager
+ local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+ if not (vim.uv or vim.loop).fs_stat(lazypath) then
+   vim.fn.system({
+     "git",
+     "clone",
+     "--filter=blob:none",
+     "https://github.com/folke/lazy.nvim.git",
+     "--branch=stable",
+     lazypath,
+   })
+ end
+ vim.opt.rtp:prepend(lazypath)
 
---- Plugins
-require("lazy").setup({
-	"neovim/nvim-lspconfig",
-	"VundleVim/Vundle.vim",
-	"Xuyuanp/nerdtree-git-plugin",
-	"airblade/vim-gitgutter",
-	-- "davidhalter/jedi-vim",
-	"joshdick/onedark.vim",
-	"mattn/emmet-vim",
-	"preservim/nerdtree",
-	"vim-python/python-syntax",
-	"junegunn/vim-emoji",
-	"vim-airline/vim-airline",
-	"tpope/vim-sensible",
-	"tpope/vim-fugitive",
-	"dense-analysis/ale",
-	"szw/vim-maximizer",
-	"preservim/tagbar",
-	"tpope/vim-commentary",
-	"vim-test/vim-test",
-	"raimon49/requirements.txt.vim",
-	"lepture/vim-jinja",
-	"simnalamburt/vim-mundo",
-	"shmup/vim-sql-syntax",
-	"nvim-lua/plenary.nvim",
-	{ "nvim-telescope/telescope.nvim",
-		version="0.1.4",
-		dependencies={"nvim-lua/plenary.nvim"}
-	},
-	"Exafunction/codeium.vim",
-	"mfussenegger/nvim-dap",
-	"mfussenegger/nvim-dap-python",
-	{
-		  'stevearc/conform.nvim',
-		  opts = {},
-	},
-	{ 
-		"rcarriga/nvim-dap-ui", 
-		dependencies = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"},
-		lazy = false,
-	},
-	{ "folke/neodev.nvim", opts = {} }
-})
+ --- Plugin Specifications
+ require("lazy").setup({
+   -- LSP and Debugging
+   "neovim/nvim-lspconfig",
+   "mfussenegger/nvim-dap",
+   "mfussenegger/nvim-dap-python",
+   { "rcarriga/nvim-dap-ui",
+     dependencies = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"},
+     lazy = false,
+   },
+   { "folke/neodev.nvim", opts = {} },
 
-require('dap-python').setup('~/.pyenv/shims/python')
-require("conform").setup({
-  formatters_by_ft = {
-    lua = { "stylua" },
-    -- Conform will run multiple formatters sequentially
-    python = { "isort", "black" },
-    -- Use a sub-list to run only the first available formatter
-    javascript = { { "prettierd", "prettier" } },
-  },
-})
-require("neodev").setup({
-  library = { plugins = { "nvim-dap-ui" }, types = true },
-})
-require'lspconfig'.pyright.setup{}
-local dap, dapui = require("dap"), require("dapui")
-dapui.setup()
+   -- File Navigation and Search
+   { "nvim-telescope/telescope.nvim",
+     version = "0.1.4",
+     dependencies = {"nvim-lua/plenary.nvim"}
+   },
+   "nvim-lua/plenary.nvim",
+   "preservim/nerdtree",
+   "Xuyuanp/nerdtree-git-plugin",
 
--- require("briz.plugins")
-require("briz.remap")
+   -- Git Integration
+   "airblade/vim-gitgutter",
+   "tpope/vim-fugitive",
+
+   -- Appearance and UI
+   "joshdick/onedark.vim",
+   "vim-airline/vim-airline",
+   "preservim/tagbar",
+
+   -- Code Editing and Formatting
+   { 'stevearc/conform.nvim', opts = {} },
+   "mattn/emmet-vim",
+   "tpope/vim-commentary",
+   "Exafunction/codeium.vim",
+   "szw/vim-maximizer",
+   "dense-analysis/ale",
+
+   -- Language Support
+   "vim-python/python-syntax",
+   "raimon49/requirements.txt.vim",
+   "lepture/vim-jinja",
+   "shmup/vim-sql-syntax",
+
+   -- Misc Utilities
+   "tpope/vim-sensible",
+   "vim-test/vim-test",
+   "simnalamburt/vim-mundo",
+   "junegunn/vim-emoji",
+ })
+
+ -- Core Settings
+ vim.g.mapleader = ","
+ vim.opt.nu = true
+ vim.wo.foldmethod = 'indent'
+ vim.cmd("set foldlevel=99")
+
+ -- Python Settings
+ vim.g.python3_host_prog = "/usr/bin/python3"
+ vim.g.python_highlight_all = 1
+
+ -- Plugin Configurations
+ require('dap-python').setup('~/.pyenv/shims/python')
+ require("conform").setup({
+   formatters_by_ft = {
+     lua = { "stylua" },
+     python = { "isort", "black" },
+     javascript = { { "prettierd", "prettier" } },
+   },
+ })
+ require("neodev").setup({
+   library = { plugins = { "nvim-dap-ui" }, types = true },
+ })
+ local dapui = require("dapui")
+ dapui.setup()
+
+ -- Formatting
+ require("conform").setup({
+   formatters_by_ft = {
+     lua = { "stylua" },
+     python = { "isort", "black" },
+     javascript = { { "prettierd", "prettier" } },
+   },
+ })
+
+ -- Keybindings
+ -- General
+ vim.keymap.set("i", "jk", "<esc>:w<cr>")
+
+ -- Telescope
+ local telescope = require('telescope.builtin')
+ vim.keymap.set('n', '<c-p>', telescope.find_files, {})
+ vim.keymap.set('n', '<c-t>', telescope.live_grep, {})
+
+ -- Debugger
+ vim.keymap.set('n', '<F2>', require('dapui').toggle, {})
+ vim.keymap.set('n', '<F3>', require('dap').toggle_breakpoint, {})
+ vim.keymap.set('n', '<F4>', require('dap').continue, {})
+ vim.keymap.set('n', '<F5>', require('dap').step_over, {})
+ vim.keymap.set('n', '<F6>', require('dap').step_into, {})
+ vim.keymap.set('n', '<F7>', require('dap').step_out, {})
+
+ -- Misc
+ vim.keymap.set('n', '<leader>tt', ':TagbarToggle<CR>', { silent = true })
+
+ -- Autocommands
+ vim.api.nvim_create_autocmd("BufWritePre", {
+   pattern = "*",
+   callback = function(args)
+     require("conform").format({ bufnr = args.buf })
+   end,
+ })
+
+ -- Theme
+ vim.cmd("colorscheme onedark")

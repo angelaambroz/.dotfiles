@@ -10,18 +10,21 @@ sudo add-apt-repository -y ppa:aos1/diff-so-fancy
 sudo add-apt-repository -y ppa:neovim-ppa/stable
 sudo add-apt-repository -y universe
 sudo apt update
+sudo apt install -y nala # Pretty
 
 ######################
 # Package Installing #
 ######################
 echo "Installing basic utilities..."
-sudo apt install -y \
+sudo nala install -y \
     diff-so-fancy \
     colordiff \
     xclip \
     libfuse2 \
     ripgrep \
-    tig
+    tig \
+    gpg \
+    exuberant-ctags
 curl -LO https://github.com/ClementTsang/bottom/releases/download/0.10.2/bottom_0.10.2-1_amd64.deb
 sudo dpkg -i bottom_0.10.2-1_amd64.deb
 
@@ -35,10 +38,10 @@ sudo npm install -g tldr
 # Neovim Install  #
 ###################
 echo "Installing Neovim..."
-curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+curl -LO https://github.com/neovim/neovim/releases/download/v0.10.4/nvim-linux-x86_64.appimage
 sudo rm -rf /opt/nvim
 sudo mkdir -p /opt/nvim
-sudo mv nvim.appimage /opt/nvim/nvim
+sudo mv nvim-linux-x86_64.appimage /opt/nvim/nvim
 sudo chmod u+x /opt/nvim/nvim
 export PATH="$PATH:/opt/nvim"
 
@@ -58,6 +61,14 @@ git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/pure"
 # Additional shell tools
 curl -sS https://webinstall.dev/zoxide | bash
 curl -LSfs https://raw.githubusercontent.com/cantino/mcfly/master/ci/install.sh | sudo sh -s -- --git cantino/mcfly
+
+# Eza
+sudo mkdir -p /etc/apt/keyrings
+wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | sudo gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
+echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | sudo tee /etc/apt/sources.list.d/gierens.list
+sudo chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
+sudo apt update
+sudo apt install -y eza
 
 ###################
 # Config Files    #
