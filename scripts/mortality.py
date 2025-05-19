@@ -10,14 +10,14 @@ from datetime import datetime, timedelta
 def num_weeks(start_date: str, end_date: str) -> int:
     """
     Calculate the number of weeks between two dates.
-    
+
     Args:
         start_date: Start date in YYYY-MM-DD format
         end_date: End date in YYYY-MM-DD format
-        
+
     Returns:
         Number of weeks between the dates (rounded down to integer)
-    
+
     Raises:
         ValueError: If dates are in incorrect format
     """
@@ -33,32 +33,36 @@ def main() -> None:
     """Parse command line arguments and calculate weeks between dates."""
     birthdate = os.environ.get("BIRTHDATE")
     current_year = datetime.now().year
-    
+
     parser = argparse.ArgumentParser(
         description="Calculate number of weeks between two dates, useful for 'Your Life in Weeks' visualization."
     )
     parser.add_argument(
-        "-s", "--start_date", 
-        type=str, 
-        default=birthdate, 
-        help="Start date in YYYY-MM-DD format (defaults to BIRTHDATE environment variable)"
+        "-s",
+        "--start_date",
+        type=str,
+        default=birthdate,
+        help="Start date in YYYY-MM-DD format (defaults to BIRTHDATE environment variable)",
     )
     parser.add_argument(
-        "-e", "--end_date", 
-        type=str, 
-        default=f"{current_year}-01-01", 
-        help=f"End date in YYYY-MM-DD format (defaults to January 1st of current year)"
+        "-e",
+        "--end_date",
+        type=str,
+        default=f"{current_year}-01-01",
+        help=f"End date in YYYY-MM-DD format (defaults to January 1st of current year)",
     )
-    
+
     args = parser.parse_args()
-    
+
     if not args.start_date:
-        print("Error: No start date provided. Set BIRTHDATE environment variable or use --start_date")
+        print(
+            "Error: No start date provided. Set BIRTHDATE environment variable or use --start_date"
+        )
         return
-    
+
     try:
         result = num_weeks(args.start_date, args.end_date)
-        print(result)
+        print(f"{result:,.0f} weeks") if result > 0 else print(result)
     except ValueError as e:
         print(f"Error: {e}")
 
