@@ -28,7 +28,7 @@ source $ZSH/oh-my-zsh.sh
 #====================
 export PATH="$PATH:/opt/nvim/:/usr/local/bin:$HOME/bin:/home/linuxbrew/.linuxbrew/bin:$HOME/.local/bin:$HOME/.pyenv/bin"
 export HISTCONTROL=ignoredups
-export EDITOR=vim
+export EDITOR=nvim
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES  # Fix for OSX multiprocessing/gunicorn issues
 
 # Make man pages readable in vim
