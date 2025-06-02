@@ -61,6 +61,7 @@ alias -g G='| grep'
 # Misc utilities
 alias nicedate="date +%Y-%m-%d"
 alias voce='say -v Alice '
+alias sup="sudo nala update && sudo nala upgrade -y"
 
 # Environment variables
 export JOBLIB_START_METHOD="forkserver"
