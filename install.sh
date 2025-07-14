@@ -11,6 +11,7 @@ sudo add-apt-repository -y ppa:neovim-ppa/stable
 sudo add-apt-repository -y universe
 sudo apt update
 sudo apt install -y nala # Pretty
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh # For cargo
 
 ######################
 # Package Installing #
@@ -27,6 +28,7 @@ sudo nala install -y \
     exuberant-ctags
 curl -LO https://github.com/ClementTsang/bottom/releases/download/0.10.2/bottom_0.10.2-1_amd64.deb
 sudo dpkg -i bottom_0.10.2-1_amd64.deb
+cargo install --locked dysk
 
 ###################
 # NPM packages
