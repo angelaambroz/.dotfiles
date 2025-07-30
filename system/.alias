@@ -38,6 +38,7 @@ alias dblist="psql postgres -h localhost -l"
 # System monitoring and utilities
 alias ports="lsof -Pan -i tcp -i udp"
 alias mk="minikube"
+alias ff="fastfetch"
 
 # Text editors and tools
 alias vim="nvim"
