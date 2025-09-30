@@ -119,6 +119,7 @@
 
  -- Misc
  vim.keymap.set('n', '<leader>tt', ':TagbarToggle<CR>', { silent = true })
+ vim.keymap.set('n', '<leader>r', ':w<CR>:!uv run %<CR>', { desc = 'Run Python file with uv' })
 
  -- Autocommands
  vim.api.nvim_create_autocmd("BufWritePre", {
