@@ -42,13 +42,13 @@ source "$HOME/.dotfiles/system/.alias"
 echo "Loaded non-secrets."
 
 # Load secret files
-SECRETS="$HOME/.dotfiles/secrets"
-for file in "$SECRETS"/.*
-do
-  source "$file"
-  echo "Loaded $file"
-done
-echo "Loaded secrets."
+# SECRETS="$HOME/.dotfiles/secrets"
+#for file in "$SECRETS"/.*
+#do
+#  source "$file"
+#  echo "Loaded $file"
+#done
+#echo "Loaded secrets."
 
 cp "$HOME/.dotfiles/system/Xresources" "$HOME/.config/regolith3/"
 echo "Moved Xresources to config."
@@ -116,3 +116,13 @@ mkdir -p ~/.config/alacritty
 if [ ! -f ~/.config/alacritty/alacritty.toml ]; then
     ln -s $HOME/.dotfiles/system/alacritty.toml ~/.config/alacritty/alacritty.toml
 fi
+
+export PATH="/home/angelaambroz/Documents/work/discord/.local/bin:$PATH"
+#compdef clyde
+_clyde() {
+  eval "$(_CLYDE_COMPLETE=zsh_source clyde)"
+}
+if [[ "$(basename -- ${(%):-%x})" != "_clyde" ]]; then
+  compdef _clyde clyde
+fi
+. "/home/angelaambroz/.deno/env"
