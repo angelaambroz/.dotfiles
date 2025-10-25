@@ -42,13 +42,13 @@ source "$HOME/.dotfiles/system/.alias"
 echo "Loaded non-secrets."
 
 # Load secret files
-# SECRETS="$HOME/.dotfiles/secrets"
-#for file in "$SECRETS"/.*
-#do
-#  source "$file"
-#  echo "Loaded $file"
-#done
-#echo "Loaded secrets."
+SECRETS="$HOME/.dotfiles/secrets"
+for file in "$SECRETS"/.*
+do
+  source "$file"
+  echo "Loaded $file"
+done
+echo "Loaded secrets."
 
 cp "$HOME/.dotfiles/system/Xresources" "$HOME/.config/regolith3/"
 echo "Moved Xresources to config."
