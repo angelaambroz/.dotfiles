@@ -11,7 +11,6 @@ Archive Last.fm scrobbles to local SQLite database.
 Designed to run as scheduled job (cron/systemd timer).
 """
 
-import json
 import sqlite3
 import requests
 import time
