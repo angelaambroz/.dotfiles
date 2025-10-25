@@ -79,23 +79,33 @@ def get_last_archived_timestamp(conn):
 
 
 def fetch_recent_tracks(
-    username: str, api_key: str, from_timestamp: int, page: int = 1
+    username: str, api_key: str, from_timestamp: int, page: int = 1, retries: int = 3
 ):
-    """Fetch tracks from Last.fm API."""
+    """Fetch tracks from Last.fm API with retry logic."""
     params = {
         "method": "user.getrecenttracks",
         "user": username,
         "api_key": api_key,
         "format": "json",
-        "limit": 200,  # Max per page
+        "limit": 200,
         "page": page,
         "from": from_timestamp,
-        "extended": 1,  # Get loved status
+        "extended": 1,
     }
 
-    response = requests.get(LASTFM_API_URL, params=params)
-    response.raise_for_status()
-    return response.json()
+    for attempt in range(retries):
+        try:
+            response = requests.get(LASTFM_API_URL, params=params, timeout=30)
+            response.raise_for_status()
+            return response.json()
+        except requests.exceptions.RequestException as e:
+            if attempt < retries - 1:
+                wait_time = 2 ** attempt  # 1s, 2s, 4s
+                print(f"  API error (attempt {attempt + 1}/{retries}): {e}")
+                print(f"  Retrying in {wait_time}s...")
+                time.sleep(wait_time)
+            else:
+                raise  # Give up after all retries
 
 
 def insert_scrobbles(conn, scrobbles):
