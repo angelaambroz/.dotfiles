@@ -6,3 +6,4 @@ dotfiles_env/
 .aider*
 .env
 personal_env
+*.csv
