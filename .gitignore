@@ -7,3 +7,4 @@ dotfiles_env/
 .env
 personal_env
 *.csv
+*.db

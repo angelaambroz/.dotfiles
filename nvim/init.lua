@@ -71,6 +71,8 @@
  vim.opt.nu = true
  vim.wo.foldmethod = 'indent'
  vim.cmd("set foldlevel=99")
+ -- Map 0 to jump to first non-blank character
+ vim.keymap.set({'n', 'v'}, '0', '^', { noremap = true })
 
  -- Python Settings
  vim.g.python3_host_prog = "/usr/bin/python3"
