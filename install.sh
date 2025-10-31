@@ -26,7 +26,8 @@ sudo nala install -y \
     ripgrep \
     tig \
     gpg \
-    exuberant-ctags
+    exuberant-ctags \
+    magic-wormhole
 
 # Bottom
 if ! command -v btm &> /dev/null; then
