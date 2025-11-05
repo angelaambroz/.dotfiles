@@ -19,6 +19,7 @@ echo "Installing basic utilities..."
 sudo apt install -y nala
 
 sudo nala install -y \
+    zsh \
     diff-so-fancy \
     colordiff \
     xclip \
@@ -43,7 +44,7 @@ fi
 if ! command -v cargo &> /dev/null; then
     echo "Installing Rust..."
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-    source "$HOME/.cargo/env"
+#    source "$HOME/.cargo/env"
 else
     echo "✓ Rust already installed, skipping..."
 fi
@@ -51,7 +52,7 @@ fi
 # Dysk
 if ! command -v dysk &> /dev/null; then
     echo "Installing dysk..."
-    cargo install --locked dysk
+#    cargo install --locked dysk
 else
     echo "✓ dysk already installed"
 fi
@@ -156,17 +157,6 @@ if ! command -v eza &> /dev/null; then
     sudo apt install -y eza
 else
     echo "✓ eza already installed"
-fi
-
-###################
-# Python Setup    #
-###################
-# Install virtualenvwrapper if needed
-if ! python3 -c "import virtualenvwrapper" 2>/dev/null; then
-    echo "Installing virtualenvwrapper..."
-    pip3 install --user virtualenvwrapper
-else
-    echo "✓ virtualenvwrapper already installed"
 fi
 
 ###################
