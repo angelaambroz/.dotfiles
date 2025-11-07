@@ -8,7 +8,6 @@ echo "Setting up development environment..."
 ###################
 echo "Adding package repositories..."
 sudo add-apt-repository -y ppa:aos1/diff-so-fancy
-sudo add-apt-repository -y ppa:neovim-ppa/stable
 sudo add-apt-repository -y universe
 sudo apt update
 
@@ -91,7 +90,7 @@ fi
 ###################
 if [ ! -f /opt/nvim/nvim ]; then
     echo "Installing Neovim..."
-    curl -LO https://github.com/neovim/neovim/releases/download/v0.10.4/nvim-linux-x86_64.appimage
+    curl -LO https://github.com/neovim/neovim/releases/download/v0.11.5/nvim-linux-x86_64.appimage
     sudo rm -rf /opt/nvim
     sudo mkdir -p /opt/nvim
     sudo mv nvim-linux-x86_64.appimage /opt/nvim/nvim
