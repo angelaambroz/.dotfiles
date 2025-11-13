@@ -126,3 +126,12 @@ if [[ "$(basename -- ${(%):-%x})" != "_clyde" ]]; then
   compdef _clyde clyde
 fi
 . "/home/angelaambroz/.deno/env"
+#compdef clyde
+_clyde() {
+  eval "$(_CLYDE_COMPLETE=zsh_source clyde)"
+}
+if [[ "$(basename -- ${(%):-%x})" != "_clyde" ]]; then
+  compdef _clyde clyde
+fi
+
+source /home/angelaambroz/.nix-profile/etc/profile.d/nix.sh

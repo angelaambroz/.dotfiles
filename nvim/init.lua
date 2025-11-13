@@ -61,7 +61,6 @@ require("lazy").setup({
 
   -- Misc Utilities
   "tpope/vim-sensible",                 -- Sensible defaults for vim settings
-  "vim-test/vim-test",                  -- Run tests from vim (NOT CONFIGURED)
   "simnalamburt/vim-mundo",             -- Visual undo tree (see undo history as tree)
   "junegunn/vim-emoji",                 -- Emoji completion :emoji_name:
 })
@@ -80,7 +79,7 @@ vim.g.python3_host_prog = "/usr/bin/python3"  -- Python provider path
 vim.g.python_highlight_all = 1                -- Enable all Python highlighting
 
 -- Plugin Configurations
-require('dap-python').setup('~/.pyenv/shims/python')  -- Python debugger uses pyenv python
+require('dap-python').setup(vim.fn.exepath('python3'))  -- Debugger uses python3
 
 require("conform").setup({              -- Auto-formatter config
   formatters_by_ft = {
