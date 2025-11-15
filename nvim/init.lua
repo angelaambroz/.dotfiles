@@ -81,13 +81,13 @@ vim.g.python_highlight_all = 1                -- Enable all Python highlighting
 -- Plugin Configurations
 require('dap-python').setup(vim.fn.exepath('python3'))  -- Debugger uses python3
 
-require("conform").setup({              -- Auto-formatter config
-  formatters_by_ft = {
-    lua = { "stylua" },
-    python = { "isort", "black" },      -- isort for imports, black for code
-    javascript = { { "prettierd", "prettier" } },
-  },
-})
+-- require("conform").setup({              -- Auto-formatter config
+--   formatters_by_ft = {
+--     lua = { "stylua" },
+--     python = { "isort", "black" },      -- isort for imports, black for code
+--     javascript = { { "prettierd", "prettier" } },
+--   },
+-- })
 
 require("neodev").setup({               -- Lua LSP setup for neovim development
   library = { plugins = { "nvim-dap-ui" }, types = true },
