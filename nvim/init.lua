@@ -118,12 +118,12 @@ vim.keymap.set('n', '<leader>tt', ':TagbarToggle<CR>', { silent = true })  -- ,t
 vim.keymap.set('n', '<leader>r', ':w<CR>:!uv run %<CR>', { desc = 'Run Python file with uv' })  -- ,r: run with uv
 
 -- Autocommands
-vim.api.nvim_create_autocmd("BufWritePre", {  -- Format on save
-  pattern = "*",
-  callback = function(args)
-    require("conform").format({ bufnr = args.buf })
-  end,
-})
+-- vim.api.nvim_create_autocmd("BufWritePre", {  -- Format on save
+--   pattern = "*",
+--   callback = function(args)
+--     require("conform").format({ bufnr = args.buf })
+--   end,
+-- })
 
 -- Theme
 vim.cmd("colorscheme onedark")
