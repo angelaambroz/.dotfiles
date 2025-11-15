@@ -46,7 +46,7 @@ require("lazy").setup({
   "preservim/tagbar",                   -- Sidebar showing code structure (functions, classes) - <leader>tt
 
   -- Code Editing and Formatting
-  { 'stevearc/conform.nvim', opts = {} }, -- Auto-formatter (runs black/isort on save)
+  -- { 'stevearc/conform.nvim', opts = {} }, -- Auto-formatter (runs black/isort on save)
   "mattn/emmet-vim",                    -- HTML/CSS abbreviation expansion (type div.class then expand)
   "tpope/vim-commentary",               -- Toggle comments with gc motion
   "Exafunction/codeium.vim",            -- AI code completion (Copilot alternative)
