@@ -1,5 +1,4 @@
-regolith.wallpaper.file: ~/wallpapers/rome1.jpg
-regolith.wallpaper.file: ~/wallpapers/space-being.png
+regolith.wallpaper.file: ~/wallpapers/a_white_lines_on_a_black_background.jpeg
 i3-wm.include: ~/.config/regolith3/i3/config.d/40_workspaces
 
 ! workspace names with icon drip
