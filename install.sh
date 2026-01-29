@@ -195,6 +195,10 @@ if [ -d ~/.config/regolith3 ]; then
     echo "✓ Xresources copied to regolith3"
 fi
 
+# Tmux config
+ln -sf ~/.dotfiles/system/.tmux.conf ~/.tmux.conf
+echo "✓ .tmux.conf symlinked"
+
 ###################
 # Verification    #
 ###################
