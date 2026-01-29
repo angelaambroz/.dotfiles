@@ -14,8 +14,8 @@ alias gd="git diff -- --ignore-white-space . ':(exclude)*/**/*.ipynb'"
 alias notes="git add .  && git commit -m 'work' && git push origin main"
 
 # File and directory operations
-alias ls="eza"
-alias l="eza -alF"
+alias ls="eza --icons"
+alias l="eza -alF --icons"
 alias lt="eza --tree"
 alias ll="eza -l"
 alias lsize="du -hs * | sort -rh | head"
