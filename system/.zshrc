@@ -50,9 +50,6 @@ do
 done
 echo "Loaded secrets."
 
-cp "$HOME/.dotfiles/system/Xresources" "$HOME/.config/regolith3/"
-echo "Moved Xresources to config."
-
 #====================
 # Tool Configurations
 #====================
@@ -118,23 +115,6 @@ if [ ! -f ~/.config/alacritty/alacritty.toml ]; then
 fi
 
 export PATH="/home/angelaambroz/Documents/work/discord/.local/bin:$PATH"
-#compdef clyde
-_clyde() {
-  eval "$(_CLYDE_COMPLETE=zsh_source clyde)"
-}
-if [[ "$(basename -- ${(%):-%x})" != "_clyde" ]]; then
-  compdef _clyde clyde
-fi
-. "/home/angelaambroz/.deno/env"
-#compdef clyde
-_clyde() {
-  eval "$(_CLYDE_COMPLETE=zsh_source clyde)"
-}
-if [[ "$(basename -- ${(%):-%x})" != "_clyde" ]]; then
-  compdef _clyde clyde
-fi
-
-source /home/angelaambroz/.nix-profile/etc/profile.d/nix.sh
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/home/angelaambroz/google-cloud-sdk/path.zsh.inc' ]; then . '/home/angelaambroz/google-cloud-sdk/path.zsh.inc'; fi
