@@ -12,6 +12,7 @@ alias gaa="git add ."
 alias gst="git status"
 alias gd="git diff -- --ignore-white-space . ':(exclude)*/**/*.ipynb'"
 alias notes="git add .  && git commit -m 'work' && git push origin main"
+alias tmuxk="tmux kill-server"
 
 # File and directory operations
 alias ls="eza --icons"
