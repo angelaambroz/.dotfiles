@@ -187,7 +187,21 @@ mkdir -p ~/.config/alacritty
 if [ ! -f ~/.config/alacritty/alacritty.toml ]; then
     ln -sf $HOME/.dotfiles/system/alacritty.toml ~/.config/alacritty/alacritty.toml
     echo "✓ Alacritty config symlinked"
+else
+    echo "⚠ Warning: Existing alacritty config found"
 fi
+
+# Actually, I think I'm switching to kitty
+mkdir -p ~/.config/kitty
+if [ ! -f ~/.config/kitty/kitty.conf ]; then
+    ln -sf $HOME/.dotfiles/system/kitty.conf ~/.config/kitty.conf
+    echo "✓ Kitty config symlinked"
+else
+    echo "⚠ Warning: Existing kitty config found"
+fi
+
+# need to clean this up - e.g. git clone the repo in ~/.config, etc
+ln -s ./kitty-themes/themes/Grape.conf ~/.config/kitty/theme.conf
 
 # Regolith config (if directory exists)
 if [ -d ~/.config/regolith3 ]; then
