@@ -48,7 +48,12 @@ require("lazy").setup({
   "tpope/vim-fugitive",                 -- Git commands inside vim (:Git blame, :Git diff, etc.)
 
   -- Appearance and UI
-  "joshdick/onedark.vim",               -- OneDark color scheme (Atom editor colors)
+  -- "joshdick/onedark.vim",               -- OneDark color scheme (Atom editor colors)
+	{
+	    "scottmckendry/cyberdream.nvim",
+	    lazy = false,
+	    priority = 1000,
+	},
   "vim-airline/vim-airline",            -- Fancy statusline at bottom
   "preservim/tagbar",                   -- Sidebar showing code structure (functions, classes) - <leader>tt
 
@@ -139,4 +144,5 @@ vim.keymap.set('n', '<leader>r', ':w<CR>:!uv run %<CR>', { desc = 'Run Python fi
 -- })
 
 -- Theme
-vim.cmd("colorscheme onedark")
+require("cyberdream").setup({ transparent = true })  -- Initialize color scheme.
+vim.cmd("colorscheme cyberdream")

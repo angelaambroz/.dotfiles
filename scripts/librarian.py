@@ -107,7 +107,6 @@ def process_books(books: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
             writer.writerow(response)
             logger.info(f"Saved response for book {book['id']} to {RAW_RESPONSES_CSV}")
-    
 
     return responses
 
@@ -214,7 +213,7 @@ def main():
 
             # Print the response for immediate feedback
             logger.info(f"Response for test book:\n{response['response']}")
-            
+
         else:
             # Process all books (CSV is written inside this function now)
             responses = process_books(books)
