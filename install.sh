@@ -32,7 +32,8 @@ sudo nala install -y \
     exuberant-ctags \
     magic-wormhole \
     glow \
-    tmux
+    tmux \
+    variety
 
 # Bottom
 if ! command -v btm &> /dev/null; then
