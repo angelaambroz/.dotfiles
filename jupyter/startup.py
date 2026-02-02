@@ -7,6 +7,7 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 import matplotlib as mpl
+
 # import snowflake.connector as snow
 from time import time
 from pprint import PrettyPrinter
@@ -76,7 +77,7 @@ def figsize(x: int, y: int):
 
 
 def cnx(db: str):
-    """Convenience function to connect to various Optoro db's
+    """Convenience function to connect to various db's
 
     db: ['dw', 'pg1', 'pg2', 'pv']
     """

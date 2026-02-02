@@ -26,13 +26,9 @@ source $ZSH/oh-my-zsh.sh
 #====================
 # Path & Environment Variables
 #====================
-export PATH="$PATH:/opt/nvim/:/usr/local/bin:$HOME/bin:/home/linuxbrew/.linuxbrew/bin:$HOME/.local/bin:$HOME/.pyenv/bin"
+export PATH="$PATH:/opt/nvim/:/usr/local/bin:$HOME/bin:/home/linuxbrew/.linuxbrew/bin:$HOME/.local/bin"
 export HISTCONTROL=ignoredups
 export EDITOR=nvim
-export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES  # Fix for OSX multiprocessing/gunicorn issues
-
-# Make man pages readable in vim
-export MANPAGER="col -b | vim -c 'set ft=man ts=8 nomod nolist nonu' -c 'nnoremap i <nop>' -"
 
 #====================
 # Source Files & Secrets
@@ -50,9 +46,6 @@ do
 done
 echo "Loaded secrets."
 
-cp "$HOME/.dotfiles/system/Xresources" "$HOME/.config/regolith3/"
-echo "Moved Xresources to config."
-
 #====================
 # Tool Configurations
 #====================
@@ -68,10 +61,6 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
-# Pyenv configuration
-eval "$(pyenv init -)"
-eval "$(pyenv init --path)"
-eval "$(pyenv virtualenv-init -)"
 
 #====================
 # Prompt Configuration
@@ -118,23 +107,6 @@ if [ ! -f ~/.config/alacritty/alacritty.toml ]; then
 fi
 
 export PATH="/home/angelaambroz/Documents/work/discord/.local/bin:$PATH"
-#compdef clyde
-_clyde() {
-  eval "$(_CLYDE_COMPLETE=zsh_source clyde)"
-}
-if [[ "$(basename -- ${(%):-%x})" != "_clyde" ]]; then
-  compdef _clyde clyde
-fi
-. "/home/angelaambroz/.deno/env"
-#compdef clyde
-_clyde() {
-  eval "$(_CLYDE_COMPLETE=zsh_source clyde)"
-}
-if [[ "$(basename -- ${(%):-%x})" != "_clyde" ]]; then
-  compdef _clyde clyde
-fi
-
-source /home/angelaambroz/.nix-profile/etc/profile.d/nix.sh
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/home/angelaambroz/google-cloud-sdk/path.zsh.inc' ]; then . '/home/angelaambroz/google-cloud-sdk/path.zsh.inc'; fi

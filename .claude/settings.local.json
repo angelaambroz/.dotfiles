@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(tree:*)",
+      "Bash(wc:*)",
+      "Bash(tmux list-panes:*)",
+      "Bash(tmux capture-pane:*)",
+      "Bash(echo:*)",
+    ]
+  }
+}

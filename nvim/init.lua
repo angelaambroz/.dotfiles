@@ -27,6 +27,13 @@ require("lazy").setup({
   },
   { "folke/neodev.nvim", opts = {} },   -- Better LSP support for Neovim's Lua API (helps with nvim config dev)
 
+  -- Syntax Highlighting
+  { 
+  	"nvim-treesitter/nvim-treesitter",
+	lazy = false,
+	build = ":TSUpdate"
+  },
+
   -- File Navigation and Search
   { "nvim-telescope/telescope.nvim",    -- Fuzzy finder (Ctrl-P for files, Ctrl-T for grep)
     version = "0.1.4",
@@ -41,7 +48,12 @@ require("lazy").setup({
   "tpope/vim-fugitive",                 -- Git commands inside vim (:Git blame, :Git diff, etc.)
 
   -- Appearance and UI
-  "joshdick/onedark.vim",               -- OneDark color scheme (Atom editor colors)
+  -- "joshdick/onedark.vim",               -- OneDark color scheme (Atom editor colors)
+	{
+	    "scottmckendry/cyberdream.nvim",
+	    lazy = false,
+	    priority = 1000,
+	},
   "vim-airline/vim-airline",            -- Fancy statusline at bottom
   "preservim/tagbar",                   -- Sidebar showing code structure (functions, classes) - <leader>tt
 
@@ -80,6 +92,12 @@ vim.g.python_highlight_all = 1                -- Enable all Python highlighting
 
 -- Plugin Configurations
 require('dap-python').setup(vim.fn.exepath('python3'))  -- Debugger uses python3
+
+-- Treesitter configuration
+require'nvim-treesitter'.setup {
+  -- Directory to install parsers and queries to (prepended to `runtimepath` to have priority)
+  install_dir = vim.fn.stdpath('data') .. '/site'
+}
 
 -- require("conform").setup({              -- Auto-formatter config
 --   formatters_by_ft = {
@@ -126,4 +144,5 @@ vim.keymap.set('n', '<leader>r', ':w<CR>:!uv run %<CR>', { desc = 'Run Python fi
 -- })
 
 -- Theme
-vim.cmd("colorscheme onedark")
+require("cyberdream").setup({ transparent = true, saturation = 0.8 })  -- Initialize color scheme.
+vim.cmd("colorscheme cyberdream")

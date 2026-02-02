@@ -32,7 +32,8 @@ sudo nala install -y \
     exuberant-ctags \
     magic-wormhole \
     glow \
-    tmux
+    tmux \
+    variety
 
 # Bottom
 if ! command -v btm &> /dev/null; then
@@ -50,7 +51,7 @@ if ! command -v cargo &> /dev/null; then
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 #    source "$HOME/.cargo/env"
 else
-    echo "✓ Rust already installed, skipping..."
+    echo "✓ Rust already installed"
 fi
 
 # Dysk
@@ -187,7 +188,21 @@ mkdir -p ~/.config/alacritty
 if [ ! -f ~/.config/alacritty/alacritty.toml ]; then
     ln -sf $HOME/.dotfiles/system/alacritty.toml ~/.config/alacritty/alacritty.toml
     echo "✓ Alacritty config symlinked"
+else
+    echo "⚠ Warning: Existing alacritty config found"
 fi
+
+# Actually, I think I'm switching to kitty
+mkdir -p ~/.config/kitty
+if [ ! -f ~/.config/kitty/kitty.conf ]; then
+    ln -sf $HOME/.dotfiles/system/kitty.conf ~/.config/kitty.conf
+    echo "✓ Kitty config symlinked"
+else
+    echo "⚠ Warning: Existing kitty config found"
+fi
+
+# need to clean this up - e.g. git clone the repo in ~/.config, etc
+ln -s ./kitty-themes/themes/Grape.conf ~/.config/kitty/theme.conf
 
 # Regolith config (if directory exists)
 if [ -d ~/.config/regolith3 ]; then
@@ -198,6 +213,11 @@ fi
 # Tmux config
 ln -sf ~/.dotfiles/system/.tmux.conf ~/.tmux.conf
 echo "✓ .tmux.conf symlinked"
+
+# Tmux theme
+mkdir -p ~/.config/tmux/plugins/catppuccin
+git clone -b v2.1.3 https://github.com/catppuccin/tmux.git ~/.config/tmux/plugins/catppuccin/tmux
+echo "✓ catppuccin tmux theme installed"
 
 ###################
 # Verification    #
