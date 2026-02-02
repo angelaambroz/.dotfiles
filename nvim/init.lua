@@ -144,5 +144,5 @@ vim.keymap.set('n', '<leader>r', ':w<CR>:!uv run %<CR>', { desc = 'Run Python fi
 -- })
 
 -- Theme
-require("cyberdream").setup({ transparent = true })  -- Initialize color scheme.
+require("cyberdream").setup({ transparent = true, saturation = 0.8 })  -- Initialize color scheme.
 vim.cmd("colorscheme cyberdream")
