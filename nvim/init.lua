@@ -101,11 +101,25 @@ require("neodev").setup({               -- Lua LSP setup for neovim development
 local dapui = require("dapui")
 dapui.setup()                           -- Initialize debugger UI
 
--- LSP Configuration
-local lspconfig = require('lspconfig')
+-- LSP Configuration (using new nvim 0.11+ API)
+-- Configure Pyright for Python
+vim.lsp.config.pyright = {
+  cmd = { 'pyright-langserver', '--stdio' },
+  filetypes = { 'python' },
+  root_markers = { 'pyproject.toml', 'setup.py', 'setup.cfg', 'requirements.txt', 'Pipfile', '.git' },
+  settings = {
+    python = {
+      analysis = {
+        autoSearchPaths = true,
+        useLibraryCodeForTypes = true,
+        diagnosticMode = 'openFilesOnly',
+      },
+    },
+  },
+}
 
--- Python LSP (pyright)
-lspconfig.pyright.setup{}
+-- Enable Pyright
+vim.lsp.enable('pyright')
 
 -- LSP keybindings (triggered when LSP attaches to buffer)
 vim.api.nvim_create_autocmd('LspAttach', {
