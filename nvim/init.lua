@@ -18,7 +18,7 @@ vim.opt.rtp:prepend(lazypath)
 --- Plugin Specifications
 require("lazy").setup({
   -- LSP and Debugging
-  "neovim/nvim-lspconfig",              -- LSP configuration (autocomplete, go-to-def, etc.) - NOT ACTUALLY CONFIGURED YET
+  "neovim/nvim-lspconfig",              -- LSP configuration (autocomplete, go-to-def, etc.)
   "mfussenegger/nvim-dap",              -- Debug Adapter Protocol client (debugger core)
   "mfussenegger/nvim-dap-python",       -- Python debugger integration for DAP
   { "rcarriga/nvim-dap-ui",             -- Visual debugger UI (breakpoints panel, variables, stack trace)
@@ -101,6 +101,28 @@ require("neodev").setup({               -- Lua LSP setup for neovim development
 local dapui = require("dapui")
 dapui.setup()                           -- Initialize debugger UI
 
+-- LSP Configuration
+local lspconfig = require('lspconfig')
+
+-- Python LSP (pyright)
+lspconfig.pyright.setup{}
+
+-- LSP keybindings (triggered when LSP attaches to buffer)
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+  callback = function(ev)
+    local opts = { buffer = ev.buf }
+    vim.keymap.set('n', ',d', vim.lsp.buf.definition, opts)      -- ,d: goto definition
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)      -- gd: goto definition (standard)
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)            -- K: show hover info
+    vim.keymap.set('n', ',rf', vim.lsp.buf.references, opts)     -- ,rf: find references
+    vim.keymap.set('n', ',rn', vim.lsp.buf.rename, opts)         -- ,rn: rename symbol
+    vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)    -- [d: previous diagnostic
+    vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)    -- ]d: next diagnostic
+    vim.keymap.set('n', ',ca', vim.lsp.buf.code_action, opts)    -- ,ca: code actions
+  end,
+})
+
 -- Keybindings
 -- General
 vim.keymap.set("i", "jk", "<esc>:w<cr>")  -- jk in insert mode = escape and save
@@ -120,7 +142,7 @@ vim.keymap.set('n', '<F7>', require('dap').step_out, {})          -- F7: step ou
 
 -- Misc
 vim.keymap.set('n', '<leader>tt', ':TagbarToggle<CR>', { silent = true })  -- ,tt: toggle tagbar
-vim.keymap.set('n', '<leader>r', ':w<CR>:!uv run %<CR>', { desc = 'Run Python file with uv' })  -- ,r: run with uv
+vim.keymap.set('n', '<leader>r', ':w<CR>:!uv run %<CR>', { desc = 'Run Python file with uv' })  -- ,r: run with uv (LSP uses ,rf and ,rn)
 
 -- Autocommands
 -- vim.api.nvim_create_autocmd("BufWritePre", {  -- Format on save
