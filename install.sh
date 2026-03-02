@@ -33,7 +33,8 @@ sudo nala install -y \
     magic-wormhole \
     glow \
     tmux \
-    variety
+    variety \
+    fd-find \
 
 # Bottom
 if ! command -v btm &> /dev/null; then
