@@ -35,6 +35,7 @@ sudo nala install -y \
     tmux \
     variety \
     fd-find \
+    trash-cli \
 
 # Bottom
 if ! command -v btm &> /dev/null; then
