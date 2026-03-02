@@ -113,3 +113,6 @@ if [ -f '/home/angelaambroz/google-cloud-sdk/path.zsh.inc' ]; then . '/home/ange
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/angelaambroz/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/angelaambroz/google-cloud-sdk/completion.zsh.inc'; fi
+
+# opencode
+export PATH=/home/angelaambroz/.opencode/bin:$PATH
