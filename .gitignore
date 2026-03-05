@@ -8,3 +8,4 @@ dotfiles_env/
 personal_env
 *.csv
 *.db
+*.opus
