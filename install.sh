@@ -22,6 +22,8 @@ sudo apt install -y nala
 
 sudo nala install -y \
     zsh \
+    nodejs \
+    npm \
     diff-so-fancy \
     colordiff \
     xclip \
