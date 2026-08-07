@@ -1,0 +1,70 @@
+: 1785922626:0;curl -fsSL https://claude.ai/install.sh | bash
+: 1785922626:0;exit
+: 1785922626:0;mv aerospace.toml .aerospace.toml
+: 1785922626:0;git@github.com:angelaambroz/.dotfiles.git
+: 1785922626:0;tldr ssh
+: 1785922626:0;To **generate a new SSH key for GitHub**, you can use the command `ssh-keygen -t ed25519 -C "your_email@example.com"` in your terminal. After generating the key, add the public key to your GitHub account under Settings > SSH and GPG keys.
+: 1785922626:0;ssh-keygen -t ed25519 -C "angela.ambroz@getyourguide.com"
+: 1785922626:0;cd .ssh
+: 1785922626:0;cat id_ed25519
+: 1785922626:0;cat id_ed25519.pub
+: 1785922626:0;cd
+: 1785922626:0;git clone git@github.com:angelaambroz/.dotfiles.git
+: 1785922626:0;cd .dotfiles
+: 1785922626:0;brew trust --formula felixkratz/formulae/sketchybar
+: 1785922626:0;brew tap FelixKratz/formulae && brew install sketchybar
+: 1785922626:0;cd ~/Desktop
+: 1785922626:0;mv aerospace.toml ~/.aerospace.toml
+: 1785922626:0;mkdir .config
+: 1785922626:0;mv .config ~/
+: 1785922626:0;mkdir ~/.config/sketchybar
+: 1785922626:0;mv sketchybarrc ~/.config/sketchybar/sketchybarrc
+: 1785922626:0;mkdir ~/.config/sketchybar/plugins
+: 1785922626:0;mv aerospace.sh ~/.config/sketchybar/plugins/aerospace.sh
+: 1785922626:0;aerospace reload-config
+: 1785922626:0;\d
+: 1785922626:0;tldr
+: 1785922626:0;alias
+: 1785922626:0;alias z
+: 1785922626:0;vim ~/.dotfiles/system/.zshrc-macos
+: 1785922626:0;ls -alf
+: 1785922626:0;vim .zshrc-macos
+: 1785922626:0;mv .zshrc-macos system
+: 1785922626:0;echo $TERM
+: 1785922626:0;zsh
+: 1785922528:0;pwd
+: 1785922548:0;c
+: 1785922956:0;zoxide
+: 1785922963:0;zoxide dot
+: 1785922974:0;ls
+: 1785922981:0;vim system/.alias
+: 1785923007:0;type prompt_pure_setup; echo $SSH_CONNECTION,$PROMPT_PURE_SSH_CONNECTION,$UID,$TMUX
+: 1785923032:0;cd ~/.zsh
+: 1785923034:0;cd pure
+: 1785923045:0;ls ~/.zsh/pure 2>&1\
+ls ~/.oh-my-zsh/plugins 2>&1
+: 1785923111:0;\ls ~/.zsh/pure\
+\ls ~/.oh-my-zsh/plugins
+: 1785923177:0;grep -c "prompt pure" ~/.zshrc\
+echo $fpath | tr ' ' '\n' | grep pure
+: 1785923194:0;cd 
+: 1785923227:0;vim system/.zshrc-macos
+: 1785923267:0;exec zsh
+: 1785923296:0;z Documents
+: 1785923311:0;git clone git@github.com:angelaambroz/obsidian_notes.git
+: 1785928582:27;vim .aerospace.toml
+: 1785928611:0;z confi
+: 1785928619:0;cd ~/.config
+: 1785928629:0;rm -r sketchybar
+: 1785928637:0;z
+: 1785928661:0;z dot
+: 1785928666:0;cd ~/.dotfiles
+: 1785928674:0;grr "mcfly" .
+: 1785928679:8;vim install-macos.sh
+: 1785928690:7;vim
+: 1785928698:0;l
+: 1785928702:3;vim nvim
+: 1785928708:0;l nvim
+: 1785928712:20;vim nvim/init.lua
+: 1785928739:5;sh install-macos.sh
+: 1785928787:0;brew uninstall mcfly
