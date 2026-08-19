@@ -134,7 +134,7 @@ echo "Setting up configuration files..."
 # Neovim config
 mkdir -p ~/.config
 if [ -d ~/.dotfiles/nvim ]; then
-    cp -r ~/.dotfiles/nvim/ ~/.config/
+    cp -r ~/.dotfiles/nvim ~/.config/
     echo "✓ Neovim config copied"
 else
     echo "⚠ Warning: ~/.dotfiles/nvim not found"
