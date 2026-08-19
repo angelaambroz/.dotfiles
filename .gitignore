@@ -9,3 +9,4 @@ personal_env
 *.csv
 *.db
 *.opus
+.claude/
